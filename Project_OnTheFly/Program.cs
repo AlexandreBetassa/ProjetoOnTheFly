@@ -14,13 +14,53 @@ namespace Project_OnTheFly
             Console.WriteLine("3 - Menu de Aeronaves");
             Console.WriteLine("4 - Menu de Passagens ");
             Console.WriteLine("5 - Menu de Vendas ");
+            Console.WriteLine("0 - Sair do Menu Principal");
             return opc = int.Parse(Console.ReadLine());
         }
 
+        #region ManterPassageiro
         public static Passageiro AdicionarPassageiro()
         {
             Passageiro passageiro = new Passageiro();
+
+            passageiro.CadastrarPassageiro();
+
+            return passageiro;
         }
+        public static void EditarPassageiro(List<Passageiro> listaPassageiros)
+        {
+            Passageiro passageiro = BuscarPassageiro(listaPassageiros);
+
+            if (passageiro != null)
+            {
+                passageiro.EditarPassageiro();
+            }
+        }
+        public static Passageiro BuscarPassageiro(List<Passageiro> listaPassageiros)
+        {
+            bool achei = false;
+
+            Console.Write("Informe o CPF do Passageiro para busca: ");
+            string cpf = Console.ReadLine();
+            Passageiro passageiro = new Passageiro();
+
+            foreach (Pasageiro item in listaPassageiros)
+            {
+                if (item.Cpf == cpf)
+                {
+                    achei = true;
+                    passageiro = item;
+                    return passageiro;
+                }
+            }
+
+            if (achei = false)
+            {
+                Console.WriteLine("Não foi encontrado nenhum passageiro com este CPF!");
+            }
+            return null;
+        }
+        #endregion
 
         static void Main(string[] args)
         {
@@ -34,8 +74,9 @@ namespace Project_OnTheFly
                 {
                     case 1:
                         Console.WriteLine("1 - Cadastrar Passageiro");
-                        Console.WriteLine("2 - Editar Passageiro");
-                        Console.WriteLine("3 - Listar Passageiros");
+                        Console.WriteLine("2 - Buscar passageiro");
+                        Console.WriteLine("3 - Editar Passageiro");
+                        Console.WriteLine("4 - Listar Passageiros");
                         Console.WriteLine("0 - Sair do Menu de Passageiros");
                         int opc = int.Parse(Console.ReadLine());
                         do
@@ -47,9 +88,13 @@ namespace Project_OnTheFly
                                     listaPassageiros.Add(passageiro);
                                     break;
                                 case 2:
-                                    passageiro.EditarPassageiro(listaPassageiros);
+                                    passageiro = BuscarPassageiro(listaPassageiros);
+                                    Console.WriteLine(passageiro.ToString());
                                     break;
                                 case 3:
+                                    EditarPassageiro(listaPassageiros);
+                                    break;
+                                case 4:
                                     foreach (Passageiro item in listaPassageiros)
                                     {
                                         Console.WriteLine(item.ToString());
@@ -62,8 +107,7 @@ namespace Project_OnTheFly
                                     Console.WriteLine("Opção Inválida! Favor selecionar uma das opções acima!");
                                     break;
                             }
-                        } while (op != 0);
-
+                        } while (opc != 0);
                         break;
                     case 2:
                         break;
@@ -74,6 +118,7 @@ namespace Project_OnTheFly
                     case 5:
                         break;
                     case 0:
+                        Environment.Exit(0);
                         break;
                 }
             } while (true);
