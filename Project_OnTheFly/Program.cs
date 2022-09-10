@@ -6,7 +6,8 @@ namespace Project_OnTheFly
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CompanhiaAerea comp = new();
+            comp.CadCompAerea();
         }
     }
 }
