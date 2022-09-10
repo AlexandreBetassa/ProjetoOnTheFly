@@ -24,6 +24,7 @@ namespace Project_OnTheFly
 
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             int op = 0;
             List<Passageiro> listaPassageiros = new List<Passageiro>();
             Passageiro passageiro = new Passageiro();
@@ -77,6 +78,10 @@ namespace Project_OnTheFly
                         break;
                 }
             } while (true);
+=======
+            CompanhiaAerea comp = new();
+            comp.CadCompAerea();
+>>>>>>> DevThalya
         }
     }
 }

@@ -8,23 +8,39 @@
     "net5.0": []
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\felip\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\Thalya\\.nuget\\packages\\": {},
+>>>>>>> DevThalya
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\felip\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
       "projectName": "Project_OnTheFly",
       "projectPath": "C:\\Users\\felip\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
       "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\felip\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\Thalya\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+      "projectName": "Project_OnTheFly",
+      "projectPath": "C:\\Users\\Thalya\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+      "packagesPath": "C:\\Users\\Thalya\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Thalya\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
+>>>>>>> DevThalya
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\Thalya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> DevThalya
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "fQg7EDUwIrkOpe2o1g63jI0GB0NJX+YjBQb8pzmq//7RXLOlqQcI5LZ5Zpy8GHBvYgBCOm4xnZHzrKrDMJ4Luw==",
   "success": true,
   "projectFilePath": "C:\\Users\\felip\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+=======
+  "dgSpecHash": "NUl6HsUXOssNYUHkdCEtwsmQjCAmzTd4dMyicEmJ13duWLUJE9nclLbxCpraachRHRRTBE6VEY9ETjNecJ5R0g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Thalya\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+>>>>>>> DevThalya
   "expectedPackageFiles": [],
   "logs": []
 }
