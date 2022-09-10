@@ -1,81 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
 using System.IO;
 using System.Text;
-=======
->>>>>>> origin/felipe
 
 namespace Project_OnTheFly
 {
     internal class Program
     {
-        public static int Menu()
-        {
-            int opc;
-
-            Console.WriteLine("1 - Menu de Passageiros");
-            Console.WriteLine("2 - Menu de Companhias Aéreas ");
-            Console.WriteLine("3 - Menu de Aeronaves");
-            Console.WriteLine("4 - Menu de Passagens ");
-            Console.WriteLine("5 - Menu de Vendas ");
-            Console.WriteLine("0 - Sair do Menu Principal");
-            return opc = int.Parse(Console.ReadLine());
-        }
-
-        #region ManterPassageiro
-        public static Passageiro AdicionarPassageiro()
-        {
-            Passageiro passageiro = new Passageiro();
-
-            passageiro.CadastrarPassageiro();
-
-            return passageiro;
-        }
-        public static void EditarPassageiro(List<Passageiro> listaPassageiros)
-        {
-            Passageiro passageiro = BuscarPassageiro(listaPassageiros);
-
-            if (passageiro != null)
-            {
-                passageiro.EditarPassageiro();
-            }
-        }
-        public static Passageiro BuscarPassageiro(List<Passageiro> listaPassageiros)
-        {
-            bool achei = false;
-
-            Console.Write("Informe o CPF do Passageiro para busca: ");
-            string cpf = Console.ReadLine();
-            Passageiro passageiro = new Passageiro();
-
-            foreach (Pasageiro item in listaPassageiros)
-            {
-                if (item.Cpf == cpf)
-                {
-                    achei = true;
-                    passageiro = item;
-                    return passageiro;
-                }
-            }
-
-            if (achei = false)
-            {
-                Console.WriteLine("Não foi encontrado nenhum passageiro com este CPF!");
-            }
-            return null;
-        }
-        #endregion
-
         static void Main(string[] args)
         {
-<<<<<<< HEAD
-            //List<String> listaIatas = new List<string>();
-            //LerArquivoIatas(listaIatas);
-            GravarArquivoPassageiro();
-
-
-=======
             int op = 0;
             List<Passageiro> listaPassageiros = new List<Passageiro>();
             Passageiro passageiro = new Passageiro();
@@ -130,12 +63,72 @@ namespace Project_OnTheFly
                     case 5:
                         break;
                     case 0:
+                        GravarArquivoPassageiro();
+
                         Environment.Exit(0);
                         break;
                 }
             } while (true);
->>>>>>> origin/felipe
+            //List<String> listaIatas = new List<string>();
+            //LerArquivoIatas(listaIatas);
         }
+
+        public static int Menu()
+        {
+            int opc;
+
+            Console.WriteLine("1 - Menu de Passageiros");
+            Console.WriteLine("2 - Menu de Companhias Aéreas ");
+            Console.WriteLine("3 - Menu de Aeronaves");
+            Console.WriteLine("4 - Menu de Passagens ");
+            Console.WriteLine("5 - Menu de Vendas ");
+            Console.WriteLine("0 - Sair do Menu Principal");
+            return opc = int.Parse(Console.ReadLine());
+        }
+
+        #region ManterPassageiro
+        public static Passageiro AdicionarPassageiro()
+        {
+            Passageiro passageiro = new Passageiro();
+
+            passageiro.CadastrarPassageiro();
+
+            return passageiro;
+        }
+        public static void EditarPassageiro(List<Passageiro> listaPassageiros)
+        {
+            Passageiro passageiro = BuscarPassageiro(listaPassageiros);
+
+            if (passageiro != null)
+            {
+                passageiro.EditarPassageiro();
+            }
+        }
+        public static Passageiro BuscarPassageiro(List<Passageiro> listaPassageiros)
+        {
+            bool achei = false;
+
+            Console.Write("Informe o CPF do Passageiro para busca: ");
+            string cpf = Console.ReadLine();
+            Passageiro passageiro = new Passageiro();
+
+            foreach (Passageiro item in listaPassageiros)
+            {
+                if (item.Cpf == cpf)
+                {
+                    achei = true;
+                    passageiro = item;
+                    return passageiro;
+                }
+            }
+
+            if (achei == false)
+            {
+                Console.WriteLine("Não foi encontrado nenhum passageiro com este CPF!");
+            }
+            return null;
+        }
+        #endregion
 
         #region Iatas
         //metod para recuperação daa lista de iatas
@@ -211,10 +204,10 @@ namespace Project_OnTheFly
         {
             String nome = "alexandre";
             int idade = 27;
-            
+
             String Complete(String nome)
             {
-            var n = new StringBuilder(50);
+                var n = new StringBuilder(50);
 
                 for (int i = nome.Length; i < 50; i++) n[i] = ' ';
                 return n.ToString();
@@ -225,12 +218,7 @@ namespace Project_OnTheFly
 
         #endregion greavararquivos
 
-
-
     }
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> origin/felipe
+

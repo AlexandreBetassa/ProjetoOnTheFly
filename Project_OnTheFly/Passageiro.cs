@@ -8,7 +8,7 @@ namespace Project_OnTheFly
 {
     internal class Passageiro
     {
-        public String CPF { get; set; } //prop chave com 11 dígitos
+        public String Cpf { get; set; } //prop chave com 11 dígitos
         public String Nome { get; set; } // < 50 digitos
         public DateTime DataNascimento { get; set; }
         public char Sexo { get; set; } //M F N
@@ -22,7 +22,7 @@ namespace Project_OnTheFly
         }
         public Passageiro(string cpf, string nome, DateTime dataNascimento, char sexo, DateTime ultimaCompra, DateTime dataCadastro, char situacao)
         {
-            CPF = cpf;
+            Cpf = cpf;
             Nome = nome;
             DataNascimento = dataNascimento;
             Sexo = sexo;
@@ -37,15 +37,15 @@ namespace Project_OnTheFly
             do
             {
                 Console.WriteLine("Informe o número de seu Cadastro de Pessoas Físicas (CPF) : ");
-                CPF = Console.ReadLine();
-                if (ValidarCpf(CPF) == false)
+                Cpf = Console.ReadLine();
+                if (ValidarCpf(Cpf) == false)
                 {
                     Console.WriteLine("NÚMERO DO CPF INVÁLIDO!");
                     Console.WriteLine("PRESSIONE QUALQUER TECLA PARA INFORMAR NOVAMENTE!");
                     Console.ReadKey();
                 }
 
-            } while (ValidarCpf(CPF) == false);
+            } while (ValidarCpf(Cpf) == false);
             do
             {
                 Console.WriteLine("Informe o seu nome (Máximo 50 digítos) : ");
@@ -189,7 +189,7 @@ namespace Project_OnTheFly
         //Metodo para localizar um registro especifico, deixar aqui ou na Program?
 
         //Metodo para EDITAR as informações, desde que não seja o CPF, ?
-        public void AlterarCadastro()
+        public void EditarPassageiro()
         {
 
 
