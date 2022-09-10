@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "Qs61ka08u6jFXgO8WZLoh9+vb1m9HR0oPPRGuT88mKhNc2Mc1N3Nmou6WKy7lin0udpVuIuc5uuSfd+d0PNhRA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+=======
+  "dgSpecHash": "fQg7EDUwIrkOpe2o1g63jI0GB0NJX+YjBQb8pzmq//7RXLOlqQcI5LZ5Zpy8GHBvYgBCOm4xnZHzrKrDMJ4Luw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\felip\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+>>>>>>> origin/felipe
   "expectedPackageFiles": [],
   "logs": []
 }

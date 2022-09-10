@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\Alexandre\\Desktop\\Nova pasta\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj": {}
   },
   "projects": {
@@ -12,12 +13,25 @@
         "projectPath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
         "packagesPath": "C:\\Users\\Alexandre\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
+=======
+    "C:\\Users\\felip\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\felip\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\felip\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+        "projectName": "Project_OnTheFly",
+        "projectPath": "C:\\Users\\felip\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+        "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\felip\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
+>>>>>>> origin/felipe
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Alexandre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -49,8 +63,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -59,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
