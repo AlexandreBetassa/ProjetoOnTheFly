@@ -9,15 +9,18 @@ namespace Project_OnTheFly
         static void Main(string[] args)
         {
             List<String> listaIatas = new List<string>();
-            LerArquivo(listaIatas);
-            Console.WriteLine("Imprimir lista de iatas ");
-            foreach (var item in listaIatas) Console.WriteLine(item);
-            Console.ReadKey();
+            LerArquivoIatas(listaIatas);
+
+
+
+
 
 
         }
 
-        static void LerArquivo(List<String> lista)
+        #region Iatas
+        //metod para recuperação daa lista de iatas
+        static void LerArquivoIatas(List<String> lista)
         {
             string line;
             try
@@ -39,11 +42,32 @@ namespace Project_OnTheFly
             }
             finally
             {
-                Console.WriteLine("Executando o Bloco de Comando - Sem Erros");
+                Console.WriteLine("Arquivos carregados com êxito!!!");
             }
             Console.ReadKey();
             Console.Clear();
             return;
         }
+
+        static void ImprimirDestinos(List<String> lista)
+        {
+            Console.WriteLine("### LISTA DESTINOS ###");
+            foreach (var item in lista) if (item != null) Console.WriteLine(item);
+        }
+
+        static String LocalizarIata(List<String> lista)
+        {
+            Console.WriteLine("Informe a iata do aeroporto destino: ");
+            string iata = Console.ReadLine().ToUpper();
+            foreach (var item in lista)
+                if (item.Contains(iata) && item != null)
+                {
+                    Console.WriteLine(item);
+                    return item;
+                }
+            return null;
+        }
+        #endregion Iatas
+
     }
 }
