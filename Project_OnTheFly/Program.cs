@@ -69,8 +69,7 @@ namespace Project_OnTheFly
                         break;
                 }
             } while (true);
-            //List<String> listaIatas = new List<string>();
-            //LerArquivoIatas(listaIatas);
+
         }
 
         public static int Menu()
