@@ -10,7 +10,7 @@ namespace Project_OnTheFly
     {
         public String CPF { get; set; } //prop CHAVE com 11 dígitos
         public String Nome { get; set; } // < 50 digitos
-        public DateTime DataNascimento { get; set; }
+        public DateTime DataNascimento;
         public char Sexo { get; set; } //M F N
         public DateTime UltimaCompra { get; set; } //no cadastro, data atual
         public DateTime DataCadastro { get; set; }
@@ -32,6 +32,9 @@ namespace Project_OnTheFly
         }
         public void CadastrarPassageiro()
         {
+
+            DateTime aux1;
+            bool aux;
             Console.WriteLine(">>>CADASTRO DE PASSAGEIRO<<<");
             do
             {
@@ -58,7 +61,9 @@ namespace Project_OnTheFly
 
             //Fazer o tratamento de possíveis erros
             Console.WriteLine("Informe sua Data de Nascimento: ");
-            DataNascimento = DateTime.Parse(Console.ReadLine());
+            aux = DateTime.Parse(Console.ReadLine());
+            while (!DateTime.TryParse(Console.ReadLine(), out DataNascimento)) ;
+
 
             do
             {
@@ -70,14 +75,22 @@ namespace Project_OnTheFly
                 }
             } while (Sexo != 'M' && Sexo != 'F' && Sexo != 'N');
 
+
             Console.WriteLine("DATA de ÚLTIMA COMPRA: ");
-            UltimaCompra = DateTime.Now;
-         
-            Console.WriteLine("DATA do CADASTRO: ");
-            DataCadastro = DateTime.Now;
-           
+            while (!DateTime.TryParse(Console.ReadLine(), out )) ;
+
+            do
+            {
+
+
+                Console.WriteLine("DATA do CADASTRO: ");
+                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
+            } while (!aux);
+            DataCadastro = aux1;
+
+
             Situacao = char.Parse(Console.ReadLine());
-           
+
         }
         public static bool ValidarCpf(string cpf)
         {
@@ -180,10 +193,10 @@ namespace Project_OnTheFly
             digito = digito + resto.ToString();
 
             return cpf.EndsWith(digito);
-        }             
+        }
         public void EditarPassageiro()
         {
-           
+
             Passageiro passageiro = new Passageiro();
             Console.WriteLine("Escolha entre as opções, o/os dados que deseja editar em seu cadastro: ");
             Console.WriteLine("1 - Editar NOME cadastrado");

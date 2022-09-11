@@ -42,12 +42,7 @@ namespace Project_OnTheFly
                 Console.WriteLine("Informe o CÓDIGO de identificação da AERONAVE, segundo o padrão definido pela ANAC: ");
                 Inscricao = Console.ReadLine().ToUpper().Trim();
                 Inscricao = Inscricao.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "");
-                Inscricao = Inscricao.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
-                Inscricao = Inscricao.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
-                Inscricao = Inscricao.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
-                Inscricao = Inscricao.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
-                Inscricao = Inscricao.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
-                Inscricao = Inscricao.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
+              
             } while (Inscricao.Length != 6);
 
             Console.WriteLine("Informe a capacidade de pessoas que a AERONAVE comporta: ");
@@ -61,9 +56,10 @@ namespace Project_OnTheFly
         //Permite 105.456 combinações
         //“Tradicionalmente, o Brasil usa para aeronaves comerciais e privadas as letras iniciais
         //fixar o PP ou PR - 
-        //PP, PT, PR, PS.
+        //PP, PT, PR, PS. PP
         //gero um numero randomico e nao repito
         // Proibido: iniciadas com a letra Q ou que tenham W como segunda letra.
+        //PP - 300
         //Os arranjos SOS, XXX, PAN, TTT, VFR, IFR, VMC e IMC não podem ser utilizados.
     }
 }
