@@ -13,12 +13,13 @@ namespace Project_OnTheFly
         {
             List<Passageiro> listaPassageiros = new List<Passageiro>();
             List<String> listaIatas = new List<string>();
-            List<CompanhiaAerea> ListaCompanhiaAereas = new List<CompanhiaAerea>();
+            List<CompanhiaAerea> listaCompanhiaAereas = new List<CompanhiaAerea>();
+            List<Aeronave> listaAeronave = new List<Aeronave>();
 
             LerArquivoIatas(listaIatas);
             LerArquivoPassageiros(listaPassageiros);
-            LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
-            foreach (var item in ListaCompanhiaAereas) Console.WriteLine(item + "\n");
+            LerArquivoCompanhiaAerea(listaCompanhiaAereas);
+            foreach (var item in listaCompanhiaAereas) Console.WriteLine(item + "\n");
 
             int op = 0;
             do
@@ -39,7 +40,8 @@ namespace Project_OnTheFly
                         break;
                     case 0:
                         GravarArquivoPassageiro(listaPassageiros);
-                        GravarArquivoCompanhiaAerea(ListaCompanhiaAereas);
+                        GravarArquivoCompanhiaAerea(listaCompanhiaAereas);
+                        GravarArquivoAeronave(listaAeronave);
                         Environment.Exit(0);
                         break;
                 }
@@ -328,6 +330,38 @@ namespace Project_OnTheFly
             } while (line != null);
         }
         #endregion ArquivoCompanhiaAerea
+
+        #region ArquivoAeronave
+        //metodo de gravacao do arquivo passageiros
+        static void GravarArquivoAeronave(List<Aeronave> listaAeronave)
+        {
+            try
+            {
+                StreamWriter ArqAeronaves = new StreamWriter($"C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Aeronave.dat");
+                foreach (var item in listaAeronave)
+                {
+                    if (item != null)
+                        ArqAeronaves.WriteLine(getAeronave(item));
+                }
+                ArqAeronaves.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha ao gravar o arquivo Aeronave.dat\n" + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Gravação arquivo Aeronave.dat efetuada com sucesso!!!");
+            }
+        }
+
+        //metodo para retornar aeronave para gravar em arquivo
+        static String getAeronave(Aeronave aeronave)
+        {
+            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade}{aeronave.AcentosOcupados}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
+        }
+
+        #endregion ArquivoAeronave
 
         //formatar data sem barras, somente numeros 
         static String FormatarData(DateTime data)
