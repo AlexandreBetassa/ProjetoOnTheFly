@@ -31,31 +31,34 @@ namespace Project_OnTheFly
             Situacao = situacao;
         }
 
+        public char GetSexo()
+        {
+            return Sexo;
+        }
+
         public void CadastrarPassageiro()
         {
+            bool aux;
+
             Console.WriteLine(">>>CADASTRO DE PASSAGEIRO<<<");
             do
             {
                 Console.WriteLine("Informe o número de seu Cadastro de Pessoas Físicas (CPF) : ");
-                Cpf = Console.ReadLine();
-                if (ValidarCpf(Cpf) == false)
+                Cpf = Console.ReadLine().ToUpper();
+                if (!ValidarCpf(Cpf))
                 {
                     Console.WriteLine("NÚMERO DO CPF INVÁLIDO!");
                     Console.WriteLine("PRESSIONE QUALQUER TECLA PARA INFORMAR NOVAMENTE!");
                     Console.ReadKey();
                 }
+            } while (!ValidarCpf(Cpf));
 
-            } while (ValidarCpf(Cpf) == false);
             do
             {
                 Console.WriteLine("Informe o seu nome (Máximo 50 digítos) : ");
                 Nome = Console.ReadLine();
-                if (Nome.Length > 50)
-                {
-                    Console.WriteLine("\nIMPOSSÍVEL CADASTRAR! \nTENTE NOVAMENTE!");
-
-                }
-            } while (Nome.Length > 50);
+                if (Nome.Length > 50) Console.WriteLine("\nIMPOSSÍVEL CADASTRAR! \nTENTE NOVAMENTE!");
+            } while (Nome.Length > 50 || String.IsNullOrWhiteSpace(Nome));
 
             //Fazer o tratamento de possíveis erros
             Console.WriteLine("Informe sua Data de Nascimento: ");
@@ -64,11 +67,7 @@ namespace Project_OnTheFly
             do
             {
                 Console.WriteLine("Informe seu genero: (M - Masculino, F - Feminino, N - Não desejo informar) : ");
-                Sexo = char.Parse(Console.ReadLine().ToUpper());
-                if (Sexo != 'M' && Sexo != 'F' && Sexo != 'N')
-                {
-                    Console.WriteLine("OPÇÃO INVÁLIDA! INFORME (M, F OU N) ");
-                }
+                Sexo = Char.Parse(Console.ReadLine().ToUpper());
             } while (Sexo != 'M' && Sexo != 'F' && Sexo != 'N');
 
             Console.WriteLine("Informe a Data de sua última compra");
@@ -194,11 +193,11 @@ namespace Project_OnTheFly
 
 
         }
-        
+
 
         public override string ToString()
         {
-            return base.ToString();
+            return $"Nome: {Nome}\n{DataNascimento.ToShortDateString()}\n{DataCadastro.ToShortDateString()}n{Sexo}".ToString();
         }
 
     }
