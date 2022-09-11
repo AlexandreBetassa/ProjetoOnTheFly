@@ -30,7 +30,6 @@ namespace Project_OnTheFly
             DataCadastro = DateTime.Now; //data atual do sistema
             Situacao = 'A';
         }
-
         public void CadastrarPassageiro()
         {
             Console.WriteLine(">>>CADASTRO DE PASSAGEIRO<<<");
@@ -72,10 +71,10 @@ namespace Project_OnTheFly
             } while (Sexo != 'M' && Sexo != 'F' && Sexo != 'N');
 
             Console.WriteLine("DATA de ÚLTIMA COMPRA: ");
-            UltimaCompra = DateTime.Now;
+            UltimaCompra = DateTime.Now.ToShortDateString().Replace("/", "");
          
             Console.WriteLine("DATA do CADASTRO: ");
-            DataCadastro = DateTime.Now;
+            DataCadastro = DateTime.Now.ToShortDateString().Replace("/", "");
            
             Situacao = char.Parse(Console.ReadLine());
            
@@ -181,8 +180,7 @@ namespace Project_OnTheFly
             digito = digito + resto.ToString();
 
             return cpf.EndsWith(digito);
-        }
-             
+        }             
         public void EditarPassageiro()
         {
            
@@ -216,7 +214,7 @@ namespace Project_OnTheFly
                     break;
 
                 case 4:
-                    Console.WriteLine("Informe a data correta da ÚLTIMA COMPRA: ");
+                    Console.WriteLine("Informe a DATA correta da ÚLTIMA COMPRA: ");
                     DateTime ultimaCompra = DateTime.Parse(Console.ReadLine());
                     passageiro.UltimaCompra = ultimaCompra;
                     break;
@@ -235,13 +233,11 @@ namespace Project_OnTheFly
                         passageiro.Situacao = situacao;
                     } while (Situacao != 'A' && Situacao != 'I');
                     break;
+
                 default:
                     break;
-
-
             }
         }
-
         public override string ToString()
         {
             return ($"CPF: {CPF}\nNOME: {Nome}\nDATA DE NASCIMENTO: {DataNascimento}\nSEXO: {Sexo}\nÚLTIMA COMPRA: {UltimaCompra}\nDATA EM QUE O CADASTRO FOI REALIZADO: {DataCadastro}\nSITUAÇÃO DO CADASTRO (A - ATIVO, I - INATIVO): {Situacao}").ToString();

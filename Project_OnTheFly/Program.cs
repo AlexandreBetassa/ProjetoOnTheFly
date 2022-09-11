@@ -7,6 +7,8 @@ namespace Project_OnTheFly
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Aeronave aeronave = new Aeronave();
+            aeronave.CadastroAeronave();
         }
     }
 }

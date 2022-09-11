@@ -1,0 +1,5 @@
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.csproj.AssemblyReference.cache
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.AssemblyInfoInputs.cache
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.AssemblyInfo.cs
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.csproj.CoreCompileInputs.cache
