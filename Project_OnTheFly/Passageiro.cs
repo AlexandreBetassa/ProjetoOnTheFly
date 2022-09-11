@@ -71,13 +71,13 @@ namespace Project_OnTheFly
             } while (Sexo != 'M' && Sexo != 'F' && Sexo != 'N');
 
             Console.WriteLine("DATA de ÚLTIMA COMPRA: ");
-            UltimaCompra = DateTime.Now.ToShortDateString().Replace("/", "");
-         
+            UltimaCompra = DateTime.Now;
+
             Console.WriteLine("DATA do CADASTRO: ");
-            DataCadastro = DateTime.Now.ToShortDateString().Replace("/", "");
-           
+            DataCadastro = DateTime.Now;
+
             Situacao = char.Parse(Console.ReadLine());
-           
+
         }
         public void MetodoTeste()
         {
@@ -184,10 +184,10 @@ namespace Project_OnTheFly
             digito = digito + resto.ToString();
 
             return cpf.EndsWith(digito);
-        }             
+        }
         public void EditarPassageiro()
         {
-           
+
             Passageiro passageiro = new Passageiro();
             Console.WriteLine("Escolha entre as opções, o/os dados que deseja editar em seu cadastro: ");
             Console.WriteLine("1 - Editar NOME cadastrado");
