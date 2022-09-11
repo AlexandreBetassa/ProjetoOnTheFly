@@ -71,10 +71,10 @@ namespace Project_OnTheFly
             } while (Sexo != 'M' && Sexo != 'F' && Sexo != 'N');
 
             Console.WriteLine("DATA de ÚLTIMA COMPRA: ");
-            UltimaCompra = DateTime.Now.ToShortDateString().Replace("/", "");
+            UltimaCompra = DateTime.Now;
          
             Console.WriteLine("DATA do CADASTRO: ");
-            DataCadastro = DateTime.Now.ToShortDateString().Replace("/", "");
+            DataCadastro = DateTime.Now;
            
             Situacao = char.Parse(Console.ReadLine());
            

@@ -38,26 +38,23 @@ namespace Project_OnTheFly
              Console.WriteLine(">>>CADASTRO DE AERONAVE<<<");
             do
             {
-               //não terá caracteres especiais (Delimitadores).
+                //não terá caracteres especiais (Delimitadores).
                 Console.WriteLine("Informe o CÓDIGO de identificação da AERONAVE, segundo o padrão definido pela ANAC: ");
-               Inscricao = Console.ReadLine().ToUpper().Trim();
-               Inscricao = Inscricao.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "");
-               Inscricao = Inscricao.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
-               Inscricao = Inscricao.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
-               Inscricao = Inscricao.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
-               Inscricao = Inscricao.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
-               Inscricao = Inscricao.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
-               Inscricao = Inscricao.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
-            }while(Inscricao.Length != 6)
+                Inscricao = Console.ReadLine().ToUpper().Trim();
+                Inscricao = Inscricao.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "");
+                Inscricao = Inscricao.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
+                Inscricao = Inscricao.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
+                Inscricao = Inscricao.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
+                Inscricao = Inscricao.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
+                Inscricao = Inscricao.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
+                Inscricao = Inscricao.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
+
+            } while (Inscricao.Length != 6);
 
             Console.WriteLine("Informe a capacidade de pessoas que a AERONAVE comporta: ");
             Capacidade = int.Parse(Console.ReadLine());
-            sssssss
 
-
-
-
-
+            
 
 
         }

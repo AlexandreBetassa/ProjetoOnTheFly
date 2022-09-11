@@ -3,3 +3,14 @@ C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debu
 C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.AssemblyInfoInputs.cache
 C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.AssemblyInfo.cs
 C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.csproj.CoreCompileInputs.cache
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.exe
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.deps.json
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.runtimeconfig.json
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.runtimeconfig.dev.json
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.dll
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.pdb
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.dll
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\refint\Project_OnTheFly.dll
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.pdb
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.genruntimeconfig.cache
+C:\Users\Gabriele Ciriano\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\ref\Project_OnTheFly.dll
