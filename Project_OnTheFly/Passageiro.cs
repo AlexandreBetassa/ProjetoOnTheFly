@@ -197,7 +197,7 @@ namespace Project_OnTheFly
 
         public override string ToString()
         {
-            return base.ToString();
+            return $"Nome: {Nome}\n{DataNascimento.ToShortDateString()}\n{DataCadastro.ToShortDateString()}n{Sexo}".ToString();
         }
 
     }

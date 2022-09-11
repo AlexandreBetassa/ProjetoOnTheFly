@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -7,10 +8,15 @@ namespace Project_OnTheFly
 {
     internal class Program
     {
+
         static void Main(string[] args)
         {
-            int op = 0;
             List<Passageiro> listaPassageiros = new List<Passageiro>();
+            List<String> listaIatas = new List<string>();
+            LerArquivoIatas(listaIatas);
+            LerArquivoPassageiros(listaPassageiros);
+
+            int op = 0;
             do
             {
                 op = Menu();
@@ -60,7 +66,7 @@ namespace Project_OnTheFly
                         break;
                     case 4:
                         foreach (Passageiro item in listaPassageiros)
-                            Console.WriteLine(item.ToString());
+                            Console.WriteLine(item.ToString() + "\n");
                         break;
                     case 0:
                         Console.WriteLine("Você saiu do Menu de Passageiros!");
@@ -136,7 +142,7 @@ namespace Project_OnTheFly
             string line;
             try
             {
-                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\listaIatas.dat");//Instancia um Objeto StreamReader (Classe de Manipulação de Leitura de Arquivos)
+                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\listaIatas.dat");
                 line = sr.ReadLine();
                 while (line != null)
                 {
@@ -147,11 +153,11 @@ namespace Project_OnTheFly
             }
             catch (Exception e)
             {
-                Console.WriteLine("Falha no carregamento do arquivo de Iatas\n " + e.Message);
+                Console.WriteLine("Falha no carregamento do arquivo listaIatas\n " + e.Message);
             }
             finally
             {
-                Console.WriteLine("Arquivos carregados com êxito!!!");
+                Console.WriteLine("Arquivo listaIatas carregados com êxito!!!");
             }
             Console.ReadKey();
             Console.Clear();
@@ -179,12 +185,12 @@ namespace Project_OnTheFly
         #endregion Iatas
 
         #region gravarArquivos
+        //metodo de gravacao do arquivo passageiros
         static void GravarArquivoPassageiro(List<Passageiro> listaPassageiros)
         {
             try
             {
                 StreamWriter passageiro = new StreamWriter("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Passageiros.dat");
-                //foreach (Passageiro passageiro in listaPassageiros) if (passageiro != null) passageiro.WriteLine(pessoa.getPassageiro);
                 foreach (Passageiro item in listaPassageiros)
                 {
                     if (item != null)
@@ -205,14 +211,53 @@ namespace Project_OnTheFly
         //metodo para retornar passageiro como texto para efetuar gravacao em arquivo
         static String getPassageiro(Passageiro passageiro)
         {
-
             return $"{passageiro.Cpf}{passageiro.Nome.PadRight(50)}{FormatarData(passageiro.DataNascimento)}{passageiro.Sexo}{FormatarData(passageiro.UltimaCompra)}{FormatarData(passageiro.DataCadastro)}";
         }
+
         //formatar data sem barras, somente numeros 
         static String FormatarData(DateTime data)
         {
             return data.ToString("ddMMyyyy");
         }
+
+        //metodo de leitura do arquivo de passageiros
+        static void LerArquivoPassageiros(List<Passageiro> listaPassageiro)
+        {
+            String line;
+
+            try
+            {
+                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Passageiros.dat");
+                line = sr.ReadLine();
+
+                do
+                {
+                    Passageiro passageiro = new Passageiro();
+                    passageiro.Cpf = line.Substring(0, 11);
+                    passageiro.Nome = line.Substring(11, 50);
+                    passageiro.DataNascimento = DateTime.Parse($"{line[61]}{line[62]}/{line[63]}{line[64]}/{line[65]}{line[66]}{line[67]}{line[68]}");
+                    passageiro.Sexo = line[69];
+                    passageiro.UltimaCompra = DateTime.Parse($"{line[70]}{line[71]}/{line[72]}{line[73]}/{line[74]}{line[75]}{line[76]}{line[77]}");
+                    listaPassageiro.Add(passageiro);
+                    line = sr.ReadLine();
+                } while (line != null);
+
+                sr.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha no carregamento do arquivo de Passageiros\n " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
+            }
+            Console.ReadKey();
+            Console.Clear();
+            return;
+        }
+
+
         #endregion greavararquivos
 
     }
