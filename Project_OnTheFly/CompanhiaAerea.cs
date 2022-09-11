@@ -81,7 +81,7 @@ namespace Project_OnTheFly
             } while (result.Days / 30 < 6);
 
             DataCadastro = DateTime.Now;
-            Console.WriteLine($"A data do seu cadastro: {DataCadastro}");
+            Console.WriteLine($"A data do seu cadastro: {DataCadastro.ToShortDateString()}");
 
 
         }
@@ -239,5 +239,10 @@ namespace Project_OnTheFly
             
         }
             */
+
+        public override string ToString()
+        {
+            return $"CNPJ: {CNPJ}\nRazão Social: {RazaoSocial}".ToString();
+        }
     }
 }
