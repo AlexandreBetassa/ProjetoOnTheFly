@@ -80,12 +80,62 @@ namespace Project_OnTheFly
 
             } while (result.Days / 30 < 6);
 
-            DataCadastro = DateTime.Now;
+            //data do cadastro
             Console.WriteLine($"A data do seu cadastro: {DataCadastro.ToShortDateString()}");
 
-
         }
-        
+
+        public void EditarCompAerea(string cnpj, string razaoSocial, DateTime dataAbertura, DateTime ultimoVoo)
+        {
+            CompanhiaAerea companhia = new();
+            Console.WriteLine("Escolha o dado que você deseja editar: ");
+            Console.WriteLine("1 - Editar CNPJ");
+            Console.WriteLine("2 - Editar RAZÃO SOCIAL");
+            Console.WriteLine("3 - Editar DATA DE ABERTURA");
+            Console.WriteLine("4 - Editar ÚLTIMO VOO");
+           // Console.WriteLine("5 - Editar NOVA DATA CADASTRO (ALTERAÇÃO)");
+            int op = int.Parse(Console.ReadLine());
+
+            switch (op)
+            {
+                case 1:
+                    Console.WriteLine("Informe o CNPJ correto: ");
+                    cnpj = Console.ReadLine();
+                    companhia.CNPJ = cnpj;
+                    break;
+
+                case 2:
+                    Console.WriteLine("Informe a RAZÃO SOCIAL correta: ");
+                    razaoSocial = Console.ReadLine();
+                    companhia.RazaoSocial = razaoSocial;
+                    break;
+
+                case 3:
+                    Console.WriteLine("Informe a DATA DE ABERTURA correta: ");
+                    dataAbertura = DateTime.Parse(Console.ReadLine());
+                    companhia.DataAbertura = dataAbertura;
+                    break;
+
+                case 4:
+                    Console.WriteLine("Informe a DATA DO ÚLTIMO VOO correta: ");
+                    ultimoVoo = DateTime.Parse(Console.ReadLine());
+                    companhia.UltimoVoo = ultimoVoo;
+                    break;
+
+                //case 5:
+                   // Console.WriteLine("Informe a DATA DO CADASTRO ALTERADO: ");
+                    //dataCadastro = Console.ReadLine();
+                    //companhia.DataCadastro = dataCadastro;
+                    //break;
+            }
+        }
+
+        public override string ToString()
+        {
+            return "\nCNPJ: " + CNPJ + "\nRazão Social: " + RazaoSocial + "\nData de Abertura: " + DataAbertura + "\nÚltimo Voo: " + UltimoVoo + "\nData de Cadastro: " + DataCadastro + "\nSituação: " + SituacaoCA;
+        }
+
+        //método para validar cnpj
         public static bool ValidarCnpj(string cnpj)
         {
             int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -239,10 +289,5 @@ namespace Project_OnTheFly
             
         }
             */
-
-        public override string ToString()
-        {
-            return $"CNPJ: {CNPJ}\nRazão Social: {RazaoSocial}".ToString();
-        }
     }
 }

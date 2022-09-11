@@ -129,7 +129,7 @@ namespace Project_OnTheFly
 
             foreach (Passageiro item in listaPassageiros)
             {
-                if (item.Cpf == cpf)
+                if (item.CPF == cpf)
                 {
                     achei = true;
                     passageiro = item;
@@ -173,7 +173,7 @@ namespace Project_OnTheFly
         //metodo para retornar passageiro como texto para efetuar gravacao em arquivo
         static String getPassageiro(Passageiro passageiro)
         {
-            return $"{passageiro.Cpf}{passageiro.Nome.PadRight(50)}{FormatarData(passageiro.DataNascimento)}{passageiro.Sexo}{FormatarData(passageiro.UltimaCompra)}{FormatarData(passageiro.DataCadastro)}";
+            return $"{passageiro.CPF}{passageiro.Nome.PadRight(50)}{FormatarData(passageiro.DataNascimento)}{passageiro.Sexo}{FormatarData(passageiro.UltimaCompra)}{FormatarData(passageiro.DataCadastro)}";
         }
 
         //metodo de leitura do arquivo de passageiros
@@ -189,7 +189,7 @@ namespace Project_OnTheFly
                 do
                 {
                     Passageiro passageiro = new Passageiro();
-                    passageiro.Cpf = line.Substring(0, 11);
+                    passageiro.CPF = line.Substring(0, 11);
                     passageiro.Nome = line.Substring(11, 50);
                     passageiro.DataNascimento = DateTime.Parse($"{line[61]}{line[62]}/{line[63]}{line[64]}/{line[65]}{line[66]}{line[67]}{line[68]}");
                     passageiro.Sexo = line[69];
