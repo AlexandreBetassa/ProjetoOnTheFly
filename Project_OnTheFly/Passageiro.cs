@@ -81,6 +81,10 @@ namespace Project_OnTheFly
             //Situação, chamar um metodo p registrar a situação ?
             //Situação é A - Ativo e I - Inativo
         }
+        public void MetodoTeste()
+        {
+
+        }
         public static bool ValidarCpf(string cpf)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
