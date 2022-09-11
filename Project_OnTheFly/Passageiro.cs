@@ -8,7 +8,7 @@ namespace Project_OnTheFly
 {
     internal class Passageiro
     {
-        public String CPF { get; set; } //prop chave com 11 dígitos
+        public String CPF { get; set; } //prop CHAVE com 11 dígitos
         public String Nome { get; set; } // < 50 digitos
         public DateTime DataNascimento { get; set; }
         public char Sexo { get; set; } //M F N
@@ -26,9 +26,9 @@ namespace Project_OnTheFly
             Nome = nome;
             DataNascimento = dataNascimento;
             Sexo = sexo;
-            UltimaCompra = ultimaCompra;
-            DataCadastro = dataCadastro;
-            Situacao = situacao;
+            UltimaCompra = DateTime.Now; //data atual do sistema
+            DataCadastro = DateTime.Now; //data atual do sistema
+            Situacao = 'A';
         }
 
         public void CadastrarPassageiro()
@@ -36,7 +36,7 @@ namespace Project_OnTheFly
             Console.WriteLine(">>>CADASTRO DE PASSAGEIRO<<<");
             do
             {
-                Console.WriteLine("Informe o número de seu Cadastro de Pessoas Físicas (CPF) : ");
+                Console.WriteLine("Informe o número de seu Cadastro de Pessoas Físicas (CPF) sem caracteres especiais : ");
                 CPF = Console.ReadLine();
                 if (ValidarCpf(CPF) == false)
                 {
@@ -71,16 +71,14 @@ namespace Project_OnTheFly
                 }
             } while (Sexo != 'M' && Sexo != 'F' && Sexo != 'N');
 
-            Console.WriteLine("Informe a Data de sua última compra");
-            Console.WriteLine("Caso nunca tenha comprado uma passagem antes, informe a data ATUAL: ");
-            UltimaCompra = DateTime.Parse(Console.ReadLine());
-
-            //Data ATUAL do sistema
-            Console.WriteLine("Informe a Data de Cadastro: ");
-            DataCadastro = DateTime.Parse(Console.ReadLine());
-
-            //Situação, chamar um metodo p registrar a situação ?
-            //Situação é A - Ativo e I - Inativo
+            Console.WriteLine("DATA de ÚLTIMA COMPRA: ");
+            UltimaCompra = DateTime.Now;
+         
+            Console.WriteLine("DATA do CADASTRO: ");
+            DataCadastro = DateTime.Now;
+           
+            Situacao = char.Parse(Console.ReadLine());
+           
         }
         public static bool ValidarCpf(string cpf)
         {
@@ -184,21 +182,69 @@ namespace Project_OnTheFly
 
             return cpf.EndsWith(digito);
         }
-
-
-        //Metodo para localizar um registro especifico, deixar aqui ou na Program?
-
-        //Metodo para EDITAR as informações, desde que não seja o CPF, ?
-        public void AlterarCadastro()
+             
+        public void EditarPassageiro()
         {
+           
+            Passageiro passageiro = new Passageiro();
+            Console.WriteLine("Escolha entre as opções, o/os dados que deseja editar em seu cadastro: ");
+            Console.WriteLine("1 - Editar NOME cadastrado");
+            Console.WriteLine("2 - Editar DATA DE NASCIMENTO cadastrado");
+            Console.WriteLine("3 - Editar SEXO cadastrado");
+            Console.WriteLine("4 - Editar ÚLTIMA COMPRA cadastrada");
+            Console.WriteLine("5 - Editar DATA DO CADASTRO");
+            Console.WriteLine("6 - Editar SITUAÇÃO do CADASTRO ");
+            int op = int.Parse(Console.ReadLine());
+            switch (op)
+            {
+                case 1:
+                    Console.WriteLine("Informe o NOME correto: ");
+                    string nome = Console.ReadLine();
+                    passageiro.Nome = nome;
+                    break;
+
+                case 2:
+                    Console.WriteLine("Informe a DATA DE NASCIMENTO correta: ");
+                    DateTime datanasc = DateTime.Parse(Console.ReadLine());
+                    passageiro.DataNascimento = datanasc;
+                    break;
+
+                case 3:
+                    Console.WriteLine("Informe o gênero correto (M- Masculino, F - Feminino, N - Não desejo informar) : ");
+                    char sexo = char.Parse(Console.ReadLine());
+                    passageiro.Sexo = sexo;
+                    break;
+
+                case 4:
+                    Console.WriteLine("Informe a data correta da ÚLTIMA COMPRA: ");
+                    DateTime ultimaCompra = DateTime.Parse(Console.ReadLine());
+                    passageiro.UltimaCompra = ultimaCompra;
+                    break;
+
+                case 5:
+                    Console.WriteLine("Informe a DATA DO CADASTRO correta: ");
+                    DateTime dataCadastro = DateTime.Parse(Console.ReadLine());
+                    passageiro.DataCadastro = dataCadastro;
+                    break;
+
+                case 6:
+                    do
+                    {
+                        Console.WriteLine("Informe a SITUAÇÃO do cadastro correta (A - Ativo, I - Inativo): ");
+                        char situacao = char.Parse(Console.ReadLine());
+                        passageiro.Situacao = situacao;
+                    } while (Situacao != 'A' && Situacao != 'I');
+                    break;
+                default:
+                    break;
 
 
+            }
         }
-        
 
         public override string ToString()
         {
-            return base.ToString();
+            return ($"CPF: {CPF}\nNOME: {Nome}\nDATA DE NASCIMENTO: {DataNascimento}\nSEXO: {Sexo}\nÚLTIMA COMPRA: {UltimaCompra}\nDATA EM QUE O CADASTRO FOI REALIZADO: {DataCadastro}\nSITUAÇÃO DO CADASTRO (A - ATIVO, I - INATIVO): {Situacao}").ToString();
         }
 
     }
