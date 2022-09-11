@@ -202,18 +202,13 @@ namespace Project_OnTheFly
             }
         }
 
-
+        //metodo para retornar passageiro como texto para efetuar gravacao em arquivo
         static String getPassageiro(Passageiro passageiro)
         {
-            String Complete(String nome)
-            {
-                if (nome.Length < 50)
-                    for (int i = nome.Length; i < 50; i++) nome += " ";
-                return nome;
-            }
-            return $"{passageiro.Cpf}{Complete(passageiro.Nome)}{FormatarData(passageiro.DataNascimento)}{passageiro.Sexo}{FormatarData(passageiro.UltimaCompra)}{FormatarData(passageiro.DataCadastro)}";
-        }
 
+            return $"{passageiro.Cpf}{passageiro.Nome.PadRight(50)}{FormatarData(passageiro.DataNascimento)}{passageiro.Sexo}{FormatarData(passageiro.UltimaCompra)}{FormatarData(passageiro.DataCadastro)}";
+        }
+        //formatar data sem barras, somente numeros 
         static String FormatarData(DateTime data)
         {
             return data.ToString("ddMMyyyy");
