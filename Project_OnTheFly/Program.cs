@@ -307,7 +307,8 @@ namespace Project_OnTheFly
                     Console.WriteLine(line.Length);
                     CompanhiaAerea companhia = new CompanhiaAerea();
                     companhia.CNPJ = line.Substring(0, 14);
-                    companhia.RazaoSocial = line.Substring(14, 51);
+                    companhia.RazaoSocial = line.Substring(14, 50);
+                    Console.WriteLine(companhia.RazaoSocial.Length);
                     companhia.DataAbertura = DateTime.Parse($"{line[64]}{line[65]}/{line[66]}{line[67]}/{line[68]}{line[69]}{line[70]}{line[71]}");
                     companhia.UltimoVoo = DateTime.Parse($"{line[72]}{line[73]}/{line[74]}{line[75]}/{line[76]}{line[77]}{line[78]}{line[79]}");
                     companhia.DataCadastro = DateTime.Parse($"{line[80]}{line[81]}/{line[82]}{line[83]}/{line[84]}{line[85]}{line[86]}{line[87]}");
