@@ -9,7 +9,7 @@ namespace Project_OnTheFly
     internal class Aeronave
     {
         //CHAVE, PADRÃO ANAC, 6 DIGITOD ALFANUMERICOS
-        public String Inscricao { get; set; }     
+        public String Inscricao { get; set; }
         public int Capacidade { get; set; } //3 digitos numericos
         public int AcentosOcupados { get; set; } //3 digitos numericos
         public DateTime UltimaVenda { get; set; } //no cad, dt atual
@@ -24,7 +24,7 @@ namespace Project_OnTheFly
 
         public Aeronave(string inscricao, int capacidade, int acentosOcupados, DateTime ultimaVenda, DateTime dataCadastro)
         {
-            Inscricao = inscricao;         
+            Inscricao = inscricao;
             Capacidade = capacidade;
             AcentosOcupados = acentosOcupados;
             UltimaVenda = ultimaVenda;
@@ -35,31 +35,23 @@ namespace Project_OnTheFly
         //para cadastrar uma aeronave é necessário ela ser vinculada a uma compahia ?
         public void CadastroAeronave()
         {
-             Console.WriteLine(">>>CADASTRO DE AERONAVE<<<");
+            Console.WriteLine(">>>CADASTRO DE AERONAVE<<<");
             do
             {
-               //não terá caracteres especiais (Delimitadores).
+                //não terá caracteres especiais (Delimitadores).
                 Console.WriteLine("Informe o CÓDIGO de identificação da AERONAVE, segundo o padrão definido pela ANAC: ");
-               Inscricao = Console.ReadLine().ToUpper().Trim();
-               Inscricao = Inscricao.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "");
-               Inscricao = Inscricao.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
-               Inscricao = Inscricao.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
-               Inscricao = Inscricao.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
-               Inscricao = Inscricao.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
-               Inscricao = Inscricao.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
-               Inscricao = Inscricao.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
-            }while(Inscricao.Length != 6)
+                Inscricao = Console.ReadLine().ToUpper().Trim();
+                Inscricao = Inscricao.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "");
+                Inscricao = Inscricao.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
+                Inscricao = Inscricao.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
+                Inscricao = Inscricao.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
+                Inscricao = Inscricao.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
+                Inscricao = Inscricao.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
+                Inscricao = Inscricao.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
+            } while (Inscricao.Length != 6);
 
             Console.WriteLine("Informe a capacidade de pessoas que a AERONAVE comporta: ");
             Capacidade = int.Parse(Console.ReadLine());
-            sssssss
-
-
-
-
-
-
-
         }
 
 
