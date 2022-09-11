@@ -26,19 +26,16 @@ namespace Project_OnTheFly
             Nome = nome;
             DataNascimento = dataNascimento;
             Sexo = sexo;
-            UltimaCompra = ultimaCompra;
+            UltimaCompra = DateTime.Now;
             DataCadastro = dataCadastro;
             Situacao = situacao;
-        }
-
-        public char GetSexo()
-        {
-            return Sexo;
         }
 
         public void CadastrarPassageiro()
         {
             bool aux;
+            DateTime aux1;
+
 
             Console.WriteLine(">>>CADASTRO DE PASSAGEIRO<<<");
             do
@@ -74,125 +71,128 @@ namespace Project_OnTheFly
             Console.WriteLine("Caso nunca tenha comprado uma passagem antes, informe a data ATUAL: ");
             UltimaCompra = DateTime.Parse(Console.ReadLine());
 
-            //Data ATUAL do sistema
-            Console.WriteLine("Informe a Data de Cadastro: ");
-            DataCadastro = DateTime.Parse(Console.ReadLine());
-
-            //Situação, chamar um metodo p registrar a situação ?
-            //Situação é A - Ativo e I - Inativo
-        }
-        public static bool ValidarCpf(string cpf)
-        {
-            int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-            int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-
-            string tempCpf, digito;
-            int soma, resto;
-
-            //Formatando para deixar o CPF somente com os números, sem caracteres especiais
-            cpf = cpf.ToLower().Trim();
-            cpf = cpf.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "");
-            cpf = cpf.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
-            cpf = cpf.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
-            cpf = cpf.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
-            cpf = cpf.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
-            cpf = cpf.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
-            cpf = cpf.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
-
-
-            //Se o CPF for informado vazio
-            if (cpf.Length == 0)
-                return false;
-
-            //Se a quantidade de dígitos for diferente do permitido (11)
-            if (cpf.Length != 11)
-                return false;
-
-            //Se os números informados forem todos iguais
-            switch (cpf)
+            do
             {
+                //Data ATUAL do sistema
+                Console.WriteLine("Informe a Data de Cadastro: ");
+                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
+            } while (!aux);
+            DataCadastro = aux1;
+                //Situação, chamar um metodo p registrar a situação ?
+                //Situação é A - Ativo e I - Inativo
+            }
+        public static bool ValidarCpf(string cpf)
+            {
+                int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+                int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-                case "00000000000":
+                string tempCpf, digito;
+                int soma, resto;
 
+                //Formatando para deixar o CPF somente com os números, sem caracteres especiais
+                cpf = cpf.ToLower().Trim();
+                cpf = cpf.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "");
+                cpf = cpf.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
+                cpf = cpf.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
+                cpf = cpf.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
+                cpf = cpf.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
+                cpf = cpf.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
+                cpf = cpf.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
+
+
+                //Se o CPF for informado vazio
+                if (cpf.Length == 0)
                     return false;
 
-                case "11111111111":
-
+                //Se a quantidade de dígitos for diferente do permitido (11)
+                if (cpf.Length != 11)
                     return false;
 
-                case "22222222222":
+                //Se os números informados forem todos iguais
+                switch (cpf)
+                {
 
-                    return false;
+                    case "00000000000":
 
-                case "33333333333":
+                        return false;
 
-                    return false;
+                    case "11111111111":
 
-                case "44444444444":
+                        return false;
 
-                    return false;
+                    case "22222222222":
 
-                case "55555555555":
+                        return false;
 
-                    return false;
+                    case "33333333333":
 
-                case "66666666666":
+                        return false;
 
-                    return false;
+                    case "44444444444":
 
-                case "77777777777":
+                        return false;
 
-                    return false;
+                    case "55555555555":
 
-                case "88888888888":
+                        return false;
 
-                    return false;
+                    case "66666666666":
 
-                case "99999999999":
+                        return false;
 
-                    return false;
+                    case "77777777777":
+
+                        return false;
+
+                    case "88888888888":
+
+                        return false;
+
+                    case "99999999999":
+
+                        return false;
+                }
+
+                tempCpf = cpf.Substring(0, 9);
+
+                //Calculo para gerar um número de CPF válido
+                soma = 0;
+                for (int i = 0; i < 9; i++)
+                    soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
+
+                resto = soma % 11;
+                if (resto < 2)
+                    resto = 0;
+                else
+                    resto = 11 - resto;
+
+                digito = resto.ToString();
+
+                tempCpf = tempCpf + digito;
+                soma = 0;
+                for (int i = 0; i < 10; i++)
+                    soma += int.Parse(tempCpf[i].ToString()) * multiplicador2[i];
+
+                resto = soma % 11;
+                if (resto < 2)
+                    resto = 0;
+                else
+                    resto = 11 - resto;
+
+                digito = digito + resto.ToString();
+
+                return cpf.EndsWith(digito);
             }
 
-            tempCpf = cpf.Substring(0, 9);
 
-            //Calculo para gerar um número de CPF válido
-            soma = 0;
-            for (int i = 0; i < 9; i++)
-                soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
+            //Metodo para localizar um registro especifico, deixar aqui ou na Program?
 
-            resto = soma % 11;
-            if (resto < 2)
-                resto = 0;
-            else
-                resto = 11 - resto;
-
-            digito = resto.ToString();
-
-            tempCpf = tempCpf + digito;
-            soma = 0;
-            for (int i = 0; i < 10; i++)
-                soma += int.Parse(tempCpf[i].ToString()) * multiplicador2[i];
-
-            resto = soma % 11;
-            if (resto < 2)
-                resto = 0;
-            else
-                resto = 11 - resto;
-
-            digito = digito + resto.ToString();
-
-            return cpf.EndsWith(digito);
-        }
+            //Metodo para EDITAR as informações, desde que não seja o CPF, ?
+            public void EditarPassageiro()
+            {
 
 
-        //Metodo para localizar um registro especifico, deixar aqui ou na Program?
-
-        //Metodo para EDITAR as informações, desde que não seja o CPF, ?
-        public void EditarPassageiro()
-        {
-
-
-        }
+            }
 
 
         public override string ToString()

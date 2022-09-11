@@ -47,6 +47,8 @@ namespace Project_OnTheFly
 
         }
 
+        public void metodoteste() { }
+
         #region Menus
         public static void MenuPassageiro(List<Passageiro> listaPassageiros)
         {
