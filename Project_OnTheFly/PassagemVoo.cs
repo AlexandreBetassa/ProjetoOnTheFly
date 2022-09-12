@@ -28,6 +28,9 @@ namespace Project_OnTheFly
             Situacao = situacao;
         }
 
+        public void CadastrarPassagem()
+        {
 
+        }
     }
 }

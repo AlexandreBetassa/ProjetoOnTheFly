@@ -51,7 +51,7 @@ namespace Project_OnTheFly
 
             //INSERIR AERONAVE
 
-            //Data e hora do voo
+            //Data e hora do voo - INSERIR FORMATAÇÃO PARA SAIR DATA E HORA
             Console.Write("Informe a data e hora do voo: ");
             DataVoo = DateTime.Parse(Console.ReadLine());
 
