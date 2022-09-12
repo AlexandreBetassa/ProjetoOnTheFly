@@ -571,9 +571,8 @@ namespace Project_OnTheFly
             bool achei = false;
 
             Console.Write("Informe o ID da Venda para busca: ");
-            int idVenda = int.Parse(Console.ReadLine());
-            Venda venda = new Venda();
-
+            String idVenda = Console.ReadLine();
+            Venda venda;
             foreach (Venda item in listaVendas)
             {
                 if (item.IdVenda == idVenda)
