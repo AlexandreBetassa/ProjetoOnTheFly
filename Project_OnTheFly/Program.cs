@@ -21,9 +21,10 @@ namespace Project_OnTheFly
             List<Venda> listaVendas = new List<Venda>();
             List<ItemVenda> listaItemVendas = new List<ItemVenda>();
 
+            LerArquivoPassageiros(listaPassageiros);
+
             LerArquivoIatas(listaIatas);
             LerArquivoAeronave(listaAeronaves);
-            LerArquivoPassageiros(listaPassageiros);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
 
 
@@ -660,7 +661,7 @@ namespace Project_OnTheFly
 
             try
             {
-                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Passageiros.dat");
+                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\ProjetoOnTheFly\\Project_OnTheFly\\Passageiro.dat");
                 line = sr.ReadLine();
 
                 do
@@ -833,7 +834,7 @@ namespace Project_OnTheFly
         //metodo para retornar aeronave para gravar em arquivo
         static String getAeronave(Aeronave aeronave)
         {
-            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade}{aeronave.AcentosOcupados}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
+            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade:000}{aeronave.AcentosOcupados}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
         }
 
         static void LerArquivoAeronave(List<Aeronave> listaAeronaves)
@@ -848,7 +849,11 @@ namespace Project_OnTheFly
                     line = arqAeronave.ReadLine();
                     if (line == null) break;
                     Aeronave aeronave = new Aeronave();
-                    aeronave.Inscricao = line;
+                    aeronave.Inscricao = line.Substring(0, 6);
+                    aeronave.Capacidade = int.Parse(line.Substring(6, 9));
+                    //aeronave.UltimaVenda =;
+                    // aeronave.DataCadastro =;
+                    //aeronave.Situacao = char.Parse(line[Length]);
 
 
                 } while (line != null);
