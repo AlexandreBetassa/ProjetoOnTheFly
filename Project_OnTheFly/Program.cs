@@ -487,7 +487,7 @@ namespace Project_OnTheFly
 
             if (voo != null)
             {
-                voo.EditarVoo();
+                voo.AlterarSituacao();
             }
         }
         public static Voo BuscarVoo(List<Voo> listaVoos)
