@@ -229,7 +229,7 @@ namespace Project_OnTheFly
                     {
                         Console.WriteLine("Informe a SITUAÇÃO do cadastro correta (A - Ativo, I - Inativo): ");
                         Situacao = char.Parse(Console.ReadLine());
-                       
+                       //fazer um filtro no metodo de lista p nao imprimir
                     } while (Situacao != 'A' && Situacao != 'I');
                     break;
 
