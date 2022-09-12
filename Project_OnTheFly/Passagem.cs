@@ -8,5 +8,11 @@ namespace Project_OnTheFly
 {
     internal class Passagem
     {
+        public void CadastrarPassagem()
+        {
+
+        }
+
+        public void EditarPassagem() { }
     }
 }
