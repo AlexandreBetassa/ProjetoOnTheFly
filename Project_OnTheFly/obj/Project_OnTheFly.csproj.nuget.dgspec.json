@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Thalya\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj": {}
+    "C:\\Users\\Thalya\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Thalya\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj": {
+    "C:\\Users\\Thalya\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thalya\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+        "projectUniqueName": "C:\\Users\\Thalya\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
         "projectName": "Project_OnTheFly",
-        "projectPath": "C:\\Users\\Thalya\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+        "projectPath": "C:\\Users\\Thalya\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
         "packagesPath": "C:\\Users\\Thalya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thalya\\Source\\Repos\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
+        "outputPath": "C:\\Users\\Thalya\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
