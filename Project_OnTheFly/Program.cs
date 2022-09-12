@@ -230,7 +230,7 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaVoos.Add(AdicionarVoo(listaIatas, listaAeronaves));
+                        listaVoos.Add(AdicionarVoo(listaIatas, listaAeronaves, listaVoos));
                         break;
                     case 2:
                         Console.WriteLine(BuscarVoo(listaVoos).ToString());
@@ -371,6 +371,8 @@ namespace Project_OnTheFly
 
             return passageiro;
         }
+
+
         public static void EditarPassageiro(List<Passageiro> listaPassageiros)
         {
             Passageiro passageiro = BuscarPassageiro(listaPassageiros);
@@ -492,11 +494,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterVoo
-        public static Voo AdicionarVoo(List<string> listaIatas, List<Aeronave> listaAeronaves)
+        public static Voo AdicionarVoo(List<string> listaIatas, List<Aeronave> listaAeronaves, List<Voo> listaVoos)
         {
             Voo voo = new Voo();
 
-            voo.CadastrarVoo(listaIatas, listaAeronaves);
+            voo.CadastrarVoo(listaIatas, listaAeronaves, listaVoos);
 
             return voo;
         }

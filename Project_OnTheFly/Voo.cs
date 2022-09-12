@@ -17,7 +17,7 @@ namespace Project_OnTheFly
 
         public Voo()
         {
-
+            this.Situacao = 'A';
         }
 
         public Voo(string idVoo, string destino, DateTime dataVoo, DateTime dataCadastro, char situacao)
@@ -31,10 +31,16 @@ namespace Project_OnTheFly
         }
 
 
-        public void CadastrarVoo(List<String> listaIatas, List<Aeronave> listaAeronaves)
+        public void CadastrarVoo(List<String> listaIatas, List<Aeronave> listaAeronaves, List<Voo> listaVoos)
         {
             // INSERIR idvoo 
+            if (listaVoos.Count > 9999)
+            {
+                Console.WriteLine("Limite de Voos atingidos!");
+                return;
+            }
 
+            this.IdVoo = "V" + (listaVoos.Count() + 1).ToString("0000");
             //Nome do Aeroporto
             do
             {
@@ -65,10 +71,6 @@ namespace Project_OnTheFly
                 aux = DateTime.TryParse(Console.ReadLine(), out aux1);
             } while (!aux);
             DataCadastro = aux1;
-
-            //Situação do voo
-            Console.WriteLine("Infome situação do voo:\nA - ativo OU C - Cancelado");
-            char situacao = char.Parse(Console.ReadLine().ToUpper());
 
             //Listar Aeronaves
             Console.WriteLine("Lista de Aeronaves Cadastradas:");
