@@ -33,8 +33,9 @@ namespace Project_OnTheFly
             LerCpfRestrito(listaCpfRestrito);
             LerCnpjBloqueado(listaCnpjRestrito);
             LerArquivoVoo(listaVoos, listaIatas, listaAeronaves);
+            LerArquivoVenda(listaVendas, listaPassageiros);
 
-            int op = 0;
+            int op;
             do
             {
                 op = Menu();
@@ -70,6 +71,7 @@ namespace Project_OnTheFly
                         GravarCnpjRestritos(listaCnpjRestrito);
                         GravarListaVoos(listaVoos);
                         GravarListaPassagemVoo(listaPassagemVoo);
+                        GravarListaVenda(listaVendas);
                         Environment.Exit(0);
                         break;
                 }
@@ -91,6 +93,7 @@ namespace Project_OnTheFly
             Console.WriteLine("6 - Menu de Vendas ");
             Console.WriteLine("7 - Menu de Item Vendas ");
             Console.WriteLine("0 - Sair do Menu Principal");
+
             return opc = int.Parse(Console.ReadLine());
         }
         #endregion
@@ -112,7 +115,9 @@ namespace Project_OnTheFly
                         listaPassageiros.Add(AdicionarPassageiro());
                         break;
                     case 2:
-                        Console.WriteLine(BuscarPassageiro(listaPassageiros).ToString());
+                        Console.Write("Informe o CPF do Passageiro para busca: ");
+                        string cpf = Console.ReadLine();
+                        Console.WriteLine(BuscarPassageiro(listaPassageiros, cpf).ToString());
                         break;
                     case 3:
                         EditarPassageiro(listaPassageiros);
@@ -366,19 +371,16 @@ namespace Project_OnTheFly
         }
         public static void EditarPassageiro(List<Passageiro> listaPassageiros)
         {
-            Passageiro passageiro = BuscarPassageiro(listaPassageiros);
+            Console.Write("Informe o CPF do Passageiro para busca: ");
+            string cpf = Console.ReadLine();
+            Passageiro passageiro = BuscarPassageiro(listaPassageiros, cpf);
 
-            if (passageiro != null)
-            {
-                passageiro.EditarPassageiro();
-            }
+            if (passageiro != null) passageiro.EditarPassageiro();
         }
-        public static Passageiro BuscarPassageiro(List<Passageiro> listaPassageiros)
+        public static Passageiro BuscarPassageiro(List<Passageiro> listaPassageiros, string cpf)
         {
             bool achei = false;
 
-            Console.Write("Informe o CPF do Passageiro para busca: ");
-            string cpf = Console.ReadLine();
             Passageiro passageiro = new Passageiro();
 
             foreach (Passageiro item in listaPassageiros)
@@ -1055,7 +1057,7 @@ namespace Project_OnTheFly
             return $"{passagemVoo.Id.PadRight(6)}{passagemVoo.Voo.IdVoo}{passagemVoo.DataUltimaOperacao:ddMMyyyy}{passagemVoo.Valor:0000,00}{passagemVoo.Situacao}";
         }
 
-        static void ListaPassagmVoo(List<PassagemVoo> listaPassagemVoo, List<Voo> listaVoo)
+        static void LerListaPassagmVoo(List<PassagemVoo> listaPassagemVoo, List<Voo> listaVoo)
         {
             String line;
 
@@ -1088,7 +1090,120 @@ namespace Project_OnTheFly
 
         #endregion PassagemVoo
 
+        #region PassagemVenda
+        static void GravarListaVenda(List<Venda> listaVenda)
+        {
+            try
+            {
+                StreamWriter ArqVenda = new StreamWriter("C:\\ArquivosAeroporto\\Venda.dat");
+                foreach (var item in listaVenda)
+                {
+                    if (item != null)
+                        ArqVenda.WriteLine(getVenda(item));
+                }
+                ArqVenda.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha ao gravar o arquivo Venda.dat\n" + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Gravação arquivo Venda.dat efetuada com sucesso!!!");
+            }
+        }
 
+        static String getVenda(Venda venda)
+        {
+            return $"{venda.IdVenda:00000}{venda.DataVenda:ddMMyyyy}{venda.Passageiro.CPF}{venda.ValorTotal:00000,00}";
+        }
+
+        static void LerArquivoVenda(List<Venda> listaenda, List<Passageiro> listaPassageiro)
+        {
+            String line;
+            try
+            {
+                StreamReader arqVenda = new StreamReader("C:\\ArquivosAeroporto\\Venda.dat");
+                line = arqVenda.ReadLine();
+                while (line != null)
+                {
+                    Venda venda = new Venda();
+                    venda.IdVenda = line.Substring(0, 5);
+                    venda.DataVenda = Convert.ToDateTime($"{line.Substring(6, 2)}/{line.Substring(8, 2)}/{line.Substring(10, 4)}");
+                    venda.Passageiro = BuscarPassageiro(listaPassageiro, line.Substring(15, 11));
+                    venda.ValorTotal = float.Parse(line.Substring(26, 5));
+                }
+                arqVenda.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha no carregamento do arquivo de Passageiros\n " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
+            }
+            return;
+        }
+
+        #endregion PassagemVenda
+
+        #region ItemVenda
+        static void GravarItemVenda(List<ItemVenda> listaItemVenda)
+        {
+            try
+            {
+                StreamWriter ArqItemVenda = new StreamWriter("C:\\ArquivosAeroporto\\ItemVenda.dat");
+                foreach (var item in listaVenda)
+                {
+                    if (item != null)
+                        ArqVenda.WriteLine(getVenda(item));
+                }
+                ArqVenda.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha ao gravar o arquivo Venda.dat\n" + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Gravação arquivo Venda.dat efetuada com sucesso!!!");
+            }
+        }
+
+        static String getVenda(Venda venda)
+        {
+            return $"{venda.IdVenda:00000}{venda.DataVenda:ddMMyyyy}{venda.Passageiro.CPF}{venda.ValorTotal:00000,00}";
+        }
+
+        static void LerArquivoVenda(List<Venda> listaenda, List<Passageiro> listaPassageiro)
+        {
+            String line;
+            try
+            {
+                StreamReader arqVenda = new StreamReader("C:\\ArquivosAeroporto\\Venda.dat");
+                line = arqVenda.ReadLine();
+                while (line != null)
+                {
+                    Venda venda = new Venda();
+                    venda.IdVenda = line.Substring(0, 5);
+                    venda.DataVenda = Convert.ToDateTime($"{line.Substring(6, 2)}/{line.Substring(8, 2)}/{line.Substring(10, 4)}");
+                    venda.Passageiro = BuscarPassageiro(listaPassageiro, line.Substring(15, 11));
+                    venda.ValorTotal = float.Parse(line.Substring(26, 5));
+                }
+                arqVenda.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha no carregamento do arquivo de Passageiros\n " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
+            }
+            return;
+        }
+        #endregion ItemVenda
         //formatar data sem barras, somente numeros 
         static String FormatarData(DateTime data)
         {

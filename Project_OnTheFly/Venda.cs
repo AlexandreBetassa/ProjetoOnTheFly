@@ -9,6 +9,10 @@ namespace Project_OnTheFly
     internal class Venda
     {
         public String IdVenda { get; set; }
+        public DateTime DataVenda { get; set; }
+        public Passageiro Passageiro { get; set; }
+        public float ValorTotal {get; set; }
+
         public void CadastrarVenda()
         {
 
