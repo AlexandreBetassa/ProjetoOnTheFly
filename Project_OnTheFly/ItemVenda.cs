@@ -33,11 +33,12 @@ namespace Project_OnTheFly
                 if (item.IdPassagem == iditemvenda)
                     this.PassagemVoo = item;
             }
+        }
 
 
         public override string ToString()
         {
-            return $"Id Venda: {IdItemVenda}\nId Passagem: {IdPassagem}\nValor Unitário: R${ValorUnitario}".ToString();
+            return $"Id Venda: {IdItemVenda}\nId Passagem: {PassagemVoo.IdPassagem}\nValor Unitário: R${ValorUnit}".ToString();
         }
 
     }
