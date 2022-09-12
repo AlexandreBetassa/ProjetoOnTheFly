@@ -33,6 +33,7 @@ namespace Project_OnTheFly
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
             LerCpfRestrito(listaCpfRestrito);
             LerCnpjBloqueado(listaCnpjRestrito);
+            LerArquivoVoo(listaVoos, listaIatas, listaAeronaves);
 
             int op = 0;
             do
@@ -185,7 +186,9 @@ namespace Project_OnTheFly
                         listaAeronaves.Add(AdicionarAeronave());
                         break;
                     case 2:
-                        Console.WriteLine(BuscarAeronave(listaAeronaves).ToString());
+                        Console.Write("Informe a Inscrição da Aeronave para busca: ");
+                        string inscricao = Console.ReadLine();
+                        Console.WriteLine(BuscarAeronave(listaAeronaves, inscricao).ToString());
                         break;
                     case 3:
                         EditarAeronave(listaAeronaves);
@@ -445,19 +448,20 @@ namespace Project_OnTheFly
         }
         public static void EditarAeronave(List<Aeronave> listaAeronaves)
         {
-            Aeronave aeronave = BuscarAeronave(listaAeronaves);
+            Console.Write("Informe a Inscrição da Aeronave para busca: ");
+            string inscricao = Console.ReadLine();
+            Aeronave aeronave = BuscarAeronave(listaAeronaves, inscricao);
 
             if (aeronave != null)
             {
                 aeronave.EditarAeronave();
             }
         }
-        public static Aeronave BuscarAeronave(List<Aeronave> listaAeronaves)
+        public static Aeronave BuscarAeronave(List<Aeronave> listaAeronaves, string inscricao)
         {
             bool achei = false;
 
-            Console.Write("Informe a Inscrição da Aeronave para busca: ");
-            string inscricao = Console.ReadLine();
+
             Aeronave aeronave = new Aeronave();
 
             foreach (Aeronave item in listaAeronaves)
@@ -730,7 +734,7 @@ namespace Project_OnTheFly
             foreach (var item in lista) if (item != null) Console.WriteLine(item);
         }
 
-        static String LocalizarIata(List<String> lista)
+        static String LocalizarIata(string destino, List<String> lista)
         {
             Console.WriteLine("Informe a iata do aeroporto destino: ");
             string iata = Console.ReadLine().ToUpper();
@@ -981,9 +985,42 @@ namespace Project_OnTheFly
 
         static String getVoo(Voo voo)
         {
-            return $"{voo.IdVoo.PadRight(5)}{voo.Destino.PadRight(50)}{voo.Aeronave.Inscricao.PadRight(6)}{voo.DataVoo:ddMMyyyyHHmm}{voo.DataCadastro:ddMMyyyy}{voo.Situacao}";
+            return $"{voo.IdVoo.PadRight(5)}{voo.Destino.PadRight(3)}{voo.Aeronave.Inscricao.PadRight(6)}{voo.DataVoo:ddMMyyyyHHmm}{voo.DataCadastro:ddMMyyyy}{voo.Situacao}";
         }
 
+        static void LerArquivoVoo(List<Voo> listaVoo, List<String> listaIatas, List<Aeronave> listaAeronave)
+        {
+            String line;
+
+            try
+            {
+                StreamReader arqVoo = new StreamReader("C:\\ArquivosAeroporto\\Voo.dat");
+                line = arqVoo.ReadLine();
+                while (line != null)
+                {
+                    Voo voo = new Voo();
+                    voo.IdVoo = line.Substring(0, 5);
+                    voo.Destino = LocalizarIata(line.Substring(6, 9), listaIatas);
+                    voo.Aeronave = BuscarAeronave(listaAeronave, line.Substring(10, 6));
+                    voo.DataVoo = Convert.ToDateTime($"{line.Substring(16, 2)}/{line.Substring(18, 2)}/{line.Substring(20, 4)}{line.Substring(24, 2)}:{line.Substring(26, 2)}");
+                    voo.DataCadastro = Convert.ToDateTime($"{line.Substring(28, 2)}/{line.Substring(30, 2)}/{line.Substring(32, 4)}");
+                    voo.Situacao = line[37];
+                    line = arqVoo.ReadLine();
+                }
+                arqVoo.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha no carregamento do arquivo de Passageiros\n " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
+            }
+            Console.ReadKey();
+            Console.Clear();
+            return;
+        }
 
         #endregion VOO
 
