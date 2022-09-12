@@ -100,7 +100,7 @@ namespace Project_OnTheFly
 
         }
 
-        public void EditarCompAerea()
+        public void EditarCompanhia()
         {
             CompanhiaAerea companhia = new();
             Console.Write("Escolha o dado que você deseja editar: ");
@@ -146,11 +146,6 @@ namespace Project_OnTheFly
                     } while (SituacaoCA != 'A' && SituacaoCA != 'I');
                     break;
             }
-        }
-
-        public void EditarCompanhia()
-        {
-
         }
 
         public override string ToString()

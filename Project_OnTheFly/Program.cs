@@ -485,7 +485,7 @@ namespace Project_OnTheFly
 
             if (voo != null)
             {
-                voo.EditarVoo();
+                voo.AlterarSituacao();
             }
         }
         public static Voo BuscarVoo(List<Voo> listaVoos)
@@ -942,8 +942,7 @@ namespace Project_OnTheFly
         #endregion leitura
 
 
-        Random r = new Random();
-        string n = "V" + r.Next(000, 999).ToString("000");
+
         #endregion Restrito
 
         //formatar data sem barras, somente numeros 
