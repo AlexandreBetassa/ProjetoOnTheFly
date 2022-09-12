@@ -19,16 +19,19 @@ namespace Project_OnTheFly
             List<CompanhiaAerea> ListaCompanhiaAereas = new List<CompanhiaAerea>();
             List<Aeronave> listaAeronaves = new List<Aeronave>();
             List<Voo> listaVoos = new List<Voo>();
-            List<Passagem> listaPassagens = new List<Passagem>();
+            List<PassagemVoo> listaPassagensVoos = new List<PassagemVoo>();
             List<Venda> listaVendas = new List<Venda>();
             List<ItemVenda> listaItemVendas = new List<ItemVenda>();
+            List<String> listaCpfRestrito = new List<string>();
+            List<String> listaCnpjRestrito = new List<string>();
 
             LerArquivoPassageiros(listaPassageiros);
-
             LerArquivoIatas(listaIatas);
             LerArquivoAeronave(listaAeronaves);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
-
+            LerCpfRestrito(listaCpfRestrito);
+            LerCnpjBloqueado(listaCnpjRestrito);
+            LerArquivoVoo(listaVoos, listaIatas, listaAeronaves);
 
             int op = 0;
             do
@@ -37,32 +40,45 @@ namespace Project_OnTheFly
                 switch (op)
                 {
                     case 1:
+                        Console.Clear();
                         MenuPassageiro(listaPassageiros);
                         break;
                     case 2:
+                        Console.Clear();
                         MenuCompanhia(ListaCompanhiaAereas);
                         break;
                     case 3:
-                        MenuAeronave(listaAeronaves);
+                        Console.Clear();
+                        MenuAeronave(listaAeronaves, ListaCompanhiaAereas);
                         break;
                     case 4:
-                        MenuVoo(listaVoos, listaIatas);
-
+                        Console.Clear();
+                        MenuVoo(listaVoos, listaIatas, listaAeronaves);
                         break;
                     case 5:
-                        MenuPassagem(listaPassagens);
+                        Console.Clear();
+                        MenuPassagem(listaPassagensVoos, listaVoos);
                         break;
                     case 6:
-                        MenuVenda(listaVendas);
+                        Console.Clear();
+                        MenuVenda(listaVendas, listaPassageiros);
                         break;
                     case 7:
-                        MenuItemVenda(listaItemVendas);
+                        Console.Clear();
+                        MenuItemVenda(listaItemVendas, listaPassagensVoos);
                         break;
                     case 0:
                         GravarArquivoPassageiro(listaPassageiros);
                         GravarArquivoCompanhiaAerea(ListaCompanhiaAereas);
                         GravarArquivoAeronave(listaAeronaves);
+                        GravarCpfRestritos(listaCpfRestrito);
+                        GravarCnpjRestritos(listaCnpjRestrito);
+                        GravarListaVoos(listaVoos);
                         Environment.Exit(0);
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Opção Inválida! Digite opção válida.");
                         break;
                 }
             } while (true);
@@ -73,6 +89,7 @@ namespace Project_OnTheFly
         #region MenuPrincipal
         public static int Menu()
         {
+            Console.Clear();
             int opc;
 
             Console.WriteLine("1 - Menu de Passageiros");
@@ -83,6 +100,8 @@ namespace Project_OnTheFly
             Console.WriteLine("6 - Menu de Vendas ");
             Console.WriteLine("7 - Menu de Item Vendas ");
             Console.WriteLine("0 - Sair do Menu Principal");
+            Console.Write("Opção: ");
+
             return opc = int.Parse(Console.ReadLine());
         }
         #endregion
@@ -96,6 +115,7 @@ namespace Project_OnTheFly
                 Console.WriteLine("3 - Editar Passageiro");
                 Console.WriteLine("4 - Listar Passageiros");
                 Console.WriteLine("0 - Sair do Menu de Passageiros");
+                Console.Write("Opção: ");
                 int opc = int.Parse(Console.ReadLine());
 
                 switch (opc)
@@ -111,7 +131,8 @@ namespace Project_OnTheFly
                         break;
                     case 4:
                         foreach (Passageiro item in listaPassageiros)
-                            Console.WriteLine(item.ToString() + "\n");
+                            if (item.Situacao == 'A')
+                                Console.WriteLine(item.ToString() + "\n");
                         break;
                     case 0:
                         Console.WriteLine("Você saiu do Menu de Passageiros!");
@@ -133,6 +154,7 @@ namespace Project_OnTheFly
                 Console.WriteLine("3 - Editar Companhia");
                 Console.WriteLine("4 - Listar Companhias");
                 Console.WriteLine("0 - Sair do Menu de Companhias");
+                Console.Write("Opção: ");
                 int opc = int.Parse(Console.ReadLine());
 
                 switch (opc)
@@ -148,7 +170,8 @@ namespace Project_OnTheFly
                         break;
                     case 4:
                         foreach (CompanhiaAerea item in listaCompanhiaAereas)
-                            Console.WriteLine(item.ToString() + "\n");
+                            if (item.SituacaoCA == 'A')
+                                Console.WriteLine(item.ToString() + "\n");
                         break;
                     case 0:
                         Console.WriteLine("Você saiu do Menu de Companhias!");
@@ -161,7 +184,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuAeronave
-        public static void MenuAeronave(List<Aeronave> listaAeronaves)
+        public static void MenuAeronave(List<Aeronave> listaAeronaves, List<CompanhiaAerea> ListaCompanhiaAereas)
         {
             do
             {
@@ -170,22 +193,26 @@ namespace Project_OnTheFly
                 Console.WriteLine("3 - Editar Aeronave");
                 Console.WriteLine("4 - Listar Aeronaves");
                 Console.WriteLine("0 - Sair do Menu de Aeronaves");
+                Console.Write("Opção: ");
                 int opc = int.Parse(Console.ReadLine());
 
                 switch (opc)
                 {
                     case 1:
-                        listaAeronaves.Add(AdicionarAeronave());
+                        listaAeronaves.Add(AdicionarAeronave(ListaCompanhiaAereas));
                         break;
                     case 2:
-                        Console.WriteLine(BuscarAeronave(listaAeronaves).ToString());
+                        Console.Write("Informe a Inscrição da Aeronave para busca: ");
+                        string inscricao = Console.ReadLine();
+                        Console.WriteLine(BuscarAeronave(listaAeronaves, inscricao).ToString());
                         break;
                     case 3:
                         EditarAeronave(listaAeronaves);
                         break;
                     case 4:
                         foreach (Aeronave item in listaAeronaves)
-                            Console.WriteLine(item.ToString() + "\n");
+                            if (item.Situacao == 'A')
+                                Console.WriteLine(item.ToString() + "\n");
                         break;
                     case 0:
                         Console.WriteLine("Você saiu do Menu de Aeronaves!");
@@ -198,7 +225,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuVoo
-        public static void MenuVoo(List<Voo> listaVoos, List<string> listaIatas)
+        public static void MenuVoo(List<Voo> listaVoos, List<string> listaIatas, List<Aeronave> listaAeronaves)
         {
             do
             {
@@ -207,12 +234,13 @@ namespace Project_OnTheFly
                 Console.WriteLine("3 - Editar Voo");
                 Console.WriteLine("4 - Listar Voos");
                 Console.WriteLine("0 - Sair do Menu de Voos");
+                Console.Write("Opção: ");
                 int opc = int.Parse(Console.ReadLine());
 
                 switch (opc)
                 {
                     case 1:
-                        listaVoos.Add(AdicionarVoo(listaIatas));
+                        listaVoos.Add(AdicionarVoo(listaIatas, listaAeronaves, listaVoos));
                         break;
                     case 2:
                         Console.WriteLine(BuscarVoo(listaVoos).ToString());
@@ -235,7 +263,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuPassagem
-        public static void MenuPassagem(List<Passagem> listaPassagens)
+        public static void MenuPassagem(List<PassagemVoo> listaPassagens, List<Voo> listaVoos)
         {
             do
             {
@@ -244,12 +272,13 @@ namespace Project_OnTheFly
                 Console.WriteLine("3 - Editar Passagem");
                 Console.WriteLine("4 - Listar Passagens");
                 Console.WriteLine("0 - Sair do Menu de Passagems");
+                Console.Write("Opção: ");
                 int opc = int.Parse(Console.ReadLine());
 
                 switch (opc)
                 {
                     case 1:
-                        listaPassagens.Add(AdicionarPassagem());
+                        listaPassagens.Add(AdicionarPassagem(listaVoos));
                         break;
                     case 2:
                         Console.WriteLine(BuscarPassagem(listaPassagens).ToString());
@@ -258,7 +287,7 @@ namespace Project_OnTheFly
                         EditarPassagem(listaPassagens);
                         break;
                     case 4:
-                        foreach (Passagem item in listaPassagens)
+                        foreach (PassagemVoo item in listaPassagens)
                             Console.WriteLine(item.ToString() + "\n");
                         break;
                     case 0:
@@ -272,7 +301,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuVenda
-        public static void MenuVenda(List<Venda> listaVendas)
+        public static void MenuVenda(List<Venda> listaVendas, List<Passageiro> listaPassageiros)
         {
             do
             {
@@ -280,12 +309,13 @@ namespace Project_OnTheFly
                 Console.WriteLine("2 - Buscar Venda");
                 Console.WriteLine("3 - Listar Vendas");
                 Console.WriteLine("0 - Sair do Menu de Vendas");
+                Console.Write("Opção: ");
                 int opc = int.Parse(Console.ReadLine());
 
                 switch (opc)
                 {
                     case 1:
-                        listaVendas.Add(AdicionarVenda());
+                        listaVendas.Add(AdicionarVenda(listaPassageiros));
                         break;
                     case 2:
                         Console.WriteLine(BuscarVenda(listaVendas).ToString());
@@ -305,7 +335,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuItemVenda
-        public static void MenuItemVenda(List<ItemVenda> listaItemVendas)
+        public static void MenuItemVenda(List<ItemVenda> listaItemVendas, List<PassagemVoo> listaPassagensVoos)
         {
             do
             {
@@ -313,12 +343,13 @@ namespace Project_OnTheFly
                 Console.WriteLine("2 - Buscar Venda de Item");
                 Console.WriteLine("3 - Listar Vendas de Itens");
                 Console.WriteLine("0 - Sair do Menu de Venda de Itens");
+                Console.Write("Opção: ");
                 int opc = int.Parse(Console.ReadLine());
 
                 switch (opc)
                 {
                     case 1:
-                        listaItemVendas.Add(AdicionarItemVenda());
+                        listaItemVendas.Add(AdicionarItemVenda(listaPassagensVoos));
                         break;
                     case 2:
                         Console.WriteLine(BuscarItemVenda(listaItemVendas).ToString());
@@ -350,6 +381,8 @@ namespace Project_OnTheFly
 
             return passageiro;
         }
+
+
         public static void EditarPassageiro(List<Passageiro> listaPassageiros)
         {
             Passageiro passageiro = BuscarPassageiro(listaPassageiros);
@@ -428,29 +461,30 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterAeronave
-        public static Aeronave AdicionarAeronave()
+        public static Aeronave AdicionarAeronave(List<CompanhiaAerea> listaCompanhias)
         {
             Aeronave aeronave = new Aeronave();
 
-            aeronave.CadastroAeronave();
+            aeronave.CadastroAeronave(listaCompanhias);
 
             return aeronave;
         }
         public static void EditarAeronave(List<Aeronave> listaAeronaves)
         {
-            Aeronave aeronave = BuscarAeronave(listaAeronaves);
+            Console.Write("Informe a Inscrição da Aeronave para busca: ");
+            string inscricao = Console.ReadLine();
+            Aeronave aeronave = BuscarAeronave(listaAeronaves, inscricao);
 
             if (aeronave != null)
             {
                 aeronave.EditarAeronave();
             }
         }
-        public static Aeronave BuscarAeronave(List<Aeronave> listaAeronaves)
+        public static Aeronave BuscarAeronave(List<Aeronave> listaAeronaves, string inscricao)
         {
             bool achei = false;
 
-            Console.Write("Informe a Inscrição da Aeronave para busca: ");
-            string inscricao = Console.ReadLine();
+
             Aeronave aeronave = new Aeronave();
 
             foreach (Aeronave item in listaAeronaves)
@@ -471,11 +505,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterVoo
-        public static Voo AdicionarVoo(List<string> listaIatas)
+        public static Voo AdicionarVoo(List<string> listaIatas, List<Aeronave> listaAeronaves, List<Voo> listaVoos)
         {
             Voo voo = new Voo();
 
-            voo.CadastrarVoo(listaIatas);
+            voo.CadastrarVoo(listaIatas, listaAeronaves, listaVoos);
 
             return voo;
         }
@@ -514,32 +548,32 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterPassagem
-        public static Passagem AdicionarPassagem()
+        public static PassagemVoo AdicionarPassagem(List<Voo> listaVoos)
         {
-            Passagem passagem = new Passagem();
+            PassagemVoo passagem = new PassagemVoo();
 
-            passagem.CadastrarPassagem();
+            passagem.CadastrarPassagemVoo(listaVoos);
 
             return passagem;
         }
-        public static void EditarPassagem(List<Passagem> listaPassagens)
+        public static void EditarPassagem(List<PassagemVoo> listaPassagens)
         {
-            Passagem passagem = BuscarPassagem(listaPassagens);
+            PassagemVoo passagem = BuscarPassagem(listaPassagens);
 
             if (passagem != null)
             {
-                passagem.EditarPassagem();
+                passagem.EditarPassagemVoo();
             }
         }
-        public static Passagem BuscarPassagem(List<Passagem> listaPassagens)
+        public static PassagemVoo BuscarPassagem(List<PassagemVoo> listaPassagens)
         {
             bool achei = false;
 
             Console.Write("Informe o ID da Passagem para busca: ");
             string idPassagem = Console.ReadLine();
-            Passagem passagem;
+            PassagemVoo passagem;
 
-            foreach (Passagem item in listaPassagens)
+            foreach (PassagemVoo item in listaPassagens)
             {
                 if (item.IdPassagem == idPassagem)
                 {
@@ -557,11 +591,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterVenda
-        public static Venda AdicionarVenda()
+        public static Venda AdicionarVenda(List<Passageiro> listaPassageiros)
         {
             Venda venda = new Venda();
 
-            venda.CadastrarVenda();
+            venda.CadastrarVenda(listaPassageiros);
 
             return venda;
         }
@@ -590,11 +624,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterItemVenda
-        public static ItemVenda AdicionarItemVenda()
+        public static ItemVenda AdicionarItemVenda(List<PassagemVoo> listaPassagensVoos)
         {
             ItemVenda itemVenda = new ItemVenda();
 
-            itemVenda.CadastrarVenda();
+            itemVenda.CadastrarItemVenda(listaPassagensVoos);
 
             return itemVenda;
         }
@@ -665,8 +699,7 @@ namespace Project_OnTheFly
             {
                 StreamReader sr = new StreamReader("C:\\ArquivosAeroporto\\Passageiro.dat");
                 line = sr.ReadLine();
-                Console.WriteLine(line.Length);
-                do
+                while (line != null)
                 {
                     Passageiro passageiro = new Passageiro();
                     passageiro.CPF = line.Substring(0, 11);
@@ -677,7 +710,7 @@ namespace Project_OnTheFly
                     passageiro.DataCadastro = DateTime.Parse($"{line.Substring(78, 2)}/{line.Substring(80, 2)}/{line.Substring(82, 4)}");
                     listaPassageiro.Add(passageiro);
                     line = sr.ReadLine();
-                } while (line != null);
+                }
 
                 sr.Close();
             }
@@ -704,6 +737,7 @@ namespace Project_OnTheFly
             {
                 StreamReader sr = new StreamReader("C:\\ArquivosAeroporto\\listaIatas.dat");
                 line = sr.ReadLine();
+
                 while (line != null)
                 {
                     line = sr.ReadLine();
@@ -723,12 +757,10 @@ namespace Project_OnTheFly
             foreach (var item in lista) if (item != null) Console.WriteLine(item);
         }
 
-        static String LocalizarIata(List<String> lista)
+        static String LocalizarIata(string destino, List<String> lista)
         {
-            Console.WriteLine("Informe a iata do aeroporto destino: ");
-            string iata = Console.ReadLine().ToUpper();
             foreach (var item in lista)
-                if (item.Contains(iata) && item != null)
+                if (item.Contains(destino) && item != null)
                 {
                     Console.WriteLine(item);
                     return item;
@@ -774,18 +806,20 @@ namespace Project_OnTheFly
             try
             {
                 StreamReader companhiaTxt = new StreamReader("C:\\ArquivosAeroporto\\CompanhiaAerea.dat");
-                do
+                line = companhiaTxt.ReadLine();
+
+                while (line != null)
                 {
-                    line = companhiaTxt.ReadLine();
                     CompanhiaAerea companhia = new CompanhiaAerea();
-                    companhia.CNPJ = line.Substring(0, 14);
+                    companhia.CNPJ = line.Substring(0, 13);
                     companhia.RazaoSocial = line.Substring(14, 50);
-                    companhia.DataAbertura = DateTime.Parse($"{line.Substring(51, 2)}/{line.Substring(53, 2)}/{line.Substring(55, 4)}");
+                    companhia.DataAbertura = DateTime.Parse($"{line.Substring(64, 2)}/{line.Substring(66, 2)}/{line.Substring(68, 4)}");
                     companhia.UltimoVoo = DateTime.Parse($"{line[72]}{line[73]}/{line[74]}{line[75]}/{line[76]}{line[77]}{line[78]}{line[79]}");
                     companhia.DataCadastro = DateTime.Parse($"{line[80]}{line[81]}/{line[82]}{line[83]}/{line[84]}{line[85]}{line[86]}{line[87]}");
                     companhia.SituacaoCA = line[88];
                     listaCompanhias.Add(companhia);
-                } while (line != null);
+                    line = companhiaTxt.ReadLine();
+                }
                 companhiaTxt.Close();
             }
             catch (Exception e)
@@ -824,7 +858,7 @@ namespace Project_OnTheFly
         //metodo para retornar aeronave para gravar em arquivo
         static String getAeronave(Aeronave aeronave)
         {
-            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade:000}{aeronave.AcentosOcupados:000}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
+            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade:000}{aeronave.AssentosOcupados:000}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
         }
 
         static void LerArquivoAeronave(List<Aeronave> listaAeronaves)
@@ -834,18 +868,22 @@ namespace Project_OnTheFly
             try
             {
                 StreamReader aeronaveTxt = new StreamReader("C:\\ArquivosAeroporto\\Aeronave.dat");
-                do
+                line = aeronaveTxt.ReadLine();
+                while (line != null)
                 {
+
                     line = aeronaveTxt.ReadLine();
                     Aeronave aeronave = new Aeronave();
                     aeronave.Inscricao = line.Substring(0, 6);
                     aeronave.Capacidade = int.Parse(line.Substring(7, 3));
-                    aeronave.AcentosOcupados = int.Parse(line.Substring(10, 3));
+                    aeronave.AssentosOcupados = int.Parse(line.Substring(10, 3));
                     aeronave.UltimaVenda = DateTime.Parse($"{line.Substring(13, 2)}/{line.Substring(15, 2)}/{line.Substring(17, 4)}");
                     aeronave.DataCadastro = DateTime.Parse($"{line.Substring(22, 2)}/{line.Substring(24, 2)}/{line.Substring(26, 4)}");
                     aeronave.Situacao = line[31];
                     listaAeronaves.Add(aeronave);
-                } while (line != null);
+                    line = aeronaveTxt.ReadLine();
+
+                }
                 aeronaveTxt.Close();
             }
             catch (Exception e)
@@ -901,12 +939,14 @@ namespace Project_OnTheFly
             {
                 string line;
                 StreamReader cpfRestritoTxt = new StreamReader("C:\\ArquivosAeroporto\\Restritos.dat");
-                do
+                line = cpfRestritoTxt.ReadLine();
+
+                while (line != null)
                 {
                     line = cpfRestritoTxt.ReadLine();
                     listaCpfRestrito.Add(line);
 
-                } while (line != null);
+                } while (line != null) ;
                 cpfRestritoTxt.Close();
             }
             catch (Exception e)
@@ -921,12 +961,14 @@ namespace Project_OnTheFly
             {
                 string line;
                 StreamReader cnpjBloqueadoTxt = new StreamReader("C:\\ArquivosAeroporto\\Restritos.dat");
-                do
+                line = cnpjBloqueadoTxt.ReadLine();
+
+                while (line != null)
                 {
                     line = cnpjBloqueadoTxt.ReadLine();
                     listaCnpjBloqueado.Add(line);
 
-                } while (line != null);
+                }
                 cnpjBloqueadoTxt.Close();
             }
             catch (Exception e)
@@ -937,13 +979,74 @@ namespace Project_OnTheFly
             Random r = new Random();
             string n = "V" + r.Next(000, 999).ToString("000");
         }
-
-
         #endregion leitura
-
-
-
         #endregion Restrito
+
+
+
+
+        #region VOO
+        static void GravarListaVoos(List<Voo> listaVoo)
+        {
+            try
+            {
+                StreamWriter ArqVoo = new StreamWriter("C:\\ArquivosAeroporto\\Voo.dat");
+                foreach (var item in listaVoo)
+                {
+                    if (item != null)
+                        ArqVoo.WriteLine(getVoo(item));
+                }
+                ArqVoo.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha ao gravar o arquivo CompanhiaAerea\n" + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Gravação arquivo CompanhiaAerea.dat efetuada com sucesso!!!");
+            }
+        }
+
+        static String getVoo(Voo voo)
+        {
+            return $"{voo.IdVoo.PadRight(5)}{voo.Destino.PadRight(3)}{voo.Aeronave.Inscricao.PadRight(6)}{voo.DataVoo:ddMMyyyyHHmm}{voo.DataCadastro:ddMMyyyy}{voo.Situacao}";
+        }
+
+        static void LerArquivoVoo(List<Voo> listaVoo, List<String> listaIatas, List<Aeronave> listaAeronave)
+        {
+            String line;
+
+            try
+            {
+                StreamReader arqVoo = new StreamReader("C:\\ArquivosAeroporto\\Voo.dat");
+                line = arqVoo.ReadLine();
+                while (line != null)
+                {
+                    Voo voo = new Voo();
+                    voo.IdVoo = line.Substring(0, 5);
+                    voo.Destino = LocalizarIata(line.Substring(6, 3), listaIatas);
+                    voo.Aeronave = BuscarAeronave(listaAeronave, line.Substring(10, 6));
+                    voo.DataVoo = Convert.ToDateTime($"{line.Substring(16, 2)}/{line.Substring(18, 2)}/{line.Substring(20, 4)}{line.Substring(24, 2)}:{line.Substring(26, 2)}");
+                    voo.DataCadastro = Convert.ToDateTime($"{line.Substring(28, 2)}/{line.Substring(30, 2)}/{line.Substring(32, 4)}");
+                    voo.Situacao = line[37];
+                    line = arqVoo.ReadLine();
+                }
+                arqVoo.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha no carregamento do arquivo de Passageiros\n " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
+            }
+            return;
+        }
+
+        #endregion VOO
+
 
         //formatar data sem barras, somente numeros 
         static String FormatarData(DateTime data)
