@@ -30,8 +30,8 @@ namespace Project_OnTheFly
 
         public void CadastrarPassagemVoo()
         {
-
-            Console.WriteLine("");
+            global::System.Console.WriteLine();
+            Console.WriteLine();
         }
     }
 }
