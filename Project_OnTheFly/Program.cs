@@ -22,15 +22,10 @@ namespace Project_OnTheFly
             List<ItemVenda> listaItemVendas = new List<ItemVenda>();
 
             LerArquivoIatas(listaIatas);
-
-            CompanhiaAerea comp = new();
-            comp.CadCompAerea();
-
-            Voo voo = new Voo();
-            voo.CadastrarVoo(listaIatas);
+            LerArquivoAeronave(listaAeronaves);
             LerArquivoPassageiros(listaPassageiros);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
-            foreach (var item in ListaCompanhiaAereas) Console.WriteLine(item + "\n");
+
 
             int op = 0;
             do
@@ -63,6 +58,7 @@ namespace Project_OnTheFly
                     case 0:
                         GravarArquivoPassageiro(listaPassageiros);
                         GravarArquivoCompanhiaAerea(ListaCompanhiaAereas);
+                        GravarArquivoAeronave(listaAeronaves);
                         Environment.Exit(0);
                         break;
                 }
@@ -571,9 +567,8 @@ namespace Project_OnTheFly
             bool achei = false;
 
             Console.Write("Informe o ID da Venda para busca: ");
-            int idVenda = int.Parse(Console.ReadLine());
-            Venda venda = new Venda();
-
+            String idVenda = Console.ReadLine();
+            Venda venda;
             foreach (Venda item in listaVendas)
             {
                 if (item.IdVenda == idVenda)
@@ -605,8 +600,8 @@ namespace Project_OnTheFly
             bool achei = false;
 
             Console.Write("Informe o ID do Item de Venda para busca: ");
-            int idItemVenda = int.Parse(Console.ReadLine());
-            ItemVenda itemVenda = new ItemVenda();
+            String idItemVenda = Console.ReadLine();
+            ItemVenda itemVenda;
 
             foreach (ItemVenda item in listaItemVendas)
             {
@@ -626,8 +621,6 @@ namespace Project_OnTheFly
         }
         #endregion
         #endregion
-
-
 
         #region gravarArquivos
         #region ArquivoPassageiro
@@ -840,7 +833,7 @@ namespace Project_OnTheFly
         //metodo para retornar aeronave para gravar em arquivo
         static String getAeronave(Aeronave aeronave)
         {
-            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade}{aeronave.AcentosOcupados}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
+            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade}{aeronave.AssentosOcupados}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
         }
 
         static void LerArquivoAeronave(List<Aeronave> listaAeronaves)
@@ -856,6 +849,7 @@ namespace Project_OnTheFly
                     if (line == null) break;
                     Aeronave aeronave = new Aeronave();
                     aeronave.Inscricao = line;
+
 
                 } while (line != null);
                 arqAeronave.Close();
