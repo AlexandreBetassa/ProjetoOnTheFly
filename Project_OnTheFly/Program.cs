@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Numerics;
 using System.Text;
 
 namespace Project_OnTheFly
@@ -669,9 +670,11 @@ namespace Project_OnTheFly
                     Passageiro passageiro = new Passageiro();
                     passageiro.CPF = line.Substring(0, 11);
                     passageiro.Nome = line.Substring(11, 50);
-                    passageiro.DataNascimento = DateTime.Parse($"{line.Substring(51,8).ToString(")}");
+                    string data = $"{line.Substring(61, 2)}/{line.Substring(63, 2)}/{line.Substring(65, 4)}";
+                    passageiro.DataNascimento = Convert.ToDateTime($"{line.Substring(61, 2)}/{line.Substring(63, 2)}/{line.Substring(65, 4)}");
                     passageiro.Sexo = line[69];
                     passageiro.UltimaCompra = DateTime.Parse($"{line[70]}{line[71]}/{line[72]}{line[73]}/{line[74]}{line[75]}{line[76]}{line[77]}");
+                    passageiro.DataCadastro = DateTime.Parse($"{line.Substring(70, 2)}/{line.Substring(72, 2)}/{line.Substring(74, 4)}");
                     listaPassageiro.Add(passageiro);
                     line = sr.ReadLine();
                 } while (line != null);
