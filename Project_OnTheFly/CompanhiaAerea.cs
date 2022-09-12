@@ -27,7 +27,7 @@ namespace Project_OnTheFly
             DataAbertura = dataAbertura;
             UltimoVoo = DateTime.Now;
             DataCadastro = DateTime.Now;
-            SituacaoCA = situacaoCA;
+            SituacaoCA = 'A';
         }
 
         public void CadCompAerea()
@@ -96,7 +96,6 @@ namespace Project_OnTheFly
             } while (!aux);
             DataCadastro = aux1;
 
-            SituacaoCA = char.Parse(Console.ReadLine());
 
         }
 

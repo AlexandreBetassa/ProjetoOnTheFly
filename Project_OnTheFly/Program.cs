@@ -22,12 +22,17 @@ namespace Project_OnTheFly
             List<Passagem> listaPassagens = new List<Passagem>();
             List<Venda> listaVendas = new List<Venda>();
             List<ItemVenda> listaItemVendas = new List<ItemVenda>();
+            List<String> listaCpfRestrito = new List<string>();
+            List<String> listaCnpjRestrito = new List<string>();
+
 
             LerArquivoPassageiros(listaPassageiros);
 
             LerArquivoIatas(listaIatas);
             LerArquivoAeronave(listaAeronaves);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
+            LerCpfRestrito(listaCpfRestrito);
+            LerCpfRestrito(listaCpfRestrito);
 
 
             int op = 0;
@@ -62,6 +67,9 @@ namespace Project_OnTheFly
                         GravarArquivoPassageiro(listaPassageiros);
                         GravarArquivoCompanhiaAerea(ListaCompanhiaAereas);
                         GravarArquivoAeronave(listaAeronaves);
+                        GravarCpfRestritos(listaCpfRestrito);
+                        GravarCnpjRestritos(listaCnpjRestrito);
+
                         Environment.Exit(0);
                         break;
                 }
@@ -665,7 +673,7 @@ namespace Project_OnTheFly
             {
                 StreamReader sr = new StreamReader("C:\\ArquivosAeroporto\\Passageiro.dat");
                 line = sr.ReadLine();
-                Console.WriteLine(line.Length);
+                if (line == null) return;
                 do
                 {
                     Passageiro passageiro = new Passageiro();
@@ -704,6 +712,8 @@ namespace Project_OnTheFly
             {
                 StreamReader sr = new StreamReader("C:\\ArquivosAeroporto\\listaIatas.dat");
                 line = sr.ReadLine();
+                if (line == null) return;
+
                 while (line != null)
                 {
                     line = sr.ReadLine();
@@ -774,6 +784,9 @@ namespace Project_OnTheFly
             try
             {
                 StreamReader companhiaTxt = new StreamReader("C:\\ArquivosAeroporto\\CompanhiaAerea.dat");
+                line = companhiaTxt.ReadLine();
+
+                if (line == null) return;
                 do
                 {
                     line = companhiaTxt.ReadLine();
@@ -834,8 +847,12 @@ namespace Project_OnTheFly
             try
             {
                 StreamReader aeronaveTxt = new StreamReader("C:\\ArquivosAeroporto\\Aeronave.dat");
-                do
+                line = aeronaveTxt.ReadLine();
+                if (line == null) return;
+
+                while (line != null)
                 {
+
                     line = aeronaveTxt.ReadLine();
                     Aeronave aeronave = new Aeronave();
                     aeronave.Inscricao = line.Substring(0, 6);
@@ -845,7 +862,7 @@ namespace Project_OnTheFly
                     aeronave.DataCadastro = DateTime.Parse($"{line.Substring(22, 2)}/{line.Substring(24, 2)}/{line.Substring(26, 4)}");
                     aeronave.Situacao = line[31];
                     listaAeronaves.Add(aeronave);
-                } while (line != null);
+                }
                 aeronaveTxt.Close();
             }
             catch (Exception e)

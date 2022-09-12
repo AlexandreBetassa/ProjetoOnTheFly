@@ -70,9 +70,9 @@ namespace Project_OnTheFly
                 }
             } while (Sexo != 'M' && Sexo != 'F' && Sexo != 'N');
 
-            //A data de última compra já foi declarada no método construtor
-            //Não há necessidade de ler as informações novamente
-            //Data de cadastro e situação também já foram declaradas.                  
+            UltimaCompra = DateTime.Now;
+            DataCadastro = DateTime.Now;
+
 
         }
         
