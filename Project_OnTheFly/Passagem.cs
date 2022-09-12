@@ -8,6 +8,8 @@ namespace Project_OnTheFly
 {
     internal class Passagem
     {
+
+        public String idPassagem { get; set; }
         public void CadastrarPassagem()
         {
 

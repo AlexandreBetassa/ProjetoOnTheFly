@@ -537,7 +537,7 @@ namespace Project_OnTheFly
             bool achei = false;
 
             Console.Write("Informe o ID da Passagem para busca: ");
-            int idPassagem = int.Parse(Console.ReadLine());
+            string idPassagem = Console.ReadLine();
             Passagem passagem = new Passagem();
 
             foreach (Passagem item in listaPassagens)
