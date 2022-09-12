@@ -21,9 +21,10 @@ namespace Project_OnTheFly
             List<Venda> listaVendas = new List<Venda>();
             List<ItemVenda> listaItemVendas = new List<ItemVenda>();
 
+            LerArquivoPassageiros(listaPassageiros);
+
             LerArquivoIatas(listaIatas);
             LerArquivoAeronave(listaAeronaves);
-            LerArquivoPassageiros(listaPassageiros);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
 
 
@@ -659,7 +660,7 @@ namespace Project_OnTheFly
 
             try
             {
-                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Passageiros.dat");
+                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\ProjetoOnTheFly\\Project_OnTheFly\\Passageiro.dat");
                 line = sr.ReadLine();
 
                 do
@@ -667,7 +668,7 @@ namespace Project_OnTheFly
                     Passageiro passageiro = new Passageiro();
                     passageiro.CPF = line.Substring(0, 11);
                     passageiro.Nome = line.Substring(11, 50);
-                    passageiro.DataNascimento = DateTime.Parse($"{line[61]}{line[62]}/{line[63]}{line[64]}/{line[65]}{line[66]}{line[67]}{line[68]}");
+                    passageiro.DataNascimento = DateTime.Parse($"{line.Substring(51,8).ToString(")}");
                     passageiro.Sexo = line[69];
                     passageiro.UltimaCompra = DateTime.Parse($"{line[70]}{line[71]}/{line[72]}{line[73]}/{line[74]}{line[75]}{line[76]}{line[77]}");
                     listaPassageiro.Add(passageiro);
@@ -847,7 +848,11 @@ namespace Project_OnTheFly
                     line = arqAeronave.ReadLine();
                     if (line == null) break;
                     Aeronave aeronave = new Aeronave();
-                    aeronave.Inscricao = line;
+                    aeronave.Inscricao = line.Substring(0, 6);
+                    aeronave.Capacidade = int.Parse(line.Substring(6, 9));
+                    //aeronave.UltimaVenda =;
+                    // aeronave.DataCadastro =;
+                    //aeronave.Situacao = char.Parse(line[Length]);
 
 
                 } while (line != null);
