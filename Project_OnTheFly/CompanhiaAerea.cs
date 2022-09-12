@@ -27,7 +27,7 @@ namespace Project_OnTheFly
             DataAbertura = dataAbertura;
             UltimoVoo = DateTime.Now;
             DataCadastro = DateTime.Now;
-            SituacaoCA = situacaoCA; // L libre, R Reservada ou P paga
+            SituacaoCA = situacaoCA; //A Ativo ou I Inativo
         }
 
         public void CadCompAerea()
@@ -74,7 +74,7 @@ namespace Project_OnTheFly
             TimeSpan result;
             do
             {
-                Console.Write("\nInforme a data de abertura: ");
+                Console.Write("\nInforme a data de abertura: (mês/dia/ano)");
                 DataAbertura = DateTime.Parse(Console.ReadLine());
 
                 result = DateTime.Now - DataAbertura;
@@ -266,6 +266,33 @@ namespace Project_OnTheFly
 
         }
         #endregion Validar cnpj
+        /*
+        #region Data de Abertura
+        public bool CadDataAbertura()
+        {
+            Console.Write("Digite a Data de Abertura da empresa (Mês/Dia/Ano): ");
+            DateTime dataAbertura;
+            while (!DateTime.TryParse(Console.ReadLine(), out dataAbertura))
+            {
+                Console.WriteLine("Formato de data incorreto!");
+                Console.Write("Digite a data de abertura da empresa corretamente (Mês/Dia/Ano): ");
+            }
+            DateTime verData = dataAbertura;
+            if (verData > DateTime.Now.AddMonths(-6))
+            {
+                Console.WriteLine("Não é possível cadastrar empresas com menos de 6 meses!");
+                return false;
+            }
+            DataAbertura = dataAbertura.ToString("ddMMyyyy");
+            if (DataAbertura == "0")
+                return false;
+            return true;
+
+        colocar dentro de cadastrar 
+        if (!CadDataAbertura())
+                return;
+        }
+        */
 
     }
 }

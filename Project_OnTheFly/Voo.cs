@@ -8,12 +8,11 @@ namespace Project_OnTheFly
 {
     internal class Voo
     {
-        public string IdVoo { get; set; }
+        public string IdVoo { get; set; } //V0000
         public string Destino { get; set; }
-        //public string Aeronave { get; set; }
-        public DateTime DataVoo { get; set; }
+        public DateTime DataVoo { get; set; } // Data 8 dígitos + 4 dígitos da hora
         public DateTime DataCadastro { get; set; }
-        public char Situacao { get; set; }
+        public char Situacao { get; set; } //A Ativo ou C Cancelado
         public Aeronave Aeronave { get; set; }
 
         public Voo()

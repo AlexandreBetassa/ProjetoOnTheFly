@@ -25,7 +25,7 @@ namespace Project_OnTheFly
             Voo = voo;
             DataUltimaOperacao = dataUltimaOperacao;
             Valor = valor;
-            Situacao = situacao;
+            Situacao = situacao; // L libre, R Reservada ou P paga
         }
 
         public void CadastrarPassagemVoo()
