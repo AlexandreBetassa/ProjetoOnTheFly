@@ -958,8 +958,6 @@ namespace Project_OnTheFly
         #endregion Restrito
 
 
-
-
         #region VOO
         static void GravarListaVoos(List<Voo> listaVoo)
         {
