@@ -56,6 +56,7 @@ namespace Project_OnTheFly
 
         public void EditarAeronave()
         {
+            Console.WriteLine();
 
         }
 
