@@ -16,8 +16,9 @@ namespace Project_OnTheFly
 
         public PassagemVoo()
         {
-
+            Console.WriteLine();
         }
+        
 
         public PassagemVoo(string id, Voo voo, DateTime dataUltimaOperacao, float valor, char situacao)
         {
