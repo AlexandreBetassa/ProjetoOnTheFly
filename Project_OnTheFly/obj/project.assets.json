@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (4)\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+      "projectUniqueName": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
       "projectName": "Project_OnTheFly",
-      "projectPath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (4)\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+      "projectPath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
       "packagesPath": "C:\\Users\\Alexandre\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (4)\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
+      "outputPath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
