@@ -664,7 +664,6 @@ namespace Project_OnTheFly
         static void LerArquivoPassageiros(List<Passageiro> listaPassageiro)
         {
             String line;
-
             try
             {
                 StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\ProjetoOnTheFly\\Project_OnTheFly\\Arquivos\\Passageiro.dat");
@@ -675,13 +674,14 @@ namespace Project_OnTheFly
                     Passageiro passageiro = new Passageiro();
                     passageiro.CPF = line.Substring(0, 11);
                     passageiro.Nome = line.Substring(11, 50);
+                    Console.WriteLine(line[51]);
                     passageiro.DataNascimento = DateTime.Parse($"{line[61]}{line[62]}/{line[63]}{line[64]}/{line[65]}{line[66]}{line[67]}{line[68]}");
                     passageiro.Sexo = line[69];
                     passageiro.UltimaCompra = DateTime.Parse($"{line[70]}{line[71]}/{line[72]}{line[73]}/{line[74]}{line[75]}{line[76]}{line[77]}");
+                    if (DateTime.TryParse(line.Substring(70, 77), out var data)) passageiro.UltimaCompra = Convert.ToDateTime(data.ToString("dd/MM/yyyy"));
                     listaPassageiro.Add(passageiro);
                     line = sr.ReadLine();
                 } while (line != null);
-
                 sr.Close();
             }
             catch (Exception e)
