@@ -8,7 +8,7 @@ namespace Project_OnTheFly
 {
     internal class Venda
     {
-
+        public String IdVenda { get; set; }
         public void CadastrarVenda()
         {
 
