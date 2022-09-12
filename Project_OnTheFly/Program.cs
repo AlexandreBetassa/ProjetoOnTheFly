@@ -32,8 +32,7 @@ namespace Project_OnTheFly
             LerArquivoAeronave(listaAeronaves);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
             LerCpfRestrito(listaCpfRestrito);
-            LerCpfRestrito(listaCpfRestrito);
-
+            LerCnpjBloqueado(listaCnpjRestrito);
 
             int op = 0;
             do
@@ -673,8 +672,7 @@ namespace Project_OnTheFly
             {
                 StreamReader sr = new StreamReader("C:\\ArquivosAeroporto\\Passageiro.dat");
                 line = sr.ReadLine();
-                if (line == null) return;
-                do
+                while (line != null)
                 {
                     Passageiro passageiro = new Passageiro();
                     passageiro.CPF = line.Substring(0, 11);
@@ -685,7 +683,7 @@ namespace Project_OnTheFly
                     passageiro.DataCadastro = DateTime.Parse($"{line.Substring(78, 2)}/{line.Substring(80, 2)}/{line.Substring(82, 4)}");
                     listaPassageiro.Add(passageiro);
                     line = sr.ReadLine();
-                } while (line != null);
+                }
 
                 sr.Close();
             }
@@ -712,7 +710,6 @@ namespace Project_OnTheFly
             {
                 StreamReader sr = new StreamReader("C:\\ArquivosAeroporto\\listaIatas.dat");
                 line = sr.ReadLine();
-                if (line == null) return;
 
                 while (line != null)
                 {
@@ -785,9 +782,7 @@ namespace Project_OnTheFly
             {
                 StreamReader companhiaTxt = new StreamReader("C:\\ArquivosAeroporto\\CompanhiaAerea.dat");
                 line = companhiaTxt.ReadLine();
-
-                if (line == null) return;
-                do
+                while (line != null)
                 {
                     line = companhiaTxt.ReadLine();
                     CompanhiaAerea companhia = new CompanhiaAerea();
@@ -798,7 +793,7 @@ namespace Project_OnTheFly
                     companhia.DataCadastro = DateTime.Parse($"{line[80]}{line[81]}/{line[82]}{line[83]}/{line[84]}{line[85]}{line[86]}{line[87]}");
                     companhia.SituacaoCA = line[88];
                     listaCompanhias.Add(companhia);
-                } while (line != null);
+                }
                 companhiaTxt.Close();
             }
             catch (Exception e)
@@ -848,8 +843,6 @@ namespace Project_OnTheFly
             {
                 StreamReader aeronaveTxt = new StreamReader("C:\\ArquivosAeroporto\\Aeronave.dat");
                 line = aeronaveTxt.ReadLine();
-                if (line == null) return;
-
                 while (line != null)
                 {
 
@@ -862,6 +855,8 @@ namespace Project_OnTheFly
                     aeronave.DataCadastro = DateTime.Parse($"{line.Substring(22, 2)}/{line.Substring(24, 2)}/{line.Substring(26, 4)}");
                     aeronave.Situacao = line[31];
                     listaAeronaves.Add(aeronave);
+                    line = aeronaveTxt.ReadLine();
+
                 }
                 aeronaveTxt.Close();
             }
@@ -918,12 +913,14 @@ namespace Project_OnTheFly
             {
                 string line;
                 StreamReader cpfRestritoTxt = new StreamReader("C:\\ArquivosAeroporto\\Restritos.dat");
-                do
+                line = cpfRestritoTxt.ReadLine();
+
+                while (line != null)
                 {
                     line = cpfRestritoTxt.ReadLine();
                     listaCpfRestrito.Add(line);
 
-                } while (line != null);
+                } while (line != null) ;
                 cpfRestritoTxt.Close();
             }
             catch (Exception e)
@@ -938,12 +935,14 @@ namespace Project_OnTheFly
             {
                 string line;
                 StreamReader cnpjBloqueadoTxt = new StreamReader("C:\\ArquivosAeroporto\\Restritos.dat");
-                do
+                line = cnpjBloqueadoTxt.ReadLine();
+
+                while (line != null)
                 {
                     line = cnpjBloqueadoTxt.ReadLine();
                     listaCnpjBloqueado.Add(line);
 
-                } while (line != null);
+                }
                 cnpjBloqueadoTxt.Close();
             }
             catch (Exception e)
