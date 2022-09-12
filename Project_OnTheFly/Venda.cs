@@ -11,7 +11,11 @@ namespace Project_OnTheFly
         public String IdVenda { get; set; }
         public DateTime DataVenda { get; set; }
         public Passageiro Passageiro { get; set; }
-        public float ValorTotal {get; set; }
+        public float ValorTotal { get; set; }
+
+        public Venda()
+        {
+        }
 
         public void CadastrarVenda()
         {
