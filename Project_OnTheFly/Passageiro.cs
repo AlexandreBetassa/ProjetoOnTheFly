@@ -180,8 +180,7 @@ namespace Project_OnTheFly
         }
         public void EditarPassageiro()
         {
-
-           
+            
             Console.WriteLine("Escolha entre as opções, o/os dados que deseja editar em seu cadastro: ");
             Console.WriteLine("1 - Editar NOME cadastrado");
             Console.WriteLine("2 - Editar DATA DE NASCIMENTO cadastrado");
@@ -194,40 +193,36 @@ namespace Project_OnTheFly
             {
                 case 1:
                     Console.WriteLine("Informe o NOME correto: ");
-                    string nome = Console.ReadLine();
-                    passageiro.Nome = nome;
+                    Nome = Console.ReadLine();
                     break;
 
                 case 2:
                     Console.WriteLine("Informe a DATA DE NASCIMENTO correta: ");
-                    DateTime datanasc = DateTime.Parse(Console.ReadLine());
-                    passageiro.DataNascimento = datanasc;
+                    DataNascimento = DateTime.Parse(Console.ReadLine());
+                 
                     break;
 
                 case 3:
                     Console.WriteLine("Informe o gênero correto (M- Masculino, F - Feminino, N - Não desejo informar) : ");
-                    char sexo = char.Parse(Console.ReadLine());
-                    passageiro.Sexo = sexo;
+                    Sexo = char.Parse(Console.ReadLine());
                     break;
 
                 case 4:
                     Console.WriteLine("Informe a DATA correta da ÚLTIMA COMPRA: ");
-                    DateTime ultimaCompra = DateTime.Parse(Console.ReadLine());
-                    passageiro.UltimaCompra = ultimaCompra;
+                    UltimaCompra = DateTime.Parse(Console.ReadLine());
                     break;
 
                 case 5:
                     Console.WriteLine("Informe a DATA DO CADASTRO correta: ");
-                    DateTime dataCadastro = DateTime.Parse(Console.ReadLine());
-                    passageiro.DataCadastro = dataCadastro;
+                    DataCadastro = DateTime.Parse(Console.ReadLine());
                     break;
 
                 case 6:
                     do
                     {
                         Console.WriteLine("Informe a SITUAÇÃO do cadastro correta (A - Ativo, I - Inativo): ");
-                        char situacao = char.Parse(Console.ReadLine());
-                        passageiro.Situacao = situacao;
+                        Situacao = char.Parse(Console.ReadLine());
+                       
                     } while (Situacao != 'A' && Situacao != 'I');
                     break;
 
