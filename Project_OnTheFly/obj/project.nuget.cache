@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "HaYqheZzeJg6l/+n9xkADfP4xxeQvjiYGUHXayUq+GiqNuARcdZH5/vxBxwYMtEz9CHrG0dvLCoipaK7uDXeLQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Gabriele Ciriano\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+=======
+  "dgSpecHash": "CdvjCotkW8zdfcKS+T2QleH6GIGyL+dfmFmk1KhgkiMIbIi8Su5WQFVO/gXHnRCVozjuqg6fZQgLVhqDgStraQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+>>>>>>> merge
   "expectedPackageFiles": [],
   "logs": []
 }
