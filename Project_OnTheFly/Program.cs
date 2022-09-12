@@ -856,8 +856,10 @@ namespace Project_OnTheFly
         #endregion ArquivoAeronave
 
         #region Restritos e bloqueados
+
+        #region gravacao
         //cpf restritos gravacao
-        static void GravarRestritos(List<String> listaRestritos)
+        static void GravarCpfRestritos(List<String> listaRestritos)
         {
             try
             {
@@ -872,6 +874,24 @@ namespace Project_OnTheFly
                 Console.WriteLine("Erro na gravação do arquivo Restrito: " + e);
             }
         }
+        //cnpjs restritos
+        static void GravarCnpjRestritos(List<String> listaRestritos)
+        {
+            try
+            {
+                StreamWriter restritos = new StreamWriter("C:\\ArquivosAeroporto\\Restritos.dat");
+                foreach (var item in listaRestritos)
+                    if (item != null)
+                        restritos.WriteLine(item);
+                restritos.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erro na gravação do arquivo Restrito: " + e);
+            }
+        }
+        #endregion gravacao
+
 
 
 
