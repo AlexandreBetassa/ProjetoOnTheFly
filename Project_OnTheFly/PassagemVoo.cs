@@ -69,7 +69,7 @@ namespace Project_OnTheFly
                     // break;
                     case 1:
                         Console.Write("Informe o NOVO valor da passagem: ");
-                        double valor = double.Parse(Console.ReadLine());
+                        Valor = float.Parse(Console.ReadLine());
                         if (valor > 9999.99 || valor < 0)
                         {
                             Console.WriteLine("Valor de Passagem excedeu o limite!");
