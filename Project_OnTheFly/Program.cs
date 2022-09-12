@@ -1019,7 +1019,36 @@ namespace Project_OnTheFly
 
         #endregion VOO
 
+        #region PassagemVoo
+        static void GravarListaPassagmVoo(List<PassagemVoo> listaPassagemVoo)
+        {
+            try
+            {
+                StreamWriter ArqPassagemVoo = new StreamWriter("C:\\ArquivosAeroporto\\PassagemVoo.dat");
+                foreach (var item in listaPassagemVoo)
+                {
+                    if (item != null)
+                        ArqPassagemVoo.WriteLine(getPassagemVoo(item));
+                }
+                ArqPassagemVoo.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha ao gravar o arquivo CompanhiaAerea\n" + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Gravação arquivo CompanhiaAerea.dat efetuada com sucesso!!!");
+            }
+        }
 
+        static String getPassagemVoo(PassagemVoo passagemVoo)
+        {
+            return $"{passagemVoo.Id.PadRight(6)}{passagemVoo.Voo.IdVoo}{passagemVoo.DataUltimaOperacao:ddMMyyyy}{passagemVoo.Valor:0000,00}{passagemVoo.Situacao}";
+        }
+
+
+        #endregion PassagemVoo
 
 
         //formatar data sem barras, somente numeros 
