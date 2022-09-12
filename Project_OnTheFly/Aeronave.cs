@@ -69,7 +69,8 @@ namespace Project_OnTheFly
             Console.WriteLine("Lista de Companhias Aéreas:");
             foreach (CompanhiaAerea item in ListaCompanhiaAereas)
             {
-                Console.WriteLine(item.ToString());
+                if (item.SituacaoCA == 'A')
+                    Console.WriteLine(item.ToString());
             }
             
             Console.Write("Informe qual Companhia Aérea a Aeronave Pertence: ");
@@ -77,8 +78,11 @@ namespace Project_OnTheFly
 
             foreach (CompanhiaAerea item in ListaCompanhiaAereas)
             {
-                if (item.CNPJ == ca)
+                if (item.SituacaoCA == 'A')
+                {
+                    if (item.CNPJ == ca)
                     this.CompanhiaAerea = item;
+                }
             }
 
         }

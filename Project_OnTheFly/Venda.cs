@@ -8,27 +8,18 @@ namespace Project_OnTheFly
 {
     internal class Venda
     {
-        //acho que ta errado esse string, acredito que seja int
         public String IdVenda { get; set; }
         public DateTime DataVenda { get; set; }
         public Passageiro Passageiro { get; set; }
-        public float ValorTotal { get; set; }
+        public ItemVenda ValorTotal { get; set; }
 
 
         public Venda()
         {
 
         }
-        public Venda(string idVenda, DateTime dataVenda, Passageiro passageiro, float valorTotal)
-        {
-            IdVenda = idVenda;
-            DataVenda = DateTime.Now;
-            Passageiro = passageiro;
-            ValorTotal = valorTotal;
 
-
-        }
-        public void CadastrarVenda()
+        public void CadastrarVenda(List<Passageiro> listaPassageiros)
         {
             Console.WriteLine(">>>CADASTRO DE VENDAS<<<");
 
@@ -47,10 +38,29 @@ namespace Project_OnTheFly
             //mesmo.
             //for each, comparar valor do cpf se for igual ao informado
             //var int id, começando em 1 e cada vez que , incrementar 1
-        }
 
-        public void EditarVenda()
-        {
+            //Lista de Passageiros
+            Console.WriteLine("Lista de Passageiros:");
+            foreach (Passageiro item in listaPassageiros)
+            {
+                if (item.Situacao == 'A')
+                    Console.WriteLine(item.ToString());
+            }
+
+            Console.Write("Informe qual Passageiro pertence esta Venda: ");
+            string cpf = Console.ReadLine();
+
+            foreach (Passageiro item in listaPassageiros)
+            {
+                if (item.Situacao == 'A')
+                {
+                    if (item.CPF == cpf)
+                        this.Passageiro = item;
+                }
+            }
+
+
+
 
         }
     }

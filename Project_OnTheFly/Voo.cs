@@ -30,12 +30,8 @@ namespace Project_OnTheFly
             Situacao = situacao;
         }
 
-       public override string ToString()
-        {
-            return "\nIdVoo: " + IdVoo + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situação;
-        }
 
-        public void CadastrarVoo(List<String> listaIatas)
+        public void CadastrarVoo(List<String> listaIatas, List<Aeronave> listaAeronaves)
         {
             // INSERIR idvoo 
 
@@ -78,7 +74,8 @@ namespace Project_OnTheFly
             Console.WriteLine("Lista de Aeronaves Cadastradas:");
             foreach (Aeronave item in listaAeronaves)
             {
-                Console.WriteLine(item.ToString());
+                if (item.Situacao == 'A')
+                    Console.WriteLine(item.ToString());
             }
 
             Console.Write("Informe qual Aeronave pertence a este Voo: ");
@@ -86,8 +83,11 @@ namespace Project_OnTheFly
 
             foreach (Aeronave item in listaAeronaves)
             {
-                if (item.Inscricao == insc)
+                if (item.Situacao == 'A')
+                {
+                    if (item.Inscricao == insc)
                     this.Aeronave = item;
+                }
             }
         }
 
@@ -133,11 +133,10 @@ namespace Project_OnTheFly
         {
 
         }
-
-        public override string ToString()
+       public override string ToString()
         {
-            //INSERIR ID DA AERONAVE
-            return "\nID do Voo: " + IdVoo + "\nDestino: " + Destino + "\nData do voo: " + DataVoo + "\nData de Cadastro do Voo: " + DataCadastro + "\nSituação: " + Situacao;
+            return "\nIdVoo: " + IdVoo + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
         }
+
     }
 }
