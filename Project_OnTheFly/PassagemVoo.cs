@@ -82,7 +82,7 @@ namespace Project_OnTheFly
                         }
                         break;
                     case 2:
-                        Console.Write("Informe A NOVA Situação: ;
+                        Console.Write("Informe A NOVA Situação: );
                         char situacao = char.Parse(Console.ReadLine());
                         passagem.Situacao = situacao;
                         Console.WriteLine(" >> Pasagem editada com sucesso <<");
