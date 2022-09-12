@@ -51,6 +51,7 @@ C:\Users\Alexandre\Desktop\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\ref
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c2c53b1b8c2c26c384bf166841f36880db52fe70
 =======
@@ -80,6 +81,8 @@ C:\Users\Thalya\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\r
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> correções de bugs no arquivo
 C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.exe
 C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.deps.json
 C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.runtimeconfig.json
@@ -96,6 +99,7 @@ C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\obj\
 C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.pdb
 C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.genruntimeconfig.cache
 C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\ref\Project_OnTheFly.dll
+<<<<<<< HEAD
 >>>>>>> correções de bugs no arquivo
 =======
 >>>>>>> c2c53b1b8c2c26c384bf166841f36880db52fe70
@@ -105,3 +109,5 @@ C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\obj\
 >>>>>>> c2c53b1b8c2c26c384bf166841f36880db52fe70
 =======
 >>>>>>> c2c53b1b8c2c26c384bf166841f36880db52fe70
+=======
+>>>>>>> correções de bugs no arquivo
