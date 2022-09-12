@@ -22,15 +22,10 @@ namespace Project_OnTheFly
             List<ItemVenda> listaItemVendas = new List<ItemVenda>();
 
             LerArquivoIatas(listaIatas);
-
-            CompanhiaAerea comp = new();
-            comp.CadCompAerea();
-
-            Voo voo = new Voo();
-            voo.CadastrarVoo(listaIatas);
+            LerArquivoAeronave(listaAeronaves);
             LerArquivoPassageiros(listaPassageiros);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
-            foreach (var item in ListaCompanhiaAereas) Console.WriteLine(item + "\n");
+
 
             int op = 0;
             do
@@ -625,8 +620,6 @@ namespace Project_OnTheFly
         }
         #endregion
         #endregion
-
-
 
         #region gravarArquivos
         #region ArquivoPassageiro
