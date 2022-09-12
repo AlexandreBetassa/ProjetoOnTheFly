@@ -192,6 +192,8 @@ namespace Project_OnTheFly
                     passageiro.DataNascimento = DateTime.Parse($"{line[61]}{line[62]}/{line[63]}{line[64]}/{line[65]}{line[66]}{line[67]}{line[68]}");
                     passageiro.Sexo = line[69];
                     passageiro.UltimaCompra = DateTime.Parse($"{line[70]}{line[71]}/{line[72]}{line[73]}/{line[74]}{line[75]}{line[76]}{line[77]}");
+                    passageiro.DataCadastro = DateTime.Parse($"{line[78]}{line[79]}/{line[80]}{line[81]}/{line[82]}{line[83]}{line[84]}{line[85]}");
+                    passageiro.Situacao = line[86];
                     listaPassageiro.Add(passageiro);
                     line = sr.ReadLine();
                 } while (line != null);

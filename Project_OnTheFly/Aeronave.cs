@@ -15,13 +15,18 @@ namespace Project_OnTheFly
         public DateTime UltimaVenda { get; set; } //no cad, dt atual
         public DateTime DataCadastro { get; set; } //dt atual
         public char Situacao { get; set; }
-        //public CompahiaAerea compAerea - associação
+        //associação da classe companhia aerea
+        public CompanhiaAerea CompanhiaAerea { get; set; }
 
         public Aeronave()
         {
 
         }
+        //metodo de teste
+        public void AlterarTeste()
+        {
 
+        }
         public Aeronave(string inscricao, int capacidade, int acentosOcupados, DateTime ultimaVenda, DateTime dataCadastro)
         {
             Inscricao = inscricao;
@@ -56,7 +61,9 @@ namespace Project_OnTheFly
         //Permite 105.456 combinações
         //“Tradicionalmente, o Brasil usa para aeronaves comerciais e privadas as letras iniciais
         //fixar o PP ou PR - 
-        //PP, PT, PR, PS. PP
+        //PP, PT, PR, PS. PP ou BR
+        //numero randico
+        
         //gero um numero randomico e nao repito
         // Proibido: iniciadas com a letra Q ou que tenham W como segunda letra.
         //PP - 300

@@ -29,7 +29,7 @@ namespace Project_OnTheFly
             DataCadastro = dataCadastro;
             SituacaoCA = situacaoCA;
         }
-
+              
         public void CadCompAerea()
         {
             Console.WriteLine("CADASTRO DE COMPANHIA AEREA");

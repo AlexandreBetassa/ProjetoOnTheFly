@@ -13,7 +13,7 @@ namespace Project_OnTheFly
         public DateTime DataNascimento;
         public char Sexo { get; set; } //M F N
         public DateTime UltimaCompra { get; set; } //no cadastro, data atual
-        public DateTime DataCadastro { get; set; }
+        public DateTime DataCadastro { get; set; } //data atual
         public char Situacao { get; set; } //A - Ativo I - Inativo
 
         public Passageiro()
@@ -60,14 +60,16 @@ namespace Project_OnTheFly
             } while (Nome.Length > 50);
 
             //Fazer o tratamento de possíveis erros
-            Console.WriteLine("Informe sua Data de Nascimento: ");
-            aux = DateTime.Parse(Console.ReadLine());
-            while (!DateTime.TryParse(Console.ReadLine(), out DataNascimento)) ;
-
+            do
+            {
+                Console.WriteLine("Informe sua Data de Nascimento: ");
+                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
+            } while (!aux);
+            DataNascimento = aux1;
 
             do
             {
-                Console.WriteLine("Informe seu genero: (M - Masculino, F - Feminino, N - Não desejo informar) : ");
+                Console.WriteLine("Informe seu SEXO: (M - Masculino, F - Feminino, N - Não desejo informar) : ");
                 Sexo = char.Parse(Console.ReadLine().ToUpper());
                 if (Sexo != 'M' && Sexo != 'F' && Sexo != 'N')
                 {
@@ -75,22 +77,8 @@ namespace Project_OnTheFly
                 }
             } while (Sexo != 'M' && Sexo != 'F' && Sexo != 'N');
 
-
-            Console.WriteLine("DATA de ÚLTIMA COMPRA: ");
-            while (!DateTime.TryParse(Console.ReadLine(), out )) ;
-
-            do
-            {
-
-
-                Console.WriteLine("DATA do CADASTRO: ");
-                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
-            } while (!aux);
-            DataCadastro = aux1;
-
-
-            Situacao = char.Parse(Console.ReadLine());
-
+            //ultima compra e data do cadastro ja estao prontas
+            //so chamo em editar, ja irao vir c a data atual                              
         }
         public static bool ValidarCpf(string cpf)
         {
@@ -196,54 +184,52 @@ namespace Project_OnTheFly
         }
         public void EditarPassageiro()
         {
-
-            Passageiro passageiro = new Passageiro();
+            
             Console.WriteLine("Escolha entre as opções, o/os dados que deseja editar em seu cadastro: ");
             Console.WriteLine("1 - Editar NOME cadastrado");
             Console.WriteLine("2 - Editar DATA DE NASCIMENTO cadastrado");
             Console.WriteLine("3 - Editar SEXO cadastrado");
             Console.WriteLine("4 - Editar ÚLTIMA COMPRA cadastrada");
             Console.WriteLine("5 - Editar DATA DO CADASTRO");
-            Console.WriteLine("6 - Editar SITUAÇÃO do CADASTRO ");
+            Console.WriteLine("6 - Editar SITUAÇÃO DO CADASTRO");
             int op = int.Parse(Console.ReadLine());
             switch (op)
             {
                 case 1:
                     Console.WriteLine("Informe o NOME correto: ");
-                    string nome = Console.ReadLine();
-                    passageiro.Nome = nome;
+                    Nome = Console.ReadLine();                  
                     break;
 
                 case 2:
                     Console.WriteLine("Informe a DATA DE NASCIMENTO correta: ");
-                    DateTime datanasc = DateTime.Parse(Console.ReadLine());
-                    passageiro.DataNascimento = datanasc;
+                    DataNascimento = DateTime.Parse(Console.ReadLine());                   
                     break;
 
                 case 3:
-                    Console.WriteLine("Informe o gênero correto (M- Masculino, F - Feminino, N - Não desejo informar) : ");
-                    char sexo = char.Parse(Console.ReadLine());
-                    passageiro.Sexo = sexo;
+                    do
+                    {
+                        Console.WriteLine("Informe o gênero correto (M- Masculino, F - Feminino, N - Não desejo informar) : ");
+                        Sexo = char.Parse(Console.ReadLine().ToUpper());
+
+                    } while (Sexo != 'M' && Sexo != 'F' && Sexo != 'N');
                     break;
 
                 case 4:
                     Console.WriteLine("Informe a DATA correta da ÚLTIMA COMPRA: ");
-                    DateTime ultimaCompra = DateTime.Parse(Console.ReadLine());
-                    passageiro.UltimaCompra = ultimaCompra;
+                    UltimaCompra = DateTime.Parse(Console.ReadLine());                  
                     break;
 
                 case 5:
                     Console.WriteLine("Informe a DATA DO CADASTRO correta: ");
-                    DateTime dataCadastro = DateTime.Parse(Console.ReadLine());
-                    passageiro.DataCadastro = dataCadastro;
+                    DataCadastro = DateTime.Parse(Console.ReadLine());                
                     break;
 
                 case 6:
                     do
                     {
                         Console.WriteLine("Informe a SITUAÇÃO do cadastro correta (A - Ativo, I - Inativo): ");
-                        char situacao = char.Parse(Console.ReadLine());
-                        passageiro.Situacao = situacao;
+                        Situacao = char.Parse(Console.ReadLine());
+                       
                     } while (Situacao != 'A' && Situacao != 'I');
                     break;
 
