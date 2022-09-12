@@ -17,6 +17,7 @@ namespace Project_OnTheFly
 
         public CompanhiaAerea()
         {
+            SituacaoCA = 'A';
 
         }
 
@@ -27,21 +28,25 @@ namespace Project_OnTheFly
             DataAbertura = dataAbertura;
             UltimoVoo = DateTime.Now;
             DataCadastro = DateTime.Now;
-            SituacaoCA = 'A';
         }
 
         public void CadCompAerea()
         {
             bool aux;
             DateTime aux1;
+            int cnpj;
 
             Console.WriteLine("CADASTRO DE COMPANHIA AEREA");
 
             //CNPJ
             do
             {
-                Console.Write("\nInforme o seu Cadastro Nacional da Pessoa Jurídica - CNPJ:  ");
-                CNPJ = Console.ReadLine();
+                do
+                {
+                    Console.Write("\nInforme o seu Cadastro Nacional da Pessoa Jurídica - CNPJ (Somente números sem / ou .):  ");
+                    CNPJ = Console.ReadLine();
+                } while (CNPJ.Length > 14);
+
                 if (ValidarCnpj(CNPJ) == false)
                 {
                     Console.WriteLine("\nNÚMERO DE CNPJ INVÁLIDO.");
@@ -69,6 +74,7 @@ namespace Project_OnTheFly
                 aux = DateTime.TryParse(Console.ReadLine(), out aux1);
             } while (!aux);
             UltimoVoo = aux1;
+
 
             //Data de abertura
             TimeSpan result;
@@ -164,12 +170,12 @@ namespace Project_OnTheFly
             //limpa caracteres especiais e deixa em minusculo
             cnpj = cnpj.ToLower().Trim();
             cnpj = cnpj.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "");
-            //cnpj = cnpj.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
-            //cnpj = cnpj.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
-            //cnpj = cnpj.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
-            //cnpj = cnpj.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
-            //cnpj = cnpj.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
-            //cnpj = cnpj.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
+            cnpj = cnpj.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
+            cnpj = cnpj.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
+            cnpj = cnpj.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
+            cnpj = cnpj.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
+            cnpj = cnpj.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
+            cnpj = cnpj.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
 
             // Se vazio
             if (cnpj.Length == 0)
