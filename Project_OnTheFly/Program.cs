@@ -714,13 +714,6 @@ namespace Project_OnTheFly
             {
                 Console.WriteLine("Falha no carregamento do arquivo listaIatas\n " + e.Message);
             }
-            finally
-            {
-                Console.WriteLine("Arquivo listaIatas carregados com êxito!!!");
-            }
-            Console.ReadKey();
-            Console.Clear();
-            return;
         }
 
         static void ImprimirDestinos(List<String> lista)
@@ -777,13 +770,12 @@ namespace Project_OnTheFly
         static void LerArquivoCompanhiaAerea(List<CompanhiaAerea> listaCompanhias)
         {
             string line;
-            StreamReader companhiaTxt = new StreamReader("C:\\ArquivosAeroporto\\CompanhiaAerea.dat");
-            line = companhiaTxt.ReadLine();
-            do
+            try
             {
-                try
+                StreamReader companhiaTxt = new StreamReader("C:\\ArquivosAeroporto\\CompanhiaAerea.dat");
+                do
                 {
-                    Console.WriteLine(line.Length);
+                    line = companhiaTxt.ReadLine();
                     CompanhiaAerea companhia = new CompanhiaAerea();
                     companhia.CNPJ = line.Substring(0, 14);
                     companhia.RazaoSocial = line.Substring(14, 50);
@@ -792,19 +784,16 @@ namespace Project_OnTheFly
                     companhia.DataCadastro = DateTime.Parse($"{line[80]}{line[81]}/{line[82]}{line[83]}/{line[84]}{line[85]}{line[86]}{line[87]}");
                     companhia.SituacaoCA = line[88];
                     listaCompanhias.Add(companhia);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Falha no carregamento do arquivo de CompanhiaAerea.dat\n " + e.Message);
-
-                }
-                finally
-                {
-                    Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
-                }
-                line = companhiaTxt.ReadLine();
-            } while (line != null);
+                } while (line != null);
+                companhiaTxt.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha no carregamento do arquivo de CompanhiaAerea.dat\n " + e.Message);
+            }
         }
+
+
         #endregion ArquivoCompanhiaAerea
 
         #region ArquivoAeronave
@@ -834,7 +823,7 @@ namespace Project_OnTheFly
         //metodo para retornar aeronave para gravar em arquivo
         static String getAeronave(Aeronave aeronave)
         {
-            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade:000}{aeronave.AcentosOcupados}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
+            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade:000}{aeronave.AcentosOcupados:000}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
         }
 
         static void LerArquivoAeronave(List<Aeronave> listaAeronaves)
@@ -843,34 +832,30 @@ namespace Project_OnTheFly
 
             try
             {
-                StreamReader arqAeronave = new StreamReader("C:\\ArquivosAeroporto\\Aeronave.dat");
+                StreamReader aeronaveTxt = new StreamReader("C:\\ArquivosAeroporto\\Aeronave.dat");
                 do
                 {
-                    line = arqAeronave.ReadLine();
-                    if (line == null) break;
+                    line = aeronaveTxt.ReadLine();
                     Aeronave aeronave = new Aeronave();
                     aeronave.Inscricao = line.Substring(0, 6);
-                    aeronave.Capacidade = int.Parse(line.Substring(6, 9));
-                    aeronave.UltimaVenda = DateTime.Parse($"{line[64]}{line[65]}/{line[66]}{line[67]}/{line[68]}{line[69]}{line[70]}{line[71]}");
-                    aeronave.DataCadastro = DateTime.Parse($"{line[80]}{line[81]}/{line[82]}{line[83]}/{line[84]}{line[85]}{line[86]}{line[87]}"); ;
-                    // aeronave.DataCadastro =;
-                    //aeronave.Situacao = char.Parse(line[Length]);
-
-
+                    aeronave.Capacidade = int.Parse(line.Substring(7, 3));
+                    aeronave.AcentosOcupados = int.Parse(line.Substring(10, 3));
+                    aeronave.UltimaVenda = DateTime.Parse($"{line.Substring(13, 2)}/{line.Substring(15, 2)}/{line.Substring(17, 4)}");
+                    aeronave.DataCadastro = DateTime.Parse($"{line.Substring(22, 2)}/{line.Substring(24, 2)}/{line.Substring(26, 4)}");
+                    aeronave.Situacao = line[31];
+                    listaAeronaves.Add(aeronave);
                 } while (line != null);
-                arqAeronave.Close();
+                aeronaveTxt.Close();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Falha ao gravar o arquivo Aeronave.dat\n" + e.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Gravação arquivo Aeronave.dat efetuada com sucesso!!!");
+                Console.WriteLine("Falha ao ler o arquivo Aeronave.dat: " + e.Message);
             }
         }
 
         #endregion ArquivoAeronave
+
+
 
         //formatar data sem barras, somente numeros 
         static String FormatarData(DateTime data)
@@ -881,5 +866,6 @@ namespace Project_OnTheFly
 
     }
 }
+
 
 
