@@ -49,7 +49,7 @@ namespace Project_OnTheFly
                         break;
                     case 3:
                         Console.Clear();
-                        MenuAeronave(listaAeronaves,ListaCompanhiaAereas);
+                        MenuAeronave(listaAeronaves, ListaCompanhiaAereas);
                         break;
                     case 4:
                         Console.Clear();
@@ -57,7 +57,7 @@ namespace Project_OnTheFly
                         break;
                     case 5:
                         Console.Clear();
-                        MenuPassagem(listaPassagensVoos,listaVoos);
+                        MenuPassagem(listaPassagensVoos, listaVoos);
                         break;
                     case 6:
                         Console.Clear();
@@ -211,7 +211,7 @@ namespace Project_OnTheFly
                         break;
                     case 4:
                         foreach (Aeronave item in listaAeronaves)
-                            if(item.Situacao == 'A')
+                            if (item.Situacao == 'A')
                                 Console.WriteLine(item.ToString() + "\n");
                         break;
                     case 0:
@@ -691,9 +691,9 @@ namespace Project_OnTheFly
         }
 
         //metodo de leitura do arquivo de passageiros
-        //static void LerArquivoPassageiros(List<Passageiro> listaPassageiro)
-       // {
-         //   String line;
+        static void LerArquivoPassageiros(List<Passageiro> listaPassageiro)
+        {
+            String line;
 
             try
             {
@@ -712,20 +712,20 @@ namespace Project_OnTheFly
                     line = sr.ReadLine();
                 }
 
-            //    sr.Close();
-            //    };
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Falha no carregamento do arquivo de Passageiros\n " + e.Message);
-        //    }
-        //    finally
-        //    {
-        //        Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
-        //    }
-        //    Console.ReadKey();
-        //    Console.Clear();
-        //    return;
-        //}
+                sr.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha no carregamento do arquivo de Passageiros\n " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
+            }
+            Console.ReadKey();
+            Console.Clear();
+            return;
+        }
         #endregion ArquivoPassageiro
 
         #region ArquivoIatas
@@ -858,7 +858,7 @@ namespace Project_OnTheFly
         //metodo para retornar aeronave para gravar em arquivo
         static String getAeronave(Aeronave aeronave)
         {
-            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade:000}{aeronave.AcentosOcupados:000}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
+            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade:000}{aeronave.AssentosOcupados:000}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
         }
 
         static void LerArquivoAeronave(List<Aeronave> listaAeronaves)
@@ -876,7 +876,7 @@ namespace Project_OnTheFly
                     Aeronave aeronave = new Aeronave();
                     aeronave.Inscricao = line.Substring(0, 6);
                     aeronave.Capacidade = int.Parse(line.Substring(7, 3));
-                    aeronave.AcentosOcupados = int.Parse(line.Substring(10, 3));
+                    aeronave.AssentosOcupados = int.Parse(line.Substring(10, 3));
                     aeronave.UltimaVenda = DateTime.Parse($"{line.Substring(13, 2)}/{line.Substring(15, 2)}/{line.Substring(17, 4)}");
                     aeronave.DataCadastro = DateTime.Parse($"{line.Substring(22, 2)}/{line.Substring(24, 2)}/{line.Substring(26, 4)}");
                     aeronave.Situacao = line[31];
@@ -1045,7 +1045,7 @@ namespace Project_OnTheFly
 
 
         #endregion Restrito
-        S
+
         //formatar data sem barras, somente numeros 
         static String FormatarData(DateTime data)
         {

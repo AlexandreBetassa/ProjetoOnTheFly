@@ -135,7 +135,6 @@ namespace Project_OnTheFly
         {
 
         }
-       public override string ToString()
         public override string ToString()
         {
             return "\nIdVoo: " + IdVoo + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
