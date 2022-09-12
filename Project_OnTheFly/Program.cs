@@ -22,15 +22,10 @@ namespace Project_OnTheFly
             List<ItemVenda> listaItemVendas = new List<ItemVenda>();
 
             LerArquivoIatas(listaIatas);
-
-            CompanhiaAerea comp = new();
-            comp.CadCompAerea();
-
-            Voo voo = new Voo();
-            voo.CadastrarVoo(listaIatas);
+            LerArquivoAeronave(listaAeronaves);
             LerArquivoPassageiros(listaPassageiros);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
-            foreach (var item in ListaCompanhiaAereas) Console.WriteLine(item + "\n");
+
 
             int op = 0;
             do
@@ -48,7 +43,7 @@ namespace Project_OnTheFly
                         MenuAeronave(listaAeronaves);
                         break;
                     case 4:
-                        MenuVoo(listaVoos,listaIatas);
+                        MenuVoo(listaVoos, listaIatas);
 
                         break;
                     case 5:
@@ -63,6 +58,7 @@ namespace Project_OnTheFly
                     case 0:
                         GravarArquivoPassageiro(listaPassageiros);
                         GravarArquivoCompanhiaAerea(ListaCompanhiaAereas);
+                        GravarArquivoAeronave(listaAeronaves);
                         Environment.Exit(0);
                         break;
                 }
@@ -494,7 +490,7 @@ namespace Project_OnTheFly
             bool achei = false;
 
             Console.Write("Informe o ID do Voo para busca: ");
-            int idVoo = int.Parse(Console.ReadLine());
+            string idVoo = Console.ReadLine();
             Voo voo = new Voo();
 
             foreach (Voo item in listaVoos)
@@ -537,8 +533,8 @@ namespace Project_OnTheFly
             bool achei = false;
 
             Console.Write("Informe o ID da Passagem para busca: ");
-            int idPassagem = int.Parse(Console.ReadLine());
-            Passagem passagem = new Passagem();
+            string idPassagem = Console.ReadLine();
+            Passagem passagem;
 
             foreach (Passagem item in listaPassagens)
             {
@@ -571,9 +567,8 @@ namespace Project_OnTheFly
             bool achei = false;
 
             Console.Write("Informe o ID da Venda para busca: ");
-            int idVenda = int.Parse(Console.ReadLine());
-            Venda venda = new Venda();
-
+            String idVenda = Console.ReadLine();
+            Venda venda;
             foreach (Venda item in listaVendas)
             {
                 if (item.IdVenda == idVenda)
@@ -605,8 +600,8 @@ namespace Project_OnTheFly
             bool achei = false;
 
             Console.Write("Informe o ID do Item de Venda para busca: ");
-            int idItemVenda = int.Parse(Console.ReadLine());
-            ItemVenda itemVenda = new ItemVenda();
+            String idItemVenda = Console.ReadLine();
+            ItemVenda itemVenda;
 
             foreach (ItemVenda item in listaItemVendas)
             {
@@ -626,8 +621,6 @@ namespace Project_OnTheFly
         }
         #endregion
         #endregion
-
-
 
         #region gravarArquivos
         #region ArquivoPassageiro
@@ -857,6 +850,7 @@ namespace Project_OnTheFly
                     Aeronave aeronave = new Aeronave();
                     aeronave.Inscricao = line;
 
+
                 } while (line != null);
                 arqAeronave.Close();
             }
@@ -881,5 +875,5 @@ namespace Project_OnTheFly
 
     }
 }
-}
+
 
