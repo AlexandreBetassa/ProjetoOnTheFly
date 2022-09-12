@@ -25,9 +25,7 @@ namespace Project_OnTheFly
             List<String> listaCpfRestrito = new List<string>();
             List<String> listaCnpjRestrito = new List<string>();
 
-
             LerArquivoPassageiros(listaPassageiros);
-
             LerArquivoIatas(listaIatas);
             LerArquivoAeronave(listaAeronaves);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
@@ -736,10 +734,8 @@ namespace Project_OnTheFly
 
         static String LocalizarIata(string destino, List<String> lista)
         {
-            Console.WriteLine("Informe a iata do aeroporto destino: ");
-            string iata = Console.ReadLine().ToUpper();
             foreach (var item in lista)
-                if (item.Contains(iata) && item != null)
+                if (item.Contains(destino) && item != null)
                 {
                     Console.WriteLine(item);
                     return item;
@@ -1000,7 +996,7 @@ namespace Project_OnTheFly
                 {
                     Voo voo = new Voo();
                     voo.IdVoo = line.Substring(0, 5);
-                    voo.Destino = LocalizarIata(line.Substring(6, 9), listaIatas);
+                    voo.Destino = LocalizarIata(line.Substring(6, 3), listaIatas);
                     voo.Aeronave = BuscarAeronave(listaAeronave, line.Substring(10, 6));
                     voo.DataVoo = Convert.ToDateTime($"{line.Substring(16, 2)}/{line.Substring(18, 2)}/{line.Substring(20, 4)}{line.Substring(24, 2)}:{line.Substring(26, 2)}");
                     voo.DataCadastro = Convert.ToDateTime($"{line.Substring(28, 2)}/{line.Substring(30, 2)}/{line.Substring(32, 4)}");
@@ -1017,8 +1013,6 @@ namespace Project_OnTheFly
             {
                 Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
             }
-            Console.ReadKey();
-            Console.Clear();
             return;
         }
 
@@ -1026,7 +1020,7 @@ namespace Project_OnTheFly
 
 
         #endregion Restrito
-
+        S
         //formatar data sem barras, somente numeros 
         static String FormatarData(DateTime data)
         {
