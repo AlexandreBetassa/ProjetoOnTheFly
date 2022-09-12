@@ -75,10 +75,7 @@ namespace Project_OnTheFly
             //Data de cadastro e situação também já foram declaradas.                  
 
         }
-        public void MetodoTeste()
-        {
-
-        }
+        
         public static bool ValidarCpf(string cpf)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
