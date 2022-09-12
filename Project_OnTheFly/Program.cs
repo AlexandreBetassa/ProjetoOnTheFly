@@ -11,14 +11,22 @@ namespace Project_OnTheFly
 
         static void Main(string[] args)
         {
+
             List<Passageiro> listaPassageiros = new List<Passageiro>();
             List<String> listaIatas = new List<string>();
-            List<CompanhiaAerea> ListaCompanhiaAereas = new List<CompanhiaAerea>();
+            List<CompanhiaAerea> listaCompanhiaAereas = new List<CompanhiaAerea>();
+            List<Aeronave> listaAeronave = new List<Aeronave>();
 
             LerArquivoIatas(listaIatas);
+
+            CompanhiaAerea comp = new();
+            comp.CadCompAerea();
+
+            Voo voo = new Voo();
+            voo.CadastrarVoo(listaIatas);
             LerArquivoPassageiros(listaPassageiros);
-            LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
-            foreach (var item in ListaCompanhiaAereas) Console.WriteLine(item + "\n");
+            LerArquivoCompanhiaAerea(listaCompanhiaAereas);
+            foreach (var item in listaCompanhiaAereas) Console.WriteLine(item + "\n");
 
             int op = 0;
             do
@@ -39,13 +47,16 @@ namespace Project_OnTheFly
                         break;
                     case 0:
                         GravarArquivoPassageiro(listaPassageiros);
-                        GravarArquivoCompanhiaAerea(ListaCompanhiaAereas);
+                        GravarArquivoCompanhiaAerea(listaCompanhiaAereas);
+                        GravarArquivoAeronave(listaAeronave);
                         Environment.Exit(0);
                         break;
                 }
             } while (true);
 
         }
+
+        public void metodoteste() { }
 
         #region Menus
         public static void MenuPassageiro(List<Passageiro> listaPassageiros)
@@ -127,7 +138,7 @@ namespace Project_OnTheFly
 
             foreach (Passageiro item in listaPassageiros)
             {
-                if (item.Cpf == cpf)
+                if (item.CPF == cpf)
                 {
                     achei = true;
                     passageiro = item;
@@ -171,7 +182,7 @@ namespace Project_OnTheFly
         //metodo para retornar passageiro como texto para efetuar gravacao em arquivo
         static String getPassageiro(Passageiro passageiro)
         {
-            return $"{passageiro.Cpf}{passageiro.Nome.PadRight(50)}{FormatarData(passageiro.DataNascimento)}{passageiro.Sexo}{FormatarData(passageiro.UltimaCompra)}{FormatarData(passageiro.DataCadastro)}";
+            return $"{passageiro.CPF}{passageiro.Nome.PadRight(50)}{FormatarData(passageiro.DataNascimento)}{passageiro.Sexo}{FormatarData(passageiro.UltimaCompra)}{FormatarData(passageiro.DataCadastro)}";
         }
 
         //metodo de leitura do arquivo de passageiros
@@ -187,7 +198,7 @@ namespace Project_OnTheFly
                 do
                 {
                     Passageiro passageiro = new Passageiro();
-                    passageiro.Cpf = line.Substring(0, 11);
+                    passageiro.CPF = line.Substring(0, 11);
                     passageiro.Nome = line.Substring(11, 50);
                     passageiro.DataNascimento = DateTime.Parse($"{line[61]}{line[62]}/{line[63]}{line[64]}/{line[65]}{line[66]}{line[67]}{line[68]}");
                     passageiro.Sexo = line[69];
@@ -305,7 +316,8 @@ namespace Project_OnTheFly
                     Console.WriteLine(line.Length);
                     CompanhiaAerea companhia = new CompanhiaAerea();
                     companhia.CNPJ = line.Substring(0, 14);
-                    companhia.RazaoSocial = line.Substring(14, 51);
+                    companhia.RazaoSocial = line.Substring(14, 50);
+                    Console.WriteLine(companhia.RazaoSocial.Length);
                     companhia.DataAbertura = DateTime.Parse($"{line[64]}{line[65]}/{line[66]}{line[67]}/{line[68]}{line[69]}{line[70]}{line[71]}");
                     companhia.UltimoVoo = DateTime.Parse($"{line[72]}{line[73]}/{line[74]}{line[75]}/{line[76]}{line[77]}{line[78]}{line[79]}");
                     companhia.DataCadastro = DateTime.Parse($"{line[80]}{line[81]}/{line[82]}{line[83]}/{line[84]}{line[85]}{line[86]}{line[87]}");
@@ -326,6 +338,65 @@ namespace Project_OnTheFly
         }
         #endregion ArquivoCompanhiaAerea
 
+        #region ArquivoAeronave
+        //metodo de gravacao do arquivo passageiros
+        static void GravarArquivoAeronave(List<Aeronave> listaAeronave)
+        {
+            try
+            {
+                StreamWriter ArqAeronaves = new StreamWriter($"C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Aeronave.dat");
+                foreach (var item in listaAeronave)
+                {
+                    if (item != null)
+                        ArqAeronaves.WriteLine(getAeronave(item));
+                }
+                ArqAeronaves.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha ao gravar o arquivo Aeronave.dat\n" + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Gravação arquivo Aeronave.dat efetuada com sucesso!!!");
+            }
+        }
+
+        //metodo para retornar aeronave para gravar em arquivo
+        static String getAeronave(Aeronave aeronave)
+        {
+            return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade}{aeronave.AcentosOcupados}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
+        }
+
+        static void LerArquivoAeronave(List<Aeronave> listaAeronaves)
+        {
+            string line;
+
+            try
+            {
+                StreamReader arqAeronave = new StreamReader($"C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Aeronave.dat");
+                do
+                {
+                    line = arqAeronave.ReadLine();
+                    if (line == null) break;
+                    Aeronave aeronave = new Aeronave();
+                    aeronave.Inscricao = line;
+
+                } while (line != null);
+                arqAeronave.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha ao gravar o arquivo Aeronave.dat\n" + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Gravação arquivo Aeronave.dat efetuada com sucesso!!!");
+            }
+        }
+
+        #endregion ArquivoAeronave
+
         //formatar data sem barras, somente numeros 
         static String FormatarData(DateTime data)
         {
@@ -335,5 +406,5 @@ namespace Project_OnTheFly
 
     }
 }
-
+}
 
