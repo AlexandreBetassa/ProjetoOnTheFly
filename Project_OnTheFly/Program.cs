@@ -68,7 +68,7 @@ namespace Project_OnTheFly
                         GravarArquivoAeronave(listaAeronaves);
                         GravarCpfRestritos(listaCpfRestrito);
                         GravarCnpjRestritos(listaCnpjRestrito);
-
+                        GravarListaVoos(listaVoos);
                         Environment.Exit(0);
                         break;
                 }
@@ -782,17 +782,18 @@ namespace Project_OnTheFly
             {
                 StreamReader companhiaTxt = new StreamReader("C:\\ArquivosAeroporto\\CompanhiaAerea.dat");
                 line = companhiaTxt.ReadLine();
+
                 while (line != null)
                 {
-                    line = companhiaTxt.ReadLine();
                     CompanhiaAerea companhia = new CompanhiaAerea();
-                    companhia.CNPJ = line.Substring(0, 14);
+                    companhia.CNPJ = line.Substring(0, 13);
                     companhia.RazaoSocial = line.Substring(14, 50);
-                    companhia.DataAbertura = DateTime.Parse($"{line.Substring(51, 2)}/{line.Substring(53, 2)}/{line.Substring(55, 4)}");
+                    companhia.DataAbertura = DateTime.Parse($"{line.Substring(64, 2)}/{line.Substring(66, 2)}/{line.Substring(68, 4)}");
                     companhia.UltimoVoo = DateTime.Parse($"{line[72]}{line[73]}/{line[74]}{line[75]}/{line[76]}{line[77]}{line[78]}{line[79]}");
                     companhia.DataCadastro = DateTime.Parse($"{line[80]}{line[81]}/{line[82]}{line[83]}/{line[84]}{line[85]}{line[86]}{line[87]}");
                     companhia.SituacaoCA = line[88];
                     listaCompanhias.Add(companhia);
+                    line = companhiaTxt.ReadLine();
                 }
                 companhiaTxt.Close();
             }
@@ -953,10 +954,38 @@ namespace Project_OnTheFly
             Random r = new Random();
             string n = "V" + r.Next(000, 999).ToString("000");
         }
-
-
         #endregion leitura
 
+        #region VOO
+        static void GravarListaVoos(List<Voo> listaVoo)
+        {
+            try
+            {
+                StreamWriter ArqVoo = new StreamWriter("C:\\ArquivosAeroporto\\Voo.dat");
+                foreach (var item in listaVoo)
+                {
+                    if (item != null)
+                        ArqVoo.WriteLine(getVoo(item));
+                }
+                ArqVoo.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha ao gravar o arquivo CompanhiaAerea\n" + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Gravação arquivo CompanhiaAerea.dat efetuada com sucesso!!!");
+            }
+        }
+
+        static String getVoo(Voo voo)
+        {
+            return $"{voo.IdVoo.PadRight(5)}{voo.Destino.PadRight(50)}{voo.Aeronave.Inscricao.PadRight(6)}{voo.DataVoo:ddMMyyyyHHmm}{voo.DataCadastro:ddMMyyyy}{voo.Situacao}";
+        }
+
+
+        #endregion VOO
 
 
         #endregion Restrito
