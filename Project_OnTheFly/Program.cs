@@ -980,6 +980,10 @@ namespace Project_OnTheFly
             string n = "V" + r.Next(000, 999).ToString("000");
         }
         #endregion leitura
+        #endregion Restrito
+
+
+
 
         #region VOO
         static void GravarListaVoos(List<Voo> listaVoo)
@@ -1043,8 +1047,6 @@ namespace Project_OnTheFly
 
         #endregion VOO
 
-
-        #endregion Restrito
 
         //formatar data sem barras, somente numeros 
         static String FormatarData(DateTime data)
