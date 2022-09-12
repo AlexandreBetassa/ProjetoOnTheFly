@@ -11,11 +11,18 @@ namespace Project_OnTheFly
 
         static void Main(string[] args)
         {
+
             List<Passageiro> listaPassageiros = new List<Passageiro>();
             List<String> listaIatas = new List<string>();
             List<CompanhiaAerea> ListaCompanhiaAereas = new List<CompanhiaAerea>();
 
             LerArquivoIatas(listaIatas);
+
+            CompanhiaAerea comp = new();
+            comp.CadCompAerea();
+
+            Voo voo = new Voo();
+            voo.CadastrarVoo(listaIatas);
             LerArquivoPassageiros(listaPassageiros);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
             foreach (var item in ListaCompanhiaAereas) Console.WriteLine(item + "\n");
@@ -335,5 +342,5 @@ namespace Project_OnTheFly
 
     }
 }
-
+}
 
