@@ -182,8 +182,7 @@ namespace Project_OnTheFly
             return cpf.EndsWith(digito);
         }             
         public void EditarPassageiro()
-        {
-           
+        { 
             Passageiro passageiro = new Passageiro();
             Console.WriteLine("Escolha entre as opções, o/os dados que deseja editar em seu cadastro: ");
             Console.WriteLine("1 - Editar NOME cadastrado");
