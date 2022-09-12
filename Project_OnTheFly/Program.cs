@@ -605,7 +605,7 @@ namespace Project_OnTheFly
 
             Console.Write("Informe o ID do Item de Venda para busca: ");
             int idItemVenda = int.Parse(Console.ReadLine());
-            ItemVenda itemVenda = new ItemVenda();
+            ItemVenda itemVenda;
 
             foreach (ItemVenda item in listaItemVendas)
             {
