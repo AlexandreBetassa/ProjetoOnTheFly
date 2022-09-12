@@ -933,14 +933,13 @@ namespace Project_OnTheFly
             {
                 Console.WriteLine("Erro na leitura do arquivo Restritos.dat" + e);
             }
+
+            Random r = new Random();
+            string n = "V" + r.Next(000, 999).ToString("000");
         }
 
 
         #endregion leitura
-
-
-
-
         #endregion Restrito
 
         //formatar data sem barras, somente numeros 
