@@ -47,6 +47,9 @@ C:\Users\Alexandre\Desktop\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Pro
 C:\Users\Alexandre\Desktop\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.genruntimeconfig.cache
 C:\Users\Alexandre\Desktop\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\ref\Project_OnTheFly.dll
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c2c53b1b8c2c26c384bf166841f36880db52fe70
 C:\Users\Thalya\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.csproj.AssemblyReference.cache
 C:\Users\Thalya\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Thalya\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.AssemblyInfoInputs.cache
@@ -63,6 +66,7 @@ C:\Users\Thalya\source\repos\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\P
 C:\Users\Thalya\source\repos\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.pdb
 C:\Users\Thalya\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.genruntimeconfig.cache
 C:\Users\Thalya\source\repos\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\ref\Project_OnTheFly.dll
+<<<<<<< HEAD
 =======
 C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.exe
 C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.deps.json
@@ -81,3 +85,5 @@ C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\obj\
 C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.genruntimeconfig.cache
 C:\Users\Alexandre\Desktop\Aulas\Aeroporto\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\ref\Project_OnTheFly.dll
 >>>>>>> correções de bugs no arquivo
+=======
+>>>>>>> c2c53b1b8c2c26c384bf166841f36880db52fe70
