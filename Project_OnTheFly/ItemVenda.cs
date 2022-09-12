@@ -12,9 +12,12 @@ namespace Project_OnTheFly
         public String IdPassagem { get; set; }
         public float ValorUnitario { get; set; }
 
-        public void CadastrarVenda()
+        public ItemVenda(String idItemVenda, string idPassagem, float valorUnit)
         {
-
+            IdPassagem = idItemVenda;
+            IdPassagem = idPassagem;
+            ValorUnitario = valorUnit;
         }
+
     }
 }
