@@ -58,6 +58,7 @@ namespace Project_OnTheFly
                     case 0:
                         GravarArquivoPassageiro(listaPassageiros);
                         GravarArquivoCompanhiaAerea(ListaCompanhiaAereas);
+                        GravarArquivoAeronave(listaAeronaves);
                         Environment.Exit(0);
                         break;
                 }
@@ -848,6 +849,7 @@ namespace Project_OnTheFly
                     if (line == null) break;
                     Aeronave aeronave = new Aeronave();
                     aeronave.Inscricao = line;
+
 
                 } while (line != null);
                 arqAeronave.Close();
