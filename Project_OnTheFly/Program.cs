@@ -24,6 +24,7 @@ namespace Project_OnTheFly
             List<ItemVenda> listaItemVendas = new List<ItemVenda>();
             List<String> listaCpfRestrito = new List<string>();
             List<String> listaCnpjRestrito = new List<string>();
+            List<PassagemVoo> listaPassagemVoo = new List<PassagemVoo>();
 
             LerArquivoPassageiros(listaPassageiros);
             LerArquivoIatas(listaIatas);
@@ -68,6 +69,7 @@ namespace Project_OnTheFly
                         GravarCpfRestritos(listaCpfRestrito);
                         GravarCnpjRestritos(listaCnpjRestrito);
                         GravarListaVoos(listaVoos);
+                        GravarListaPassagemVoo(listaPassagemVoo);
                         Environment.Exit(0);
                         break;
                 }
@@ -223,7 +225,9 @@ namespace Project_OnTheFly
                         listaVoos.Add(AdicionarVoo(listaIatas));
                         break;
                     case 2:
-                        Console.WriteLine(BuscarVoo(listaVoos).ToString());
+                        Console.Write("Informe o ID do Voo para busca: ");
+                        string idVoo = Console.ReadLine();
+                        Console.WriteLine(BuscarVoo(listaVoos, idVoo).ToString());
                         break;
                     case 3:
                         EditarVoo(listaVoos);
@@ -260,7 +264,9 @@ namespace Project_OnTheFly
                         listaPassagens.Add(AdicionarPassagem());
                         break;
                     case 2:
-                        Console.WriteLine(BuscarPassagem(listaPassagens).ToString());
+                        Console.Write("Informe o ID da Passagem para busca: ");
+                        string idPassagem = Console.ReadLine();
+                        Console.WriteLine(BuscarPassagem(listaPassagens, idPassagem).ToString());
                         break;
                     case 3:
                         EditarPassagem(listaPassagens);
@@ -490,19 +496,20 @@ namespace Project_OnTheFly
         }
         public static void EditarVoo(List<Voo> listaVoos)
         {
-            Voo voo = BuscarVoo(listaVoos);
+            Console.Write("Informe o ID do Voo para busca: ");
+            string idVoo = Console.ReadLine();
+            Voo voo = BuscarVoo(listaVoos, idVoo);
 
             if (voo != null)
             {
                 voo.AlterarSituacao();
             }
         }
-        public static Voo BuscarVoo(List<Voo> listaVoos)
+        public static Voo BuscarVoo(List<Voo> listaVoos, string idVoo)
         {
             bool achei = false;
 
-            Console.Write("Informe o ID do Voo para busca: ");
-            string idVoo = Console.ReadLine();
+
             Voo voo = new Voo();
 
             foreach (Voo item in listaVoos)
@@ -533,19 +540,20 @@ namespace Project_OnTheFly
         }
         public static void EditarPassagem(List<Passagem> listaPassagens)
         {
-            Passagem passagem = BuscarPassagem(listaPassagens);
+            Console.Write("Informe o ID da Passagem para busca: ");
+            string idPassagem = Console.ReadLine();
+            Passagem passagem = BuscarPassagem(listaPassagens, idPassagem);
 
             if (passagem != null)
             {
                 passagem.EditarPassagem();
             }
         }
-        public static Passagem BuscarPassagem(List<Passagem> listaPassagens)
+        public static Passagem BuscarPassagem(List<Passagem> listaPassagens, string idPassagem)
         {
             bool achei = false;
 
-            Console.Write("Informe o ID da Passagem para busca: ");
-            string idPassagem = Console.ReadLine();
+
             Passagem passagem;
 
             foreach (Passagem item in listaPassagens)
@@ -1020,7 +1028,7 @@ namespace Project_OnTheFly
         #endregion VOO
 
         #region PassagemVoo
-        static void GravarListaPassagmVoo(List<PassagemVoo> listaPassagemVoo)
+        static void GravarListaPassagemVoo(List<PassagemVoo> listaPassagemVoo)
         {
             try
             {
@@ -1047,6 +1055,36 @@ namespace Project_OnTheFly
             return $"{passagemVoo.Id.PadRight(6)}{passagemVoo.Voo.IdVoo}{passagemVoo.DataUltimaOperacao:ddMMyyyy}{passagemVoo.Valor:0000,00}{passagemVoo.Situacao}";
         }
 
+        static void ListaPassagmVoo(List<PassagemVoo> listaPassagemVoo, List<Voo> listaVoo)
+        {
+            String line;
+
+            try
+            {
+                StreamReader arqPassagemVoo = new StreamReader("C:\\ArquivosAeroporto\\PassagemVoo.dat");
+                line = arqPassagemVoo.ReadLine();
+                while (line != null)
+                {
+                    PassagemVoo passagemVoo = new PassagemVoo();
+                    passagemVoo.Id = line.Substring(0, 6);
+                    //passagemVoo.Voo = BuscarVoo(listaVoo, line.Substring(7, 5));
+                    passagemVoo.DataUltimaOperacao = Convert.ToDateTime($"{line.Substring(12, 2)}/{line.Substring(14, 2)}/{line.Substring(16, 4)}");
+                    passagemVoo.Valor = float.Parse(line.Substring(21, 6));
+                    passagemVoo.Situacao = line[21];
+                    line = arqPassagemVoo.ReadLine();
+                }
+                arqPassagemVoo.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha no carregamento do arquivo de Passageiros\n " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
+            }
+            return;
+        }
 
         #endregion PassagemVoo
 
