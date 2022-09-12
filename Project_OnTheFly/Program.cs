@@ -40,14 +40,13 @@ namespace Project_OnTheFly
                         MenuCompanhia(ListaCompanhiaAereas);
                         break;
                     case 3:
-                        MenuAeronave(listaAeronaves);
+                        MenuAeronave(listaAeronaves,ListaCompanhiaAereas);
                         break;
                     case 4:
-                        MenuVoo(listaVoos, listaIatas);
-
+                        MenuVoo(listaVoos, listaIatas, listaAeronaves);
                         break;
                     case 5:
-                        MenuPassagem(listaPassagens);
+                        MenuPassagem(listaPassagens,listaVoos);
                         break;
                     case 6:
                         MenuVenda(listaVendas);
@@ -158,7 +157,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuAeronave
-        public static void MenuAeronave(List<Aeronave> listaAeronaves)
+        public static void MenuAeronave(List<Aeronave> listaAeronaves, List<CompanhiaAerea> ListaCompanhiaAereas)
         {
             do
             {
@@ -172,7 +171,7 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaAeronaves.Add(AdicionarAeronave());
+                        listaAeronaves.Add(AdicionarAeronave(ListaCompanhiaAereas));
                         break;
                     case 2:
                         Console.WriteLine(BuscarAeronave(listaAeronaves).ToString());
@@ -195,7 +194,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuVoo
-        public static void MenuVoo(List<Voo> listaVoos, List<string> listaIatas)
+        public static void MenuVoo(List<Voo> listaVoos, List<string> listaIatas, List<Aeronave> listaAeronaves)
         {
             do
             {
@@ -209,7 +208,7 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaVoos.Add(AdicionarVoo(listaIatas));
+                        listaVoos.Add(AdicionarVoo(listaIatas, listaAeronaves));
                         break;
                     case 2:
                         Console.WriteLine(BuscarVoo(listaVoos).ToString());
@@ -232,7 +231,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuPassagem
-        public static void MenuPassagem(List<Passagem> listaPassagens)
+        public static void MenuPassagem(List<PassagemVoo> listaPassagens, List<Voo> listaVoos)
         {
             do
             {
@@ -246,7 +245,7 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaPassagens.Add(AdicionarPassagem());
+                        listaPassagens.Add(AdicionarPassagem(listaVoos));
                         break;
                     case 2:
                         Console.WriteLine(BuscarPassagem(listaPassagens).ToString());
@@ -255,7 +254,7 @@ namespace Project_OnTheFly
                         EditarPassagem(listaPassagens);
                         break;
                     case 4:
-                        foreach (Passagem item in listaPassagens)
+                        foreach (PassagemVoo item in listaPassagens)
                             Console.WriteLine(item.ToString() + "\n");
                         break;
                     case 0:
@@ -425,11 +424,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterAeronave
-        public static Aeronave AdicionarAeronave()
+        public static Aeronave AdicionarAeronave(List<CompanhiaAerea> listaCompanhias)
         {
             Aeronave aeronave = new Aeronave();
 
-            aeronave.CadastroAeronave();
+            aeronave.CadastroAeronave(listaCompanhias);
 
             return aeronave;
         }
@@ -468,11 +467,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterVoo
-        public static Voo AdicionarVoo(List<string> listaIatas)
+        public static Voo AdicionarVoo(List<string> listaIatas, List<Aeronave> listaAeronaves)
         {
             Voo voo = new Voo();
 
-            voo.CadastrarVoo(listaIatas);
+            voo.CadastrarVoo(listaIatas, listaAeronaves);
 
             return voo;
         }
@@ -511,32 +510,32 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterPassagem
-        public static Passagem AdicionarPassagem()
+        public static PassagemVoo AdicionarPassagem(List<Voo> listaVoos)
         {
-            Passagem passagem = new Passagem();
+            PassagemVoo passagem = new PassagemVoo();
 
-            passagem.CadastrarPassagem();
+            passagem.CadastrarPassagem(listaVoos);
 
             return passagem;
         }
-        public static void EditarPassagem(List<Passagem> listaPassagens)
+        public static void EditarPassagem(List<PassagemVoo> listaPassagens)
         {
-            Passagem passagem = BuscarPassagem(listaPassagens);
+            PassagemVoo passagem = BuscarPassagem(listaPassagens);
 
             if (passagem != null)
             {
                 passagem.EditarPassagem();
             }
         }
-        public static Passagem BuscarPassagem(List<Passagem> listaPassagens)
+        public static PassagemVoo BuscarPassagem(List<PassagemVoo> listaPassagens)
         {
             bool achei = false;
 
             Console.Write("Informe o ID da Passagem para busca: ");
             string idPassagem = Console.ReadLine();
-            Passagem passagem;
+            PassagemVoo passagem;
 
-            foreach (Passagem item in listaPassagens)
+            foreach (PassagemVoo item in listaPassagens)
             {
                 if (item.IdPassagem == idPassagem)
                 {
@@ -591,7 +590,7 @@ namespace Project_OnTheFly
         {
             ItemVenda itemVenda = new ItemVenda();
 
-            itemVenda.CadastrarVenda();
+            itemVenda.CadastrarItemVenda();
 
             return itemVenda;
         }

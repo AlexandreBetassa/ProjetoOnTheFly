@@ -15,7 +15,7 @@ namespace Project_OnTheFly
         public DateTime UltimaVenda { get; set; } //no cad, dt atual
         public DateTime DataCadastro { get; set; } //dt atual
         public char Situacao { get; set; }
-        //public CompahiaAerea compAerea - associação
+        public CompanhiaAerea CompanhiaAerea { get; set; }
 
         public Aeronave()
         {
@@ -33,7 +33,7 @@ namespace Project_OnTheFly
         }
 
         //para cadastrar uma aeronave é necessário ela ser vinculada a uma compahia ?
-        public void CadastroAeronave()
+        public void CadastroAeronave(List<CompanhiaAerea> ListaCompanhiaAereas)
         {
             Console.WriteLine(">>>CADASTRO DE AERONAVE<<<");
             do
@@ -64,6 +64,22 @@ namespace Project_OnTheFly
             //A SITAÇÃO DO CADASTRO também não será atribuida porque todo cadastro
             //quando gerado já esta ativo, para mudá-lo para inativo
             //vá ao metodo de editar cadastro
+
+            //Lista de Companhias
+            Console.WriteLine("Lista de Companhias Aéreas:");
+            foreach (CompanhiaAerea item in ListaCompanhiaAereas)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            
+            Console.Write("Informe qual Companhia Aérea a Aeronave Pertence: ");
+            string ca = Console.ReadLine();
+
+            foreach (CompanhiaAerea item in ListaCompanhiaAereas)
+            {
+                if (item.CNPJ == ca)
+                    this.CompanhiaAerea = item;
+            }
 
         }
 

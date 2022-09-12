@@ -31,7 +31,7 @@ namespace Project_OnTheFly
             Situacao = situacao;
         }
 
-        public void CadastrarVoo(List<String> listaIatas)
+        public void CadastrarVoo(List<String> listaIatas, List<Aeronave> listaAeronaves)
         {
             // INSERIR idvoo 
 
@@ -69,6 +69,22 @@ namespace Project_OnTheFly
             //Situação do voo
             Console.WriteLine("Infome situação do voo:\nA - ativo OU C - Cancelado");
             char situacao = char.Parse(Console.ReadLine().ToUpper());
+
+            //Listar Aeronaves
+            Console.WriteLine("Lista de Aeronaves Cadastradas:");
+            foreach (Aeronave item in listaAeronaves)
+            {
+                Console.WriteLine(item.ToString());
+            }
+
+            Console.Write("Informe qual Aeronave pertence a este Voo: ");
+            string insc = Console.ReadLine();
+
+            foreach (Aeronave item in listaAeronaves)
+            {
+                if (item.Inscricao == insc)
+                    this.Aeronave = item;
+            }
         }
 
         #region Validar destino IATA
