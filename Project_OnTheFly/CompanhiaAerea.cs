@@ -148,6 +148,11 @@ namespace Project_OnTheFly
             }
         }
 
+        static void EditarCompanhia()
+        {
+
+        }
+
         public override string ToString()
         {
             return "\nCNPJ: " + CNPJ + "\nRazão Social: " + RazaoSocial + "\nData de Abertura: " + DataAbertura + "\nÚltimo Voo: " + UltimoVoo + "\nData de Cadastro: " + DataCadastro + "\nSituação: " + SituacaoCA;
