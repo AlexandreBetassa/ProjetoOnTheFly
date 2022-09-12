@@ -1154,52 +1154,51 @@ namespace Project_OnTheFly
             try
             {
                 StreamWriter ArqItemVenda = new StreamWriter("C:\\ArquivosAeroporto\\ItemVenda.dat");
-                foreach (var item in listaVenda)
+                foreach (var item in listaItemVenda)
                 {
                     if (item != null)
-                        ArqVenda.WriteLine(getVenda(item));
+                        ArqItemVenda.WriteLine(getItemVenda(item));
                 }
-                ArqVenda.Close();
+                ArqItemVenda.Close();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Falha ao gravar o arquivo Venda.dat\n" + e.Message);
+                Console.WriteLine("Falha ao gravar o arquivo ItemVenda.dat\n" + e.Message);
             }
             finally
             {
-                Console.WriteLine("Gravação arquivo Venda.dat efetuada com sucesso!!!");
+                Console.WriteLine("Gravação arquivo ItemVenda.dat efetuada com sucesso!!!");
             }
         }
 
-        static String getVenda(Venda venda)
+        static String getItemVenda(ItemVenda itemVenda)
         {
-            return $"{venda.IdVenda:00000}{venda.DataVenda:ddMMyyyy}{venda.Passageiro.CPF}{venda.ValorTotal:00000,00}";
+            return $"{itemVenda.IdItemVenda:00000}{itemVenda.IdPassagem:000000}{itemVenda.ValorUnitario:00000,00}";
         }
 
-        static void LerArquivoVenda(List<Venda> listaenda, List<Passageiro> listaPassageiro)
+        static void LerArquivoItemVenda(List<Venda> listaVenda)
         {
             String line;
             try
             {
-                StreamReader arqVenda = new StreamReader("C:\\ArquivosAeroporto\\Venda.dat");
-                line = arqVenda.ReadLine();
+                StreamReader arqItemVenda = new StreamReader("C:\\ArquivosAeroporto\\Venda.dat");
+                line = arqItemVenda.ReadLine();
                 while (line != null)
                 {
-                    Venda venda = new Venda();
-                    venda.IdVenda = line.Substring(0, 5);
-                    venda.DataVenda = Convert.ToDateTime($"{line.Substring(6, 2)}/{line.Substring(8, 2)}/{line.Substring(10, 4)}");
-                    venda.Passageiro = BuscarPassageiro(listaPassageiro, line.Substring(15, 11));
-                    venda.ValorTotal = float.Parse(line.Substring(26, 5));
+                    ItemVenda ItemVenda = new ItemVenda();
+                    ItemVenda.IdItemVenda = line.Substring(0, 5);
+                    ItemVenda.IdPassagem = line.Substring(5, 5);
+                    ItemVenda.ValorUnitario = float.Parse(line.Substring(5, 5));
                 }
-                arqVenda.Close();
+                arqItemVenda.Close();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Falha no carregamento do arquivo de Passageiros\n " + e.Message);
+                Console.WriteLine("Falha no carregamento do arquivo de ItemVenda.dat\n " + e.Message);
             }
             finally
             {
-                Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
+                Console.WriteLine("Arquivo ItemVenda.dat carregado com êxito!!!");
             }
             return;
         }

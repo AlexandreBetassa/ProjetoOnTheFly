@@ -9,6 +9,9 @@ namespace Project_OnTheFly
     internal class ItemVenda
     {
         public String IdItemVenda { get; set; }
+        public String IdPassagem { get; set; }
+        public float ValorUnitario { get; set; }
+
         public void CadastrarVenda()
         {
 
