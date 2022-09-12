@@ -846,15 +846,15 @@ namespace Project_OnTheFly
                 line = aeronaveTxt.ReadLine();
                 while (line != null)
                 {
-
-                    line = aeronaveTxt.ReadLine();
+                    Console.WriteLine(line.Length);
                     Aeronave aeronave = new Aeronave();
+
                     aeronave.Inscricao = line.Substring(0, 6);
-                    aeronave.Capacidade = int.Parse(line.Substring(7, 3));
+                    aeronave.Capacidade = int.Parse(line.Substring(6, 3));
                     aeronave.AcentosOcupados = int.Parse(line.Substring(10, 3));
-                    aeronave.UltimaVenda = DateTime.Parse($"{line.Substring(13, 2)}/{line.Substring(15, 2)}/{line.Substring(17, 4)}");
-                    aeronave.DataCadastro = DateTime.Parse($"{line.Substring(22, 2)}/{line.Substring(24, 2)}/{line.Substring(26, 4)}");
-                    aeronave.Situacao = line[31];
+                    aeronave.UltimaVenda = DateTime.Parse($"{line.Substring(12, 2)}/{line.Substring(14, 2)}/{line.Substring(16, 4)}");
+                    aeronave.DataCadastro = DateTime.Parse($"{line.Substring(20, 2)}/{line.Substring(22, 2)}/{line.Substring(24, 4)}");
+                    aeronave.Situacao = line[28];
                     listaAeronaves.Add(aeronave);
                     line = aeronaveTxt.ReadLine();
 
@@ -957,7 +957,6 @@ namespace Project_OnTheFly
         #endregion leitura
         #endregion Restrito
 
-
         #region VOO
         static void GravarListaVoos(List<Voo> listaVoo)
         {
@@ -1019,6 +1018,8 @@ namespace Project_OnTheFly
         }
 
         #endregion VOO
+
+
 
 
         //formatar data sem barras, somente numeros 

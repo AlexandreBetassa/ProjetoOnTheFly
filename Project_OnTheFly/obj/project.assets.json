@@ -8,39 +8,23 @@
     "net5.0": []
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\Gabriele Ciriano\\.nuget\\packages\\": {},
-=======
     "C:\\Users\\Alexandre\\.nuget\\packages\\": {},
->>>>>>> merge
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\Gabriele Ciriano\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
-      "projectName": "Project_OnTheFly",
-      "projectPath": "C:\\Users\\Gabriele Ciriano\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
-      "packagesPath": "C:\\Users\\Gabriele Ciriano\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gabriele Ciriano\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
-=======
       "projectUniqueName": "C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
       "projectName": "Project_OnTheFly",
       "projectPath": "C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
       "packagesPath": "C:\\Users\\Alexandre\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
->>>>>>> merge
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
-        "C:\\Users\\Gabriele Ciriano\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
         "C:\\Users\\Alexandre\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> merge
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -85,5 +69,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
