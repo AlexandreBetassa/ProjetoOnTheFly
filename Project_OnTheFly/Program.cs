@@ -494,7 +494,7 @@ namespace Project_OnTheFly
             bool achei = false;
 
             Console.Write("Informe o ID do Voo para busca: ");
-            int idVoo = int.Parse(Console.ReadLine());
+            string idVoo = Console.ReadLine();
             Voo voo = new Voo();
 
             foreach (Voo item in listaVoos)
