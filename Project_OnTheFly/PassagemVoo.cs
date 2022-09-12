@@ -8,7 +8,7 @@ namespace Project_OnTheFly
 {
     internal class PassagemVoo
     {
-        public string Id { get; set; } //CHAVE PA0000 – Dois dígitos PA, seguidos de 4 dígitos numéricos.
+        public string IdPassagem { get; set; } //CHAVE PA0000 – Dois dígitos PA, seguidos de 4 dígitos numéricos.
         public Voo Voo { get; set; }
         public DateTime DataUltimaOperacao { get; set; }
         public float Valor { get; set; } //maximo 9.999,99
@@ -21,18 +21,36 @@ namespace Project_OnTheFly
 
         public PassagemVoo(string id, Voo voo, DateTime dataUltimaOperacao, float valor, char situacao)
         {
-            Id = id;
+            IdPassagem = id;
             Voo = voo;
             DataUltimaOperacao = dataUltimaOperacao;
             Valor = valor;
             Situacao = situacao; // L libre, R Reservada ou P paga
         }
 
-        public void CadastrarPassagemVoo()
+        public void CadastrarPassagemVoo(List<Voo> listaVoos)
         {
             //Id
 
-            //IdVoo
+            //Lista de Voos
+            Console.WriteLine("Lista de Voos:");
+            foreach (Voo item in listaVoos)
+            {
+                if (item.Situacao == 'A')
+                    Console.WriteLine(item.ToString());
+            }
+
+            Console.Write("Informe qual Voo pertence esta Passagem: ");
+            string idVoo = Console.ReadLine();
+
+            foreach (Voo item in listaVoos)
+            {
+                if (item.Situacao == 'A')
+                {
+                    if (item.IdVoo == idVoo)
+                        this.Voo = item;
+                }
+            }
 
             bool aux;
             DateTime aux1;
@@ -45,28 +63,30 @@ namespace Project_OnTheFly
 
             Console.Write("Informe o valor das passagens desse voo: ");
             Valor = float.Parse(Console.ReadLine());
-            if(Valor > 9999.99 || Valor < 0)
+            if (Valor > 9999.99 || Valor < 0)
             {
                 Console.WriteLine("Valor das passagem excedeu o limite permitido.");
-                break;
             }
+        }
 
-            //FALTA SITUAÇÃO
+        //FALTA SITUAÇÃO
 
-            public void EditarPassagemVoo()
+        public void EditarPassagemVoo()
+        {
+            PassagemVoo passagem = new();
+            int op;
+            do
             {
-                PassagemVoo passagem = new();
-
                 Console.Write("Escolha o item que você deseja editar: ");
                 Console.Write("1 - Valor");
                 Console.Write("2 - Situação");
                 Console.Write("0 - Sair");
-                int op = int.Parse(Console.ReadLine());
+                op = int.Parse(Console.ReadLine());
 
                 switch (op)
                 {
-                    //case 0:
-                    // break;
+                    case 0:
+                        break;
                     case 1:
                         Console.Write("Informe o NOVO valor da passagem: ");
                         Valor = float.Parse(Console.ReadLine());
@@ -77,20 +97,22 @@ namespace Project_OnTheFly
                         }
                         else
                         {
-                            passagem.Valor = valor;
+                            passagem.Valor = Valor;
                             Console.WriteLine("Novo valor gerado com sucesso!");
                         }
                         break;
                     case 2:
-                        Console.Write("Informe A NOVA Situação: );
+                        Console.Write("Informe A NOVA Situação: ");
                         char situacao = char.Parse(Console.ReadLine());
                         passagem.Situacao = situacao;
-                        Console.WriteLine("Pasagem editada com sucesso");
+                        Console.WriteLine("Passagem editada com sucesso");
                         break;
+
                     default:
+                        Console.WriteLine("Opção Inválida");
                         break;
                 }
-            }
+            } while (op != 0);
         }
     }
 }

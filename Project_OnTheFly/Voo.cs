@@ -17,7 +17,7 @@ namespace Project_OnTheFly
 
         public Voo()
         {
-
+            this.Situacao = 'A';
         }
 
         public Voo(string idVoo, string destino, DateTime dataVoo, DateTime dataCadastro, char situacao)
@@ -30,15 +30,17 @@ namespace Project_OnTheFly
             Situacao = situacao;
         }
 
-       public override string ToString()
-        {
-            return "\nIdVoo: " + IdVoo + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situação;
-        }
 
-        public void CadastrarVoo(List<String> listaIatas)
+        public void CadastrarVoo(List<String> listaIatas, List<Aeronave> listaAeronaves, List<Voo> listaVoos)
         {
             // INSERIR idvoo 
+            if (listaVoos.Count > 9999)
+            {
+                Console.WriteLine("Limite de Voos atingidos!");
+                return;
+            }
 
+            this.IdVoo = "V" + (listaVoos.Count() + 1).ToString("0000");
             //Nome do Aeroporto
             do
             {
@@ -70,9 +72,25 @@ namespace Project_OnTheFly
             } while (!aux);
             DataCadastro = aux1;
 
-            //Situação do voo
-            Console.WriteLine("Infome situação do voo:\nA - ativo OU C - Cancelado");
-            char situacao = char.Parse(Console.ReadLine().ToUpper());
+            //Listar Aeronaves
+            Console.WriteLine("Lista de Aeronaves Cadastradas:");
+            foreach (Aeronave item in listaAeronaves)
+            {
+                if (item.Situacao == 'A')
+                    Console.WriteLine(item.ToString());
+            }
+
+            Console.Write("Informe qual Aeronave pertence a este Voo: ");
+            string insc = Console.ReadLine();
+
+            foreach (Aeronave item in listaAeronaves)
+            {
+                if (item.Situacao == 'A')
+                {
+                    if (item.Inscricao == insc)
+                    this.Aeronave = item;
+                }
+            }
         }
 
         #region Validar destino IATA
@@ -117,11 +135,10 @@ namespace Project_OnTheFly
         {
 
         }
-
-        public override string ToString()
+       public override string ToString()
         {
-            //INSERIR ID DA AERONAVE
-            return "\nID do Voo: " + IdVoo + "\nDestino: " + Destino + "\nData do voo: " + DataVoo + "\nData de Cadastro do Voo: " + DataCadastro + "\nSituação: " + Situacao;
+            return "\nIdVoo: " + IdVoo + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
         }
+
     }
 }
