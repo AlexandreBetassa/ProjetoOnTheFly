@@ -25,18 +25,22 @@ namespace Project_OnTheFly
             CNPJ = cnpj;
             RazaoSocial = razaoSocial;
             DataAbertura = dataAbertura;
-            UltimoVoo = ultimoVoo;
-            DataCadastro = dataCadastro;
+            UltimoVoo = DateTime.Now;
+            DataCadastro = DateTime.Now;
             SituacaoCA = situacaoCA;
         }
 
         public void CadCompAerea()
         {
+            bool aux;
+            DateTime aux1;
+
             Console.WriteLine("CADASTRO DE COMPANHIA AEREA");
 
+            //CNPJ
             do
             {
-                Console.WriteLine("\nInforme o seu Cadastro Nacional da Pessoa Jurídica - CNPJ:  ");
+                Console.Write("\nInforme o seu Cadastro Nacional da Pessoa Jurídica - CNPJ:  ");
                 CNPJ = Console.ReadLine();
                 if (ValidarCnpj(CNPJ) == false)
                 {
@@ -46,9 +50,10 @@ namespace Project_OnTheFly
                 }
             } while (ValidarCnpj(CNPJ) == false);
 
+            //Razão Social
             do
             {
-                Console.WriteLine("\nInforme o nome da Razão Social (máximo 50 dígitos):  ");
+                Console.Write("\nInforme o nome da Razão Social (máximo 50 dígitos):  ");
                 RazaoSocial = Console.ReadLine();
 
                 if (RazaoSocial.Length > 50)
@@ -57,14 +62,19 @@ namespace Project_OnTheFly
                 }
             } while (RazaoSocial.Length > 50);
 
-            //inserir ultimo voo
+            //Inserir ultimo voo. no momento do cadastro poderá ser usado a data atual
+            do
+            {
+                Console.Write("Informe a Data do Último voo: ");
+                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
+            } while (!aux);
+            UltimoVoo = aux1;
 
+            //Data de abertura
             TimeSpan result;
             do
             {
-                //ValidarData(DataAbertura);
-
-                Console.WriteLine("\nInforme a data de abertura: ");
+                Console.Write("\nInforme a data de abertura: ");
                 DataAbertura = DateTime.Parse(Console.ReadLine());
 
                 result = DateTime.Now - DataAbertura;
@@ -76,57 +86,65 @@ namespace Project_OnTheFly
                     Console.WriteLine("Pressione qualquer tecla para continuar...");
                     Console.ReadKey();
                 }
-                
-
             } while (result.Days / 30 < 6);
 
-            //data do cadastro
-            Console.WriteLine($"A data do seu cadastro: {DataCadastro.ToShortDateString()}");
+            //Data do cadastro
+            do
+            {
+                Console.Write("Informe a Data de Cadastro: ");
+                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
+            } while (!aux);
+            DataCadastro = aux1;
+
+            SituacaoCA = char.Parse(Console.ReadLine());
 
         }
 
-        public void EditarCompAerea(string cnpj, string razaoSocial, DateTime dataAbertura, DateTime ultimoVoo)
+        public void EditarCompAerea()
         {
             CompanhiaAerea companhia = new();
-            Console.WriteLine("Escolha o dado que você deseja editar: ");
-            Console.WriteLine("1 - Editar CNPJ");
-            Console.WriteLine("2 - Editar RAZÃO SOCIAL");
-            Console.WriteLine("3 - Editar DATA DE ABERTURA");
-            Console.WriteLine("4 - Editar ÚLTIMO VOO");
-           // Console.WriteLine("5 - Editar NOVA DATA CADASTRO (ALTERAÇÃO)");
+            Console.Write("Escolha o dado que você deseja editar: ");
+            Console.Write("1 - Editar CNPJ");
+            Console.Write("2 - Editar RAZÃO SOCIAL");
+            Console.Write("3 - Editar DATA DE ABERTURA");
+            Console.Write("4 - Editar ÚLTIMO VOO");
+            Console.Write("5 - Editar NOVA DATA CADASTRO (ALTERAÇÃO)");
             int op = int.Parse(Console.ReadLine());
 
             switch (op)
             {
                 case 1:
-                    Console.WriteLine("Informe o CNPJ correto: ");
-                    cnpj = Console.ReadLine();
+                    Console.Write("Informe o CNPJ correto: ");
+                    string cnpj = Console.ReadLine();
                     companhia.CNPJ = cnpj;
                     break;
 
                 case 2:
-                    Console.WriteLine("Informe a RAZÃO SOCIAL correta: ");
-                    razaoSocial = Console.ReadLine();
+                    Console.Write("Informe a RAZÃO SOCIAL correta: ");
+                    string razaoSocial = Console.ReadLine();
                     companhia.RazaoSocial = razaoSocial;
                     break;
 
                 case 3:
-                    Console.WriteLine("Informe a DATA DE ABERTURA correta: ");
-                    dataAbertura = DateTime.Parse(Console.ReadLine());
+                    Console.Write("Informe a DATA DE ABERTURA correta: ");
+                    DateTime dataAbertura = DateTime.Parse(Console.ReadLine());
                     companhia.DataAbertura = dataAbertura;
                     break;
 
                 case 4:
-                    Console.WriteLine("Informe a DATA DO ÚLTIMO VOO correta: ");
-                    ultimoVoo = DateTime.Parse(Console.ReadLine());
+                    Console.Write("Informe a DATA DO ÚLTIMO VOO correta: ");
+                    DateTime ultimoVoo = DateTime.Parse(Console.ReadLine());
                     companhia.UltimoVoo = ultimoVoo;
                     break;
 
-                //case 5:
-                   // Console.WriteLine("Informe a DATA DO CADASTRO ALTERADO: ");
-                    //dataCadastro = Console.ReadLine();
-                    //companhia.DataCadastro = dataCadastro;
-                    //break;
+                case 5:
+                    do
+                    {
+                        Console.WriteLine("Informe a SITUAÇÃO do cadastro correta (A - Ativo, I - Inativo): ");
+                        char situacao = char.Parse(Console.ReadLine());
+                        companhia.SituacaoCA = situacao;
+                    } while (SituacaoCA != 'A' && SituacaoCA != 'I');
+                    break;
             }
         }
 
@@ -135,7 +153,7 @@ namespace Project_OnTheFly
             return "\nCNPJ: " + CNPJ + "\nRazão Social: " + RazaoSocial + "\nData de Abertura: " + DataAbertura + "\nÚltimo Voo: " + UltimoVoo + "\nData de Cadastro: " + DataCadastro + "\nSituação: " + SituacaoCA;
         }
 
-        //método para validar cnpj
+        #region Validar cnpj
         public static bool ValidarCnpj(string cnpj)
         {
             int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -147,12 +165,12 @@ namespace Project_OnTheFly
             //limpa caracteres especiais e deixa em minusculo
             cnpj = cnpj.ToLower().Trim();
             cnpj = cnpj.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "");
-            cnpj = cnpj.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
-            cnpj = cnpj.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
-            cnpj = cnpj.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
-            cnpj = cnpj.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
-            cnpj = cnpj.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
-            cnpj = cnpj.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
+            //cnpj = cnpj.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
+            //cnpj = cnpj.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
+            //cnpj = cnpj.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
+            //cnpj = cnpj.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
+            //cnpj = cnpj.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
+            //cnpj = cnpj.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
 
             // Se vazio
             if (cnpj.Length == 0)
@@ -238,56 +256,7 @@ namespace Project_OnTheFly
             return cnpj.EndsWith(digito);
 
         }
+        #endregion Validar cnpj
 
-        //teste para validar tempo de abertura
-        /*
-        private static void ValidarData(DateTime dataAbertura)
-        {
-            TimeSpan result;
-            
-            Console.WriteLine("\nInforme a data de abertura: ");
-            dataAbertura = DateTime.Parse(Console.ReadLine());
-            result = DateTime.Now - dataAbertura;
-
-            if(result.Days/30 < 6)
-            {
-                Console.WriteLine($"\nA companhia tem {result.Days / 30} meses");
-                Console.WriteLine("\nO tempo é insufiente para finalizar o cadastro.");
-            }
-            
-
-            
-            Console.WriteLine("\nInforme a data de abertura: ");
-            dataAbertura = DateTime.Parse(Console.ReadLine());
-
-            result = DateTime.Now - dataAbertura;
-
-            if (result.Days / 30 < 6)
-            {
-                Console.WriteLine($"\nA companhia tem {result.Days / 30} meses");
-                Console.WriteLine("\nO tempo é insufiente para finalizar o cadastro.");
-            }
-            
-            do
-            {
-                Console.WriteLine("\nInforme a data de abertura: ");
-                dataAbertura = DateTime.Parse(Console.ReadLine());
-
-                result = DateTime.Now - dataAbertura;
-
-                if (result.Days/30 < 6)
-                {
-                    Console.WriteLine($"\nA companhia tem {result.Days / 30} meses");
-                    Console.WriteLine("\nO tempo é insufiente para finalizar o cadastro.");
-                }
-                else
-                {
-                    return; 
-                }
-
-            } while (result.Days/30 < 6);
-            
-        }
-            */
     }
 }
