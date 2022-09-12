@@ -10,7 +10,7 @@ namespace Project_OnTheFly
     {
         public string IdVoo { get; set; }
         public string Destino { get; set; }
-        //IDAeronave -inscrição aeronave
+        //public string Aeronave { get; set; }
         public DateTime DataVoo { get; set; }
         public DateTime DataCadastro { get; set; }
         public char Situacao { get; set; }
@@ -33,7 +33,7 @@ namespace Project_OnTheFly
 
         public void CadastrarVoo(List<String> listaIatas)
         {
-            // INSERIR idvoo que deverá ser um código que irá identificar o Voo cadastrado
+            // INSERIR idvoo 
 
             //Nome do Aeroporto
             do
@@ -48,6 +48,8 @@ namespace Project_OnTheFly
                     Console.ReadKey();
                 }
             } while (ValidarIATA(listaIatas, Destino) == false);
+
+            //INSERIR AERONAVE
 
             //Data e hora do voo
             Console.Write("Informe a data e hora do voo: ");
