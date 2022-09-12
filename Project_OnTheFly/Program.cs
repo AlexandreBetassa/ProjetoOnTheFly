@@ -361,6 +361,33 @@ namespace Project_OnTheFly
             return $"{aeronave.Inscricao.PadRight(6)}{aeronave.Capacidade}{aeronave.AcentosOcupados}{FormatarData(aeronave.UltimaVenda)}{FormatarData(aeronave.DataCadastro)}{aeronave.Situacao}";
         }
 
+        static void LerArquivoAeronave(List<Aeronave> listaAeronaves)
+        {
+            string line;
+
+            try
+            {
+                StreamReader arqAeronave = new StreamReader($"C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Aeronave.dat");
+                do
+                {
+                    line = arqAeronave.ReadLine();
+                    if (line == null) break;
+                    Aeronave aeronave = new Aeronave();
+                    aeronave.Inscricao = line;
+
+                } while (line != null);
+                arqAeronave.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha ao gravar o arquivo Aeronave.dat\n" + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Gravação arquivo Aeronave.dat efetuada com sucesso!!!");
+            }
+        }
+
         #endregion ArquivoAeronave
 
         //formatar data sem barras, somente numeros 
