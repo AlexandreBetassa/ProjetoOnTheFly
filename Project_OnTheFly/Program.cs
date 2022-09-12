@@ -855,7 +855,27 @@ namespace Project_OnTheFly
 
         #endregion ArquivoAeronave
 
+        #region Restritos e bloqueados
+        //cpf restritos gravacao
+        static void GravarRestritos(List<String> listaRestritos)
+        {
+            try
+            {
+                StreamWriter restritos = new StreamWriter("C:\\ArquivosAeroporto\\Restritos.dat");
+                foreach (var item in listaRestritos)
+                    if (item != null)
+                        restritos.WriteLine(item);
+                restritos.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erro na gravação do arquivo Restrito: " + e);
+            }
+        }
 
+
+
+        #endregion Restrito
 
         //formatar data sem barras, somente numeros 
         static String FormatarData(DateTime data)
