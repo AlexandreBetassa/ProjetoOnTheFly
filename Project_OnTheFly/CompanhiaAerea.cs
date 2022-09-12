@@ -27,7 +27,7 @@ namespace Project_OnTheFly
             DataAbertura = dataAbertura;
             UltimoVoo = DateTime.Now;
             DataCadastro = DateTime.Now;
-            SituacaoCA = situacaoCA;
+            SituacaoCA = situacaoCA; // L libre, R Reservada ou P paga
         }
 
         public void CadCompAerea()
@@ -109,6 +109,7 @@ namespace Project_OnTheFly
             Console.Write("3 - Editar DATA DE ABERTURA");
             Console.Write("4 - Editar ÚLTIMO VOO");
             Console.Write("5 - Editar NOVA DATA CADASTRO (ALTERAÇÃO)");
+            Console.WriteLine("0 - SAIR");
             int op = int.Parse(Console.ReadLine());
 
             switch (op)
@@ -144,6 +145,9 @@ namespace Project_OnTheFly
                         char situacao = char.Parse(Console.ReadLine());
                         companhia.SituacaoCA = situacao;
                     } while (SituacaoCA != 'A' && SituacaoCA != 'I');
+                    break;
+
+                case 0:
                     break;
             }
         }

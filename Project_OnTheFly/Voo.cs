@@ -31,6 +31,11 @@ namespace Project_OnTheFly
             Situacao = situacao;
         }
 
+       public override string ToString()
+        {
+            return "\nIdVoo: " + IdVoo + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situação;
+        }
+
         public void CadastrarVoo(List<String> listaIatas)
         {
             // INSERIR idvoo 
