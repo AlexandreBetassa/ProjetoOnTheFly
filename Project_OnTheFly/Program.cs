@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Project_OnTheFly
@@ -879,11 +880,11 @@ namespace Project_OnTheFly
         {
             try
             {
-                StreamWriter restritos = new StreamWriter("C:\\ArquivosAeroporto\\Restritos.dat");
+                StreamWriter bloqueados = new StreamWriter("C:\\ArquivosAeroporto\\Restritos.dat");
                 foreach (var item in listaRestritos)
                     if (item != null)
-                        restritos.WriteLine(item);
-                restritos.Close();
+                        bloqueados.WriteLine(item);
+                bloqueados.Close();
             }
             catch (Exception e)
             {
@@ -891,6 +892,51 @@ namespace Project_OnTheFly
             }
         }
         #endregion gravacao
+
+        #region leitura
+        //metodo para carregar cpfs restritos
+        static void LerCpfRestrito(List<String> listaCpfRestrito)
+        {
+            try
+            {
+                string line;
+                StreamReader cpfRestritoTxt = new StreamReader("C:\\ArquivosAeroporto\\Restritos.dat");
+                do
+                {
+                    line = cpfRestritoTxt.ReadLine();
+                    listaCpfRestrito.Add(line);
+
+                } while (line != null);
+                cpfRestritoTxt.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erro na leitura do arquivo Restritos.dat" + e);
+            }
+        }
+
+        static void LerCnpjBloqueado(List<String> listaCnpjBloqueado)
+        {
+            try
+            {
+                string line;
+                StreamReader cnpjBloqueadoTxt = new StreamReader("C:\\ArquivosAeroporto\\Restritos.dat");
+                do
+                {
+                    line = cnpjBloqueadoTxt.ReadLine();
+                    listaCnpjBloqueado.Add(line);
+
+                } while (line != null);
+                cnpjBloqueadoTxt.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erro na leitura do arquivo Restritos.dat" + e);
+            }
+        }
+
+
+        #endregion leitura
 
 
 
