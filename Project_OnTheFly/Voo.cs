@@ -109,6 +109,11 @@ namespace Project_OnTheFly
 
         }
 
+        public void EditarVoo()
+        {
+
+        }
+
         public override string ToString()
         {
             //INSERIR ID DA AERONAVE

@@ -54,6 +54,10 @@ namespace Project_OnTheFly
             Capacidade = int.Parse(Console.ReadLine());
         }
 
+        public void EditarAeronave()
+        {
+
+        }
 
 
         //Os prefixos de nacionalidade do Brasil são
