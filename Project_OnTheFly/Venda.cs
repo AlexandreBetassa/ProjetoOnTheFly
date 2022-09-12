@@ -8,5 +8,10 @@ namespace Project_OnTheFly
 {
     internal class Venda
     {
+
+        public void CadastrarVenda()
+        {
+
+        }
     }
 }

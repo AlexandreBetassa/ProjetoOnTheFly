@@ -538,7 +538,7 @@ namespace Project_OnTheFly
 
             Console.Write("Informe o ID da Passagem para busca: ");
             string idPassagem = Console.ReadLine();
-            Passagem passagem = new Passagem();
+            Passagem passagem;
 
             foreach (Passagem item in listaPassagens)
             {

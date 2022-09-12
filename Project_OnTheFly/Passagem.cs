@@ -9,7 +9,10 @@ namespace Project_OnTheFly
     internal class Passagem
     {
 
-        public String idPassagem { get; set; }
+        public String IdPassagem { get; set; }
+
+
+
         public void CadastrarPassagem()
         {
 
