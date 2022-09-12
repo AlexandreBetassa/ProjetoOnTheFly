@@ -19,5 +19,10 @@ namespace Project_OnTheFly
             ValorUnitario = valorUnit;
         }
 
+        public override string ToString()
+        {
+            return $"Id Venda: {IdItemVenda}\nId Passagem: {IdPassagem}\nValor Unitário: R${ValorUnitario}".ToString();
+        }
+
     }
 }
