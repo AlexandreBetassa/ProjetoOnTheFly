@@ -5,12 +5,12 @@ using System.IO;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Microsoft.VisualBasic;
 
 namespace Project_OnTheFly
 {
     internal class Program
     {
-
         static void Main(string[] args)
         {
 
@@ -660,7 +660,6 @@ namespace Project_OnTheFly
         static void LerArquivoPassageiros(List<Passageiro> listaPassageiro)
         {
             String line;
-
             try
             {
                 StreamReader sr = new StreamReader("C:\\ArquivosAeroporto\\Passageiro.dat");
@@ -678,7 +677,6 @@ namespace Project_OnTheFly
                     listaPassageiro.Add(passageiro);
                     line = sr.ReadLine();
                 } while (line != null);
-
                 sr.Close();
             }
             catch (Exception e)
@@ -698,6 +696,7 @@ namespace Project_OnTheFly
         #region ArquivoIatas
         //metod para recuperação da lista de iatas
         static void LerArquivoIatas(List<String> lista)
+
         {
             string line;
             try
@@ -940,10 +939,6 @@ namespace Project_OnTheFly
 
 
         #endregion leitura
-
-
-        Random r = new Random();
-        string n = "V" + r.Next(000, 999).ToString("000");
         #endregion Restrito
 
         //formatar data sem barras, somente numeros 
