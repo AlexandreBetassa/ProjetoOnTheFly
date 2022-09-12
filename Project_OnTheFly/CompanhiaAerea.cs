@@ -148,7 +148,7 @@ namespace Project_OnTheFly
             }
         }
 
-        static void EditarCompanhia()
+        public void EditarCompanhia()
         {
 
         }
