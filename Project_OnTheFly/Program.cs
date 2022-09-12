@@ -48,7 +48,7 @@ namespace Project_OnTheFly
                         MenuAeronave(listaAeronaves);
                         break;
                     case 4:
-                        MenuVoo(listaVoos,listaIatas);
+                        MenuVoo(listaVoos, listaIatas);
 
                         break;
                     case 5:
@@ -881,5 +881,5 @@ namespace Project_OnTheFly
 
     }
 }
-}
+
 
