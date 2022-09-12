@@ -48,7 +48,8 @@ namespace Project_OnTheFly
                         MenuAeronave(listaAeronaves);
                         break;
                     case 4:
-                        MenuVoo(listaVoos);
+                        MenuVoo(listaVoos,listaIatas);
+
                         break;
                     case 5:
                         MenuPassagem(listaPassagens);
@@ -198,7 +199,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuVoo
-        public static void MenuVoo(List<Voo> listaVoos)
+        public static void MenuVoo(List<Voo> listaVoos, List<string> listaIatas)
         {
             do
             {
@@ -212,7 +213,7 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaVoos.Add(AdicionarVoo());
+                        listaVoos.Add(AdicionarVoo(listaIatas));
                         break;
                     case 2:
                         Console.WriteLine(BuscarVoo(listaVoos).ToString());
@@ -471,11 +472,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterVoo
-        public static Aeronave AdicionarVoo()
+        public static Voo AdicionarVoo(List<string> listaIatas)
         {
             Voo voo = new Voo();
 
-            voo.CadastrarVoo();
+            voo.CadastrarVoo(listaIatas);
 
             return voo;
         }
