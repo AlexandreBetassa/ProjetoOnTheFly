@@ -14,7 +14,7 @@ namespace Project_OnTheFly
 
             List<Passageiro> listaPassageiros = new List<Passageiro>();
             List<String> listaIatas = new List<string>();
-            List<CompanhiaAerea> listaCompanhiaAereas = new List<CompanhiaAerea>();
+            List<CompanhiaAerea> ListaCompanhiaAereas = new List<CompanhiaAerea>();
             List<Aeronave> listaAeronaves = new List<Aeronave>();
             List<Voo> listaVoos = new List<Voo>();
             List<Passagem> listaPassagens = new List<Passagem>();
@@ -42,7 +42,7 @@ namespace Project_OnTheFly
                         MenuPassageiro(listaPassageiros);
                         break;
                     case 2:
-                        MenuCompanhia(listaCompanhiaAereas);
+                        MenuCompanhia(ListaCompanhiaAereas);
                         break;
                     case 3:
                         MenuAeronave(listaAeronaves);
