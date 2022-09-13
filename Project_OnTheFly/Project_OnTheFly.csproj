@@ -5,4 +5,10 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Arquivos\**" />
+    <EmbeddedResource Remove="Arquivos\**" />
+    <None Remove="Arquivos\**" />
+  </ItemGroup>
+
 </Project>

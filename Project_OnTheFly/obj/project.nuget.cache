@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "HaYqheZzeJg6l/+n9xkADfP4xxeQvjiYGUHXayUq+GiqNuARcdZH5/vxBxwYMtEz9CHrG0dvLCoipaK7uDXeLQ==",
+  "dgSpecHash": "0m3HDdNuOMN6+HvnHL2vOf3Yg2DXvYy44Ug9J+ajt6bWkXuO9cl/dP8+yL5o56cEAf9mSebCazg5KHyU/lJ3Qg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gabriele Ciriano\\source\\repos\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+  "projectFilePath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
