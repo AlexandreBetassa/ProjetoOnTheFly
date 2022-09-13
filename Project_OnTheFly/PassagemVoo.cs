@@ -101,7 +101,7 @@ namespace Project_OnTheFly
             } while (pagar != "S");
         }
        
-        public void EditarPassagemVoo(PassagemVoo passagem)
+        public void EditarPassagemVoo()
         {
             
             int op;
@@ -129,7 +129,7 @@ namespace Project_OnTheFly
                         }
                         else
                         {
-                            passagem.Valor = Valor;
+                            Valor = Valor;
                             Console.WriteLine("Novo valor gerado com sucesso!");
                         }
                         break;
@@ -137,7 +137,7 @@ namespace Project_OnTheFly
                     case 2:
                         Console.Write("Informe A NOVA Situação: ");
                         char situacao = char.Parse(Console.ReadLine());
-                        passagem.Situacao = situacao;
+                        Situacao = situacao;
                         Console.WriteLine("Passagem editada com sucesso!");
                         break;
 
