@@ -21,16 +21,15 @@ namespace Project_OnTheFly
         {
             DataCadastro = DateTime.Now;
             UltimaVenda = DateTime.Now;
+            Situacao = 'A';
         }
 
         public Aeronave(string inscricao, int capacidade, int assentosOcupados, DateTime ultimaVenda, DateTime dataCadastro)
         {
             Inscricao = inscricao;
             Capacidade = capacidade;
-            AssentosOcupados = assentosOcupados;
-            UltimaVenda = DateTime.Now;
-            DataCadastro = DateTime.Now;
-            Situacao = 'A';
+            AssentosOcupados = assentosOcupados;          
+          
         }
         public String SufixoAeronave()
         {
@@ -38,7 +37,7 @@ namespace Project_OnTheFly
             bool aux;
             do
             {
-                Console.Write("Informe as 3 últimas letras da inscrição da aeroave: ");
+                Console.Write("Informe as 3 últimas letras da inscrição da aeronave: ");
                 sufixo = Console.ReadLine();
                 aux = VerificarSufixo(sufixo);
                 if (!aux) Console.WriteLine("SUFIXO INVÁLIDO");
@@ -50,7 +49,7 @@ namespace Project_OnTheFly
             for (int i = 0; i < 3; i++)
             {
                 char aux = sufixo[i];
-                if (Char.IsLetter(aux)) ;
+                if (Char.IsLetter(aux));
                 else return false;
             }
             return true;
@@ -189,7 +188,7 @@ namespace Project_OnTheFly
         }
         public override string ToString()
         {
-            return ($"INSCRIÇÃO: {Inscricao}\nCAPACIDADE: {Capacidade} passageiros\nASSENTOS OCUPADOS: {AssentosOcupados}\nDATA DA ÚLTIMA VENDA: {UltimaVenda}\nDATA EM QUE O CADASTRO FOI REALIZADO: {DataCadastro}\nSITUAÇÃO DO CADASTRO (A - ATIVO, I - INATIVO): {Situacao}").ToString();
+            return ($"Inscrição: {Inscricao} \nCompanhiaAerea: {CompanhiaAerea.CNPJ} \nCapacidade: {Capacidade} passageiros \nAssentos Ocupados: {AssentosOcupados}\nData da última venda: {UltimaVenda} \nData em que o cadastro foi realizado: {DataCadastro} \nSituação do Cadastro (A - ATIVO, I - INATIVO): {Situacao}").ToString();
         }
     }
 }
