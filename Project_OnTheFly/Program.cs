@@ -43,7 +43,7 @@ namespace Project_OnTheFly
                 {
                     case 1:
                         Console.Clear();
-                        MenuPassageiro(listaPassageiros);
+                        MenuPassageiro(listaPassageiros, listaCpfRestrito);
                         break;
                     case 2:
                         Console.Clear();
@@ -110,7 +110,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuPassageiro
-        public static void MenuPassageiro(List<Passageiro> listaPassageiros)
+        public static void MenuPassageiro(List<Passageiro> listaPassageiros, List<String> listaCpfRestrito)
         {
             do
             {
@@ -118,6 +118,7 @@ namespace Project_OnTheFly
                 Console.WriteLine("2 - Buscar passageiro");
                 Console.WriteLine("3 - Editar Passageiro");
                 Console.WriteLine("4 - Listar Passageiros");
+                Console.WriteLine("5 - Cadastrar CPF na lista de restritos");
                 Console.WriteLine("0 - Sair do Menu de Passageiros");
                 Console.Write("Opção: ");
                 int opc = int.Parse(Console.ReadLine());
@@ -139,6 +140,9 @@ namespace Project_OnTheFly
                         foreach (Passageiro item in listaPassageiros)
                             if (item.Situacao == 'A')
                                 Console.WriteLine(item.ToString() + "\n");
+                        break;
+                    case 5:
+                        CadastrarCpfRestrito(listaCpfRestrito);
                         break;
                     case 0:
                         Console.WriteLine("Você saiu do Menu de Passageiros!");
@@ -383,6 +387,16 @@ namespace Project_OnTheFly
         //Chamada de funções
         #region Funcoes
         #region ManterPassageiro
+
+        public void CadastrarCpfRestrito(List<String> listaCpfRestrito)
+        {
+            Console.WriteLine("Informe o número de CPF que irá para a lista de restritos:");
+            string cpf = Console.ReadLine();
+            listaCpfRestrito.Add(cpf);
+            Console.WriteLine("CPF INSERIDO NA LISTA DE RESTRITOS COM SUCESSO!!!");
+            Console.ReadKey();
+        }
+
         public static Passageiro AdicionarPassageiro()
         {
             Passageiro passageiro = new Passageiro();
