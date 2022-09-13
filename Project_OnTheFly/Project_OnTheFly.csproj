@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Arquivos\" />
+    <Compile Remove="Arquivos\**" />
+    <EmbeddedResource Remove="Arquivos\**" />
+    <None Remove="Arquivos\**" />
   </ItemGroup>
 
 </Project>

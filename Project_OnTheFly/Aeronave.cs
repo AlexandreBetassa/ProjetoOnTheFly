@@ -19,7 +19,8 @@ namespace Project_OnTheFly
 
         public Aeronave()
         {
-
+            DataCadastro = DateTime.Now;
+            UltimaVenda = DateTime.Now;
         }
 
         public Aeronave(string inscricao, int capacidade, int assentosOcupados, DateTime ultimaVenda, DateTime dataCadastro)
@@ -31,20 +32,86 @@ namespace Project_OnTheFly
             DataCadastro = DateTime.Now;
             Situacao = 'A';
         }
-
-        //para cadastrar uma aeronave é necessário ela ser vinculada a uma compahia ?
-        public void CadastroAeronave(List<CompanhiaAerea> ListaCompanhiaAereas)
+        public String SufixoAeronave()
+        {
+            string sufixo;
+            bool aux;
+            do
+            {
+                Console.Write("Informe as 3 últimas letras da inscrição da aeroave: ");
+                sufixo = Console.ReadLine();
+                aux = VerificarSufixo(sufixo);
+                if (!aux) Console.WriteLine("SUFIXO INVÁLIDO");
+            } while (sufixo.Length != 3 || !aux);
+            return sufixo.ToUpper();
+        }
+        public bool VerificarSufixo(String sufixo)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                char aux = sufixo[i];
+                if (Char.IsLetter(aux)) ;
+                else return false;
+            }
+            return true;
+        }
+        public String SelecionarPrefixo()
+        {
+            int prefixo;
+            do
+            {
+                Console.WriteLine("Informe o prefixo da aeronave\n1 - PP\n2 - PT\n3 - PR\n4 - PS\n5 - BR\n0 - Sair");
+                int.TryParse(Console.ReadLine(), out prefixo);
+                switch (prefixo)
+                {
+                    case 1:
+                        return "PP";
+                        break;
+                    case 2:
+                        return "PT";
+                        break;
+                    case 3:
+                        return "PR";
+                        break;
+                    case 4:
+                        return "PS";
+                        break;
+                    case 5:
+                        return "BR";
+                        break;
+                    default:
+                        Console.WriteLine("PREFIXO INVÁLIDO");
+                        break;
+                }
+            } while (prefixo != 0);
+            return "0";
+        }
+        public bool VerificarAeronaveCadastrada(string inscricao, List<Aeronave> listaAeronaves)
+        {
+            foreach (var item in listaAeronaves)
+            {
+                if (item.Inscricao == inscricao) return false;
+            }
+            return true;
+        }
+        public void CadastroAeronave(List<CompanhiaAerea> ListaCompanhiaAereas, List<Aeronave> listaAeronaves)
         {
             Console.WriteLine(">>>CADASTRO DE AERONAVE<<<");
             do
             {
-                //não terá caracteres especiais (Delimitadores).
-                Console.WriteLine("Informe o CÓDIGO de identificação da AERONAVE, segundo o padrão definido pela ANAC (XX-XXX): ");
-                Inscricao = Console.ReadLine().ToUpper();
-                //Fazer a tratativa de erros p nao digitar algo diferente de PP, PT, PR, PS
-                //E de inserir 3 digitos numericos após o hífen
-                //Fazer verificação de número
-            } while (Inscricao.Length != 6);
+                string prefixo = SelecionarPrefixo();
+                if (Inscricao[0] == '0')
+                {
+                    Console.WriteLine("CADASTRAMENTO CANCELADO!!!\nPressione Enter para continuar");
+                    Console.ReadKey();
+                    Console.Clear();
+                    return;
+                }
+                Inscricao = prefixo + "-" + SufixoAeronave();
+
+                if (!VerificarAeronaveCadastrada(Inscricao, listaAeronaves)) Console.WriteLine("AERONAVE JÁ CADASTRADA");
+
+            } while (!VerificarAeronaveCadastrada(Inscricao, listaAeronaves));
 
             do
             {
@@ -52,18 +119,7 @@ namespace Project_OnTheFly
                 Capacidade = int.Parse(Console.ReadLine());
             } while (Capacidade < 0 || Capacidade > 999);
 
-            //No momento do cadastro não há nenhum assento ocupado
-            //então será inciado com 0
-            // Numérico – Quantidade de assentos já vendidos. 3 Dígitos Numéricos
             AssentosOcupados = 0;
-
-            //A data de última venda não será declarada no momento do cadastro
-            //pois será atribuida e lida como a data atual do sistema
-            //O mesmo para DATA DE CADASTRO
-
-            //A SITAÇÃO DO CADASTRO também não será atribuida porque todo cadastro
-            //quando gerado já esta ativo, para mudá-lo para inativo
-            //vá ao metodo de editar cadastro
 
             //Lista de Companhias
             Console.WriteLine("Lista de Companhias Aéreas:");
@@ -72,7 +128,7 @@ namespace Project_OnTheFly
                 if (item.SituacaoCA == 'A')
                     Console.WriteLine(item.ToString());
             }
-            
+
             Console.Write("Informe qual Companhia Aérea a Aeronave Pertence: ");
             string ca = Console.ReadLine();
 
@@ -81,12 +137,10 @@ namespace Project_OnTheFly
                 if (item.SituacaoCA == 'A')
                 {
                     if (item.CNPJ == ca)
-                    this.CompanhiaAerea = item;
+                        this.CompanhiaAerea = item;
                 }
             }
-
         }
-
         public void EditarAeronave()
         {
             Console.WriteLine("Escolha entre as opções, o/os dados que deseja editar em seu cadastro: ");
@@ -137,17 +191,5 @@ namespace Project_OnTheFly
         {
             return ($"INSCRIÇÃO: {Inscricao}\nCAPACIDADE: {Capacidade} passageiros\nASSENTOS OCUPADOS: {AssentosOcupados}\nDATA DA ÚLTIMA VENDA: {UltimaVenda}\nDATA EM QUE O CADASTRO FOI REALIZADO: {DataCadastro}\nSITUAÇÃO DO CADASTRO (A - ATIVO, I - INATIVO): {Situacao}").ToString();
         }
-
-
-
-        //Os prefixos de nacionalidade do Brasil são
-
-        //Permite 105.456 combinações
-        //“Tradicionalmente, o Brasil usa para aeronaves comerciais e privadas as letras iniciais
-        //fixar o PP ou PR - 
-        //PP, PT, PR, PS.
-        //gero um numero randomico e nao repito
-        // Proibido: iniciadas com a letra Q ou que tenham W como segunda letra.
-        //Os arranjos SOS, XXX, PAN, TTT, VFR, IFR, VMC e IMC não podem ser utilizados.
     }
 }
