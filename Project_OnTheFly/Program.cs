@@ -21,11 +21,12 @@ namespace Project_OnTheFly
             List<Venda> listaVendas = new List<Venda>();
             List<ItemVenda> listaItemVendas = new List<ItemVenda>();
 
-            //LerArquivoPassageiros(listaPassageiros);
+            LerArquivoPassageiros(listaPassageiros);
 
             LerArquivoIatas(listaIatas);
             LerArquivoAeronave(listaAeronaves);
-            //LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
+            LerArquivoPassageiros(listaPassageiros);
+            LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
 
 
             int op = 0;
@@ -684,37 +685,37 @@ namespace Project_OnTheFly
        // {
          //   String line;
 
-            //try
-            //{
-            //    StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\ProjetoOnTheFly\\Project_OnTheFly\\Passageiro.dat");
-            //    line = sr.ReadLine();
+            try
+            {
+                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Passageiros.dat");
+                line = sr.ReadLine();
 
-            //    do
-            //    {
-            //        Passageiro passageiro = new Passageiro();
-            //        passageiro.CPF = line.Substring(0, 11);
-            //        passageiro.Nome = line.Substring(11, 50);
-            //        passageiro.DataNascimento = DateTime.Parse($"{line.Substring(51, 8).ToString(")}");
-            //        passageiro.Sexo = line[69];
-            //        passageiro.UltimaCompra = DateTime.Parse($"{line[70]}{line[71]}/{line[72]}{line[73]}/{line[74]}{line[75]}{line[76]}{line[77]}");
-            //        listaPassageiro.Add(passageiro);
-            //        line = sr.ReadLine();
-            //    } while (line != null);
+                do
+                {
+                    Passageiro passageiro = new Passageiro();
+                    passageiro.CPF = line.Substring(0, 11);
+                    passageiro.Nome = line.Substring(11, 50);
+                    passageiro.DataNascimento = DateTime.Parse($"{line[61]}{line[62]}/{line[63]}{line[64]}/{line[65]}{line[66]}{line[67]}{line[68]}");
+                    passageiro.Sexo = line[69];
+                    passageiro.UltimaCompra = DateTime.Parse($"{line[70]}{line[71]}/{line[72]}{line[73]}/{line[74]}{line[75]}{line[76]}{line[77]}");
+                    listaPassageiro.Add(passageiro);
+                    line = sr.ReadLine();
+                } while (line != null);
 
-            //    sr.Close();
-            //    };
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Falha no carregamento do arquivo de Passageiros\n " + e.Message);
-        //    }
-        //    finally
-        //    {
-        //        Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
-        //    }
-        //    Console.ReadKey();
-        //    Console.Clear();
-        //    return;
-        //}
+                sr.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Falha no carregamento do arquivo de Passageiros\n " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
+            }
+            Console.ReadKey();
+            Console.Clear();
+            return;
+        }
         #endregion ArquivoPassageiro
 
         #region ArquivoIatas
@@ -797,39 +798,39 @@ namespace Project_OnTheFly
         }
 
         //metodo para recuperação do arquivo CompanhiaAerea
-        //static void LerArquivoCompanhiaAerea(List<CompanhiaAerea> listaCompanhias)
-        //{
-        //    string line;
+        static void LerArquivoCompanhiaAerea(List<CompanhiaAerea> listaCompanhias)
+        {
+            string line;
 
-        //    StreamReader companhiaTxt = new StreamReader($"C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\CompanhiaAerea.dat");
-        //    line = companhiaTxt.ReadLine();
-        //    do
-        //    {
-        //        try
-        //        {
-        //            Console.WriteLine(line.Length);
-        //            CompanhiaAerea companhia = new CompanhiaAerea();
-        //            companhia.CNPJ = line.Substring(0, 14);
-        //            companhia.RazaoSocial = line.Substring(14, 50);
-        //            Console.WriteLine(companhia.RazaoSocial.Length);
-        //            companhia.DataAbertura = DateTime.Parse($"{line[64]}{line[65]}/{line[66]}{line[67]}/{line[68]}{line[69]}{line[70]}{line[71]}");
-        //            companhia.UltimoVoo = DateTime.Parse($"{line[72]}{line[73]}/{line[74]}{line[75]}/{line[76]}{line[77]}{line[78]}{line[79]}");
-        //            companhia.DataCadastro = DateTime.Parse($"{line[80]}{line[81]}/{line[82]}{line[83]}/{line[84]}{line[85]}{line[86]}{line[87]}");
-        //            companhia.SituacaoCA = line[88];
-        //            listaCompanhias.Add(companhia);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Console.WriteLine("Falha no carregamento do arquivo de CompanhiaAerea.dat\n " + e.Message);
+            StreamReader companhiaTxt = new StreamReader($"C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\CompanhiaAerea.dat");
+            line = companhiaTxt.ReadLine();
+            do
+            {
+                try
+                {
+                    Console.WriteLine(line.Length);
+                    CompanhiaAerea companhia = new CompanhiaAerea();
+                    companhia.CNPJ = line.Substring(0, 14);
+                    companhia.RazaoSocial = line.Substring(14, 50);
+                    Console.WriteLine(companhia.RazaoSocial.Length);
+                    companhia.DataAbertura = DateTime.Parse($"{line[64]}{line[65]}/{line[66]}{line[67]}/{line[68]}{line[69]}{line[70]}{line[71]}");
+                    companhia.UltimoVoo = DateTime.Parse($"{line[72]}{line[73]}/{line[74]}{line[75]}/{line[76]}{line[77]}{line[78]}{line[79]}");
+                    companhia.DataCadastro = DateTime.Parse($"{line[80]}{line[81]}/{line[82]}{line[83]}/{line[84]}{line[85]}{line[86]}{line[87]}");
+                    companhia.SituacaoCA = line[88];
+                    listaCompanhias.Add(companhia);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Falha no carregamento do arquivo de CompanhiaAerea.dat\n " + e.Message);
 
-        //        }
-        //        finally
-        //        {
-        //            Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
-        //        }
-        //        line = companhiaTxt.ReadLine();
-        //    } while (line != null);
-        //}
+                }
+                finally
+                {
+                    Console.WriteLine("Arquivo Passageiros carregado com êxito!!!");
+                }
+                line = companhiaTxt.ReadLine();
+            } while (line != null);
+        }
         #endregion ArquivoCompanhiaAerea
 
         #region ArquivoAeronave
@@ -874,11 +875,7 @@ namespace Project_OnTheFly
                     line = arqAeronave.ReadLine();
                     if (line == null) break;
                     Aeronave aeronave = new Aeronave();
-                    aeronave.Inscricao = line.Substring(0, 6);
-                    aeronave.Capacidade = int.Parse(line.Substring(6, 9));
-                    //aeronave.UltimaVenda =;
-                    // aeronave.DataCadastro =;
-                    //aeronave.Situacao = char.Parse(line[Length]);
+                    aeronave.Inscricao = line;
 
 
                 } while (line != null);
