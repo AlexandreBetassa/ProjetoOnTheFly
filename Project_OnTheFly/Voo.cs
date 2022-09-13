@@ -14,6 +14,7 @@ namespace Project_OnTheFly
         public DateTime DataCadastro { get; set; }
         public char Situacao { get; set; } //A Ativo ou C Cancelado
         public Aeronave Aeronave { get; set; }
+        public CompanhiaAerea CompanhiaAerea { get; set; }
 
         public Voo()
         {
@@ -128,7 +129,7 @@ namespace Project_OnTheFly
         
         public override string ToString()
         {
-            return "\nIdVoo: " + IdVoo + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo.ToString("dd/MM/yyyy HH:mm") + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
+            return "\nIdVoo: " + IdVoo + "\nCNPJ da Companhia Aerea: " + CNPJ + "\nIdAeronave: " + Inscricao + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo.ToString("dd/MM/yyyy HH:mm") + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
         }
 
     }
