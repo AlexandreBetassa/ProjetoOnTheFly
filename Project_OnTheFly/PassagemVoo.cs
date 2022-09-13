@@ -17,19 +17,10 @@ namespace Project_OnTheFly
 
         public PassagemVoo()
         {
-        }
-        
-
-        public PassagemVoo(string id, Voo voo, DateTime dataUltimaOperacao, float valor, char situacao)
-        {
-            IdPassagem = id;
-            Voo = voo;
-            DataUltimaOperacao = dataUltimaOperacao;
-            Valor = valor;
-            Situacao = situacao; // L libre, R Reservada ou P paga
+            DataUltimaOperacao = DateTime.Now;
+            Situacao = 'L';
         }
 
-        //CONFERIR SE A LISTA ESTA CERTA
         public void CadastrarPassagemVoo(List<Voo> listaVoos, List<PassagemVoo> listaPassagemVoo)
         {
             
@@ -38,10 +29,10 @@ namespace Project_OnTheFly
             //ID CHAVE
             if (listaPassagemVoo.Count > 9999)
             {
-                Console.WriteLine("Limite atingido!");
+                Console.WriteLine("Limite de passagens atingido!");
                 return;
             }
-
+            //A passagem de voo é gerada na Venda
             this.IdPassagem = "PA" + (listaPassagemVoo.Count() + 1).ToString("0000");
 
             //Lista de Voos
@@ -52,7 +43,7 @@ namespace Project_OnTheFly
                     Console.WriteLine(item.ToString());
             }
 
-            Console.Write("Informe qual Voo pertence esta Passagem: ");
+            Console.Write("Informe qual Voo pertence esta Passagem (Ex: V0000): ");
             string idVoo = Console.ReadLine();
 
             foreach (Voo item in listaVoos)
@@ -64,41 +55,60 @@ namespace Project_OnTheFly
                 }
             }
 
-            bool aux;
-            DateTime aux1;
-            do
-            {
-                Console.Write("Informe a data da último operação: ");
-                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
-            } while (!aux);
-            DataUltimaOperacao = aux1;
+            DataUltimaOperacao = DateTime.Now;
 
             Console.Write("Informe o valor das passagens desse voo: ");
             Valor = float.Parse(Console.ReadLine());
-            if (Valor > 9999.99 || Valor < 0)
+                if (Valor > 9999.99 || Valor < 0)
+                {
+                    Console.WriteLine("Valor das passagem excedeu o limite permitido.");
+                }
+
+            //SITUAÇÂO
+            string pagar;
+            do
             {
-                Console.WriteLine("Valor das passagem excedeu o limite permitido.");
-            }
+                Console.WriteLine("Deseja pagar as passagens nesse exato momento? [S/N]");
+                pagar = Console.ReadLine();
+
+                if(pagar == "s")
+                {
+                    Situacao = 'P';
+                }
+                else
+                {
+                    Console.WriteLine("As passagens ficarão reservadas até o momento do pagamento.");
+                    Situacao = 'R';
+                }
+
+            }while(pagar != "s");
         }
-
-        //FALTA SITUAÇÃO
-
+       
         public void EditarPassagemVoo()
         {
-            PassagemVoo passagem = new();
             int op;
+
             do
             {
                 Console.Write("Escolha o item que você deseja editar: ");
-                Console.Write("1 - Valor");
-                Console.Write("2 - Situação");
                 Console.Write("0 - Sair");
+                Console.Write("1 - Valor");
+                Console.Write("2 - Situação");              
                 op = int.Parse(Console.ReadLine());
+
+                 if (op != 1 && op != 2 && op != 0)
+                 {
+                    Console.WriteLine("Opção inválida!");
+                 }
+
+            } while (op != 1 && op != 2 && op != 0);
 
                 switch (op)
                 {
                     case 0:
+                        Console.WriteLine("SAINDO...");
                         break;
+
                     case 1:
                         Console.Write("Informe o NOVO valor da passagem: ");
                         Valor = float.Parse(Console.ReadLine());
@@ -109,22 +119,27 @@ namespace Project_OnTheFly
                         }
                         else
                         {
-                            passagem.Valor = Valor;
+                            Valor = Valor;
                             Console.WriteLine("Novo valor gerado com sucesso!");
                         }
                         break;
+
                     case 2:
                         Console.Write("Informe A NOVA Situação: ");
                         char situacao = char.Parse(Console.ReadLine());
-                        passagem.Situacao = situacao;
-                        Console.WriteLine("Passagem editada com sucesso");
+                        Situacao = situacao;
+                        Console.WriteLine("Passagem editada com sucesso!");
                         break;
 
                     default:
-                        Console.WriteLine("Opção Inválida");
+                        Console.WriteLine("Opção Inválida!");
                         break;
                 }
-            } while (op != 0);
+        }
+
+        public override string ToString()
+        {
+            return $"IdPassagem: {IdPassagem} \nIdVoo:  {Voo.IdVoo} \nData da última operação: {DataUltimaOperacao} \nValor: {Valor} \nSituação da Passagem: {Situacao}";
         }
     }
 }

@@ -59,7 +59,7 @@ namespace Project_OnTheFly
                         break;
                     case 5:
                         Console.Clear();
-                        MenuPassagem(listaPassagensVoos, listaVoos);
+                        MenuPassagem(listaPassagensVoos, listaVoos, listaPassagemVoo);
                         break;
                     case 6:
                         Console.Clear();
@@ -127,7 +127,9 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaPassageiros.Add(AdicionarPassageiro());
+                        Passageiro passageiro = AdicionarPassageiro(listaPassageiros);
+                        if (passageiro != null)
+                            listaPassageiros.Add(passageiro);
                         break;
                     case 2:
                         Console.Write("Informe o CPF do Passageiro para busca: ");
@@ -176,8 +178,9 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        CompanhiaAerea companhiaAerea = AdicionarCompanhia();
-                        if (VerificarCompanhiaAerea(companhiaAerea, listaCnpjRestrito)) listaCompanhiaAereas.Add(companhiaAerea);
+                        CompanhiaAerea companhiaAerea = AdicionarCompanhia(listaCompanhiaAereas);
+                        if (companhiaAerea != null)
+                            if (VerificarCompanhiaAerea(companhiaAerea, listaCnpjRestrito)) listaCompanhiaAereas.Add(companhiaAerea);
                         break;
                     case 2:
                         Console.WriteLine(BuscarCompanhia(listaCompanhiaAereas).ToString());
@@ -288,7 +291,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuPassagem
-        public static void MenuPassagem(List<PassagemVoo> listaPassagens, List<Voo> listaVoos)
+        public static void MenuPassagem(List<PassagemVoo> listaPassagens, List<Voo> listaVoos, List<PassagemVoo> listaPassagemVoo)
         {
             do
             {
@@ -303,7 +306,7 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaPassagens.Add(AdicionarPassagem(listaVoos));
+                        listaPassagens.Add(AdicionarPassagem(listaVoos, listaPassagens));
                         break;
                     case 2:
                         Console.Write("Informe o ID da Passagem para busca: ");
@@ -433,12 +436,22 @@ namespace Project_OnTheFly
             Console.ReadKey();
         }
 
-        static Passageiro AdicionarPassageiro()
+        static Passageiro AdicionarPassageiro(List<Passageiro> listaPassageiros)
         {
-            Passageiro passageiro = new Passageiro();
+            Console.Write("Informe o CPF do Passageiro para busca: ");
+            string cpf = Console.ReadLine();
+            Passageiro passageiro = BuscarPassageiro(listaPassageiros, cpf);
 
-            passageiro.CadastrarPassageiro();
-
+            if (passageiro != null)
+            {
+                Console.WriteLine("Passageiro já está cadastrado!");
+                return null;
+            }
+            else
+            {
+                passageiro = new Passageiro();
+                passageiro.CadastrarPassageiro();
+            }
             return passageiro;
         }
 
@@ -518,7 +531,7 @@ namespace Project_OnTheFly
         }
         static void RemoverCnpjRestrito(List<String> listaCnpjBloqueado)
         {
-            Console.WriteLine("Informe o número de CPF que irá ser removido da lista de restritos:");
+            Console.WriteLine("Informe o número de CNPJ que irá ser removido da lista de restritos:");
             string cnpj = Console.ReadLine();
             foreach (var item in listaCnpjBloqueado)
                 if (item == cnpj)
@@ -529,11 +542,20 @@ namespace Project_OnTheFly
                 else Console.WriteLine("CNPJ NÃO LOCALIZADO!!!");
             Console.ReadKey();
         }
-        public static CompanhiaAerea AdicionarCompanhia()
+        public static CompanhiaAerea AdicionarCompanhia(List<CompanhiaAerea> listaCompanhiaAereas)
         {
-            CompanhiaAerea companhia = new CompanhiaAerea();
-            companhia.CadCompAerea();
+            CompanhiaAerea companhia = BuscarCompanhia(listaCompanhiaAereas);
 
+            if (companhia != null)
+            {
+                Console.WriteLine("Companhia Aérea já cadastrada!");
+                return null;
+            }
+            else
+            {
+                companhia = new CompanhiaAerea();
+                companhia.CadCompAerea();
+            }
             return companhia;
         }
         public static void EditarCompanhia(List<CompanhiaAerea> listaCompanhiaAereas)
@@ -542,7 +564,7 @@ namespace Project_OnTheFly
 
             if (companhia != null)
             {
-                companhia.EditarCompanhia();
+                companhia.EditarCompAerea();
             }
         }
         public static CompanhiaAerea BuscarCompanhia(List<CompanhiaAerea> listaCompanhiaAerea)
@@ -659,11 +681,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterPassagem
-        public static PassagemVoo AdicionarPassagem(List<Voo> listaVoos)
+        public static PassagemVoo AdicionarPassagem(List<Voo> listaVoos, List<PassagemVoo> listaPassagemVoo)
         {
             PassagemVoo passagem = new PassagemVoo();
 
-            passagem.CadastrarPassagemVoo(listaVoos);
+            passagem.CadastrarPassagemVoo(listaVoos, listaPassagemVoo);
 
             return passagem;
         }
@@ -777,7 +799,7 @@ namespace Project_OnTheFly
         {
             try
             {
-                StreamWriter passageiro = new StreamWriter($"C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Passageiro.dat");
+                StreamWriter passageiro = new StreamWriter("C:\\ArquivosAeroporto\\CompanhiaAerea.dat");
                 foreach (Passageiro item in listaPassageiros)
                 {
                     if (item != null)
@@ -808,16 +830,17 @@ namespace Project_OnTheFly
 
             try
             {
-                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Passageiros.dat");
+                StreamReader sr = new StreamReader("C:\\ArquivosAeroporto\\CompanhiaAerea.dat");
                 line = sr.ReadLine();
                 while (line != null)
                 {
                     Passageiro passageiro = new Passageiro();
                     passageiro.CPF = line.Substring(0, 11);
                     passageiro.Nome = line.Substring(11, 50);
-                    passageiro.DataNascimento = DateTime.Parse($"{line[61]}{line[62]}/{line[63]}{line[64]}/{line[65]}{line[66]}{line[67]}{line[68]}");
+                    passageiro.DataNascimento = Convert.ToDateTime($"{line.Substring(61, 2)}/{line.Substring(63, 2)}/{line.Substring(65, 4)}");
                     passageiro.Sexo = line[69];
-                    passageiro.UltimaCompra = DateTime.Parse($"{line[70]}{line[71]}/{line[72]}{line[73]}/{line[74]}{line[75]}{line[76]}{line[77]}");
+                    passageiro.UltimaCompra = Convert.ToDateTime($"{line.Substring(70, 2)}/{line.Substring(72, 2)}/{line.Substring(74, 4)}");
+                    passageiro.DataCadastro = DateTime.Parse($"{line.Substring(78, 2)}/{line.Substring(80, 2)}/{line.Substring(82, 4)}");
                     listaPassageiro.Add(passageiro);
                     line = sr.ReadLine();
                 }
@@ -845,7 +868,7 @@ namespace Project_OnTheFly
             string line;
             try
             {
-                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\listaIatas.dat");
+                StreamReader sr = new StreamReader("C:\\ArquivosAeroporto\\CompanhiaAerea.dat");
                 line = sr.ReadLine();
 
                 while (line != null)
@@ -892,7 +915,7 @@ namespace Project_OnTheFly
         {
             try
             {
-                StreamWriter ArqCompanhia = new StreamWriter($"C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\CompanhiaAerea.dat");
+                StreamWriter ArqCompanhia = new StreamWriter("C:\\ArquivosAeroporto\\CompanhiaAerea.dat");
                 foreach (var item in listaCompanhias)
                 {
                     if (item != null)
