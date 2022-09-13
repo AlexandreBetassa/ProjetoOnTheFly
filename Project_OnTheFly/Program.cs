@@ -47,7 +47,7 @@ namespace Project_OnTheFly
                         break;
                     case 2:
                         Console.Clear();
-                        MenuCompanhia(ListaCompanhiaAereas);
+                        MenuCompanhia(ListaCompanhiaAereas, listaCnpjRestrito);
                         break;
                     case 3:
                         Console.Clear();
@@ -159,7 +159,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuCompanhia
-        public static void MenuCompanhia(List<CompanhiaAerea> listaCompanhiaAereas)
+        public static void MenuCompanhia(List<CompanhiaAerea> listaCompanhiaAereas, List<String> listaCnpjRestrito)
         {
             do
             {
@@ -167,6 +167,8 @@ namespace Project_OnTheFly
                 Console.WriteLine("2 - Buscar Companhia");
                 Console.WriteLine("3 - Editar Companhia");
                 Console.WriteLine("4 - Listar Companhias");
+                Console.WriteLine("5 - Inserir CNPJ na lista de empresas bloqueados");
+                Console.WriteLine("6 - Remover CNPJ na lista de empresas bloqueados");
                 Console.WriteLine("0 - Sair do Menu de Companhias");
                 Console.Write("Opção: ");
                 int opc = int.Parse(Console.ReadLine());
@@ -186,6 +188,12 @@ namespace Project_OnTheFly
                         foreach (CompanhiaAerea item in listaCompanhiaAereas)
                             if (item.SituacaoCA == 'A')
                                 Console.WriteLine(item.ToString() + "\n");
+                        break;
+                    case 5:
+                        CadastrarCnpjRestrito(listaCnpjRestrito);
+                        break;
+                    case 6:
+                        RemoverCnpjRestrito(listaCnpjRestrito);
                         break;
                     case 0:
                         Console.WriteLine("Você saiu do Menu de Companhias!");
