@@ -30,7 +30,6 @@ namespace Project_OnTheFly
             Situacao = situacao;
         }
 
-
         public void CadastrarVoo(List<String> listaIatas, List<Aeronave> listaAeronaves, List<Voo> listaVoos)
         {
             // INSERIR idvoo 
@@ -135,7 +134,7 @@ namespace Project_OnTheFly
         {
 
         }
-       public override string ToString()
+        public override string ToString()
         {
             return "\nIdVoo: " + IdVoo + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
         }
