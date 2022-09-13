@@ -61,12 +61,6 @@ namespace Project_OnTheFly
             {
                 Console.Write("Informe a hora de partida do voo: ");
             }
-            DataVoo = dataVoo.ToString("dd/MM/yyyy") + horaVoo.ToString("HH:mm");
-
-            //data do cadastro
-            DataCadastro = DateTime.Now.ToString("ddMMyyyy");
-
-            Situacao = 'A';
 
             //Listar Aeronaves
             Console.WriteLine("Lista de Aeronaves Cadastradas:");
@@ -129,7 +123,7 @@ namespace Project_OnTheFly
         
         public override string ToString()
         {
-            return "\nIdVoo: " + IdVoo + "\nCNPJ da Companhia Aerea: " + CNPJ + "\nIdAeronave: " + Inscricao + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo.ToString("dd/MM/yyyy HH:mm") + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
+            return "\nIdVoo: " + IdVoo + "\nCNPJ da Companhia Aerea: " + CompanhiaAerea.CNPJ + "\nIdAeronave: " + Aeronave.Inscricao + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo.ToString("dd/MM/yyyy HH:mm") + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
         }
 
     }
