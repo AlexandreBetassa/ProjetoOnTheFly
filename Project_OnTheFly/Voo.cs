@@ -118,7 +118,7 @@ namespace Project_OnTheFly
         }
         #endregion 
 
-        public void AlterarSituacao()
+        public void EditarVoo()
         {
             Voo voo = new();
 
@@ -127,14 +127,8 @@ namespace Project_OnTheFly
             Console.Write("Infome a NOVA situação do voo:\nA - Ativo OU C - Cancelado: ");
             char situacao = char.Parse(Console.ReadLine());
             voo.Situacao = situacao;
-
         }
-
-        public void EditarVoo()
-        {
-
-        }
-        public override string ToString()
+       public override string ToString()
         {
             return "\nIdVoo: " + IdVoo + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
         }

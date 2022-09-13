@@ -17,18 +17,8 @@ namespace Project_OnTheFly
 
         public PassagemVoo()
         {
-          
-            Situacao = 'L'; // L Livre, R Reservada ou P paga
-            DataUltimaOperacao = DateTime.Now;
-        }
-        
-
-        public PassagemVoo(string id, Voo voo, DateTime dataUltimaOperacao, float valor, char situacao)
-        {
-            IdPassagem = id;
-            Voo = voo;        
-            Valor = valor;
-            
+            this.Situacao = 'L';
+            this.DataUltimaOperacao = DateTime.Now;
         }
 
         //CONFERIR SE A LISTA ESTA CERTA
@@ -66,41 +56,14 @@ namespace Project_OnTheFly
                 }
             }
 
-            DataUltimaOperacao = DateTime.Now;
-            //bool aux;
-            //DateTime aux1;
-            //do
-            //{
-            //    Console.Write("Informe a data da último operação: ");
-            //    aux = DateTime.TryParse(Console.ReadLine(), out aux1);
-            //} while (!aux);
-            //DataUltimaOperacao = aux1;
-
-
-            Console.Write("Informe o VALOR das passagens desse voo: ");
+            Console.Write("Informe o valor das passagens desse voo: ");
             Valor = float.Parse(Console.ReadLine());
             if (Valor > 9999.99 || Valor < 0)
             {
-                Console.WriteLine("Valor das passagem excedeu o limite permitido!");
+                Console.WriteLine("Valor das passagem excedeu o limite permitido.");
             }
-            string pagar;
-            do
-            {
-                Console.WriteLine("Deseja pagar as passagens nesse exato momento? [S/N]");
-                pagar = Console.ReadLine().ToUpper();
-
-                if (pagar == "S")
-                {
-                    Situacao = 'P';
-                }
-                else
-                {
-                    Console.WriteLine("As passagens ficarão reservadas até o momento do pagamento!");
-                    Situacao = 'R';
-                }
-            } while (pagar != "S");
         }
-       
+
         public void EditarPassagemVoo()
         {
             
