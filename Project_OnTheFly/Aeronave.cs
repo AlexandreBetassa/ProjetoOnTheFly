@@ -100,7 +100,7 @@ namespace Project_OnTheFly
             do
             {
                 string prefixo = SelecionarPrefixo();
-                if (Inscricao[0] == '0')
+                if (prefixo == "0")
                 {
                     Console.WriteLine("CADASTRAMENTO CANCELADO!!!\nPressione Enter para continuar");
                     Console.ReadKey();
