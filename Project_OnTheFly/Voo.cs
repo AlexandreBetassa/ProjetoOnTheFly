@@ -30,7 +30,6 @@ namespace Project_OnTheFly
             Situacao = situacao;
         }
 
-
         public void CadastrarVoo(List<String> listaIatas, List<Aeronave> listaAeronaves, List<Voo> listaVoos)
         {
             // INSERIR idvoo 
