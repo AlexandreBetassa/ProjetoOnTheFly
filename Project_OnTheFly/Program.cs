@@ -465,6 +465,37 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterCompanhia
+        static void CadastrarCnpjRestrito(List<String> listaCnpjBloqueado)
+        {
+            Console.WriteLine("Informe o número de CNPJ que irá para a lista de bloqueios:");
+            string cnpj = Console.ReadLine();
+            foreach (var item in listaCnpjBloqueado)
+            {
+                if (item == cnpj)
+                {
+                    Console.WriteLine("CNPJ JÁ INSERIDO NA LISTA DE RESTRITOS!!!");
+                    return;
+                }
+            }
+            listaCnpjBloqueado.Add(cnpj);
+            Console.WriteLine("CPF REMOVIDO DA LISTA DE RESTRITOS COM SUCESSO!!!");
+            Console.ReadKey();
+        }
+
+        static void RemoverCpfRestrito(List<String> listaCpfRestrito)
+        {
+            Console.WriteLine("Informe o número de CPF que irá ser removido da lista de restritos:");
+            string cpf = Console.ReadLine();
+            foreach (var item in listaCpfRestrito)
+                if (item == cpf)
+                {
+                    listaCpfRestrito.Remove(cpf);
+                    Console.WriteLine("CPF REMOVIDO DA LISTA DE RESTRITOS COM SUCESSO!!!");
+                }
+                else Console.WriteLine("CPF NÃO LOCALIZADO!!!");
+            Console.ReadKey();
+        }
+
         public static CompanhiaAerea AdicionarCompanhia()
         {
             CompanhiaAerea companhia = new CompanhiaAerea();
