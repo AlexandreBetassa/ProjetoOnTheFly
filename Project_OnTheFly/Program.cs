@@ -59,7 +59,7 @@ namespace Project_OnTheFly
                         break;
                     case 5:
                         Console.Clear();
-                        MenuPassagem(listaPassagensVoos, listaVoos);
+                        MenuPassagem(listaPassagensVoos, listaVoos, listaPassagemVoo);
                         break;
                     case 6:
                         Console.Clear();
@@ -288,7 +288,7 @@ namespace Project_OnTheFly
         }
         #endregion
         #region MenuPassagem
-        public static void MenuPassagem(List<PassagemVoo> listaPassagens, List<Voo> listaVoos)
+        public static void MenuPassagem(List<PassagemVoo> listaPassagens, List<Voo> listaVoos, List<PassagemVoo> listaPassagemVoo)
         {
             do
             {
@@ -303,7 +303,7 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaPassagens.Add(AdicionarPassagem(listaVoos));
+                        listaPassagens.Add(AdicionarPassagem(listaVoos, listaPassagemVoo));
                         break;
                     case 2:
                         Console.Write("Informe o ID da Passagem para busca: ");
@@ -659,11 +659,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterPassagem
-        public static PassagemVoo AdicionarPassagem(List<Voo> listaVoos)
+        public static PassagemVoo AdicionarPassagem(List<Voo> listaVoos, List<PassagemVoo> listaPassagemVoo)
         {
             PassagemVoo passagem = new PassagemVoo();
 
-            passagem.CadastrarPassagemVoo(listaVoos);
+            passagem.CadastrarPassagemVoo(listaVoos, listaPassagemVoo);
 
             return passagem;
         }
