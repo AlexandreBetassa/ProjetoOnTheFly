@@ -17,7 +17,7 @@ namespace Project_OnTheFly
 
         public PassagemVoo()
         {
-            Console.WriteLine();
+            
         }
         
 
@@ -25,9 +25,9 @@ namespace Project_OnTheFly
         {
             IdPassagem = id;
             Voo = voo;
-            DataUltimaOperacao = dataUltimaOperacao;
+            DataUltimaOperacao = DateTime.Now;
             Valor = valor;
-            Situacao = situacao; // L libre, R Reservada ou P paga
+            Situacao = 'L'; // L libre, R Reservada ou P paga
         }
 
         //CONFERIR SE A LISTA ESTA CERTA
@@ -65,14 +65,14 @@ namespace Project_OnTheFly
                 }
             }
 
-            bool aux;
-            DateTime aux1;
-            do
-            {
-                Console.Write("Informe a data da último operação: ");
-                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
-            } while (!aux);
-            DataUltimaOperacao = aux1;
+            //bool aux;
+            //DateTime aux1;
+            //do
+            //{
+            //    Console.Write("Informe a data da último operação: ");
+            //    aux = DateTime.TryParse(Console.ReadLine(), out aux1);
+            //} while (!aux);
+            //DataUltimaOperacao = aux1;
 
             Console.Write("Informe o valor das passagens desse voo: ");
             Valor = float.Parse(Console.ReadLine());
