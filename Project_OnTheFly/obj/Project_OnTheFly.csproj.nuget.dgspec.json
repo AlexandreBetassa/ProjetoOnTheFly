@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\Thalya\\Desktop\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\Thalya\\Desktop\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
         "packagesPath": "C:\\Users\\Thalya\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Thalya\\Desktop\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
+=======
+    "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+        "projectName": "Project_OnTheFly",
+        "projectPath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+        "packagesPath": "C:\\Users\\Alexandre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
+>>>>>>> origin/main
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

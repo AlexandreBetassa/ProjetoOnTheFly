@@ -142,6 +142,11 @@ C:\Users\Alexandre\Desktop\Nova pasta (3)\ProjetoOnTheFly\Project_OnTheFly\obj\D
 C:\Users\Alexandre\Desktop\Nova pasta (3)\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.pdb
 C:\Users\Alexandre\Desktop\Nova pasta (3)\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.genruntimeconfig.cache
 C:\Users\Alexandre\Desktop\Nova pasta (3)\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\ref\Project_OnTheFly.dll
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
 C:\Users\Thalya\Desktop\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.exe
 C:\Users\Thalya\Desktop\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.deps.json
 C:\Users\Thalya\Desktop\ProjetoOnTheFly\Project_OnTheFly\bin\Debug\net5.0\Project_OnTheFly.runtimeconfig.json
@@ -158,3 +163,7 @@ C:\Users\Thalya\Desktop\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\refint
 C:\Users\Thalya\Desktop\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.pdb
 C:\Users\Thalya\Desktop\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\Project_OnTheFly.genruntimeconfig.cache
 C:\Users\Thalya\Desktop\ProjetoOnTheFly\Project_OnTheFly\obj\Debug\net5.0\ref\Project_OnTheFly.dll
+<<<<<<< HEAD
+=======
+>>>>>>> feature/thalya
+>>>>>>> origin/main

@@ -18,7 +18,8 @@ namespace Project_OnTheFly
 
         public Passageiro()
         {
-
+            UltimaCompra = DateTime.Now; //data atual do sistema
+            DataCadastro = DateTime.Now; //data atual do sistema
         }
         public Passageiro(string cpf, string nome, DateTime dataNascimento, char sexo, DateTime ultimaCompra, DateTime dataCadastro, char situacao)
         {
@@ -75,7 +76,7 @@ namespace Project_OnTheFly
             //Data de cadastro e situação também já foram declaradas.                  
 
         }
-        
+
         public static bool ValidarCpf(string cpf)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -180,7 +181,7 @@ namespace Project_OnTheFly
         }
         public void EditarPassageiro()
         {
-            
+
             Console.WriteLine("Escolha entre as opções, o/os dados que deseja editar em seu cadastro: ");
             Console.WriteLine("1 - Editar NOME cadastrado");
             Console.WriteLine("2 - Editar DATA DE NASCIMENTO cadastrado");
@@ -199,7 +200,7 @@ namespace Project_OnTheFly
                 case 2:
                     Console.WriteLine("Informe a DATA DE NASCIMENTO correta: ");
                     DataNascimento = DateTime.Parse(Console.ReadLine());
-                 
+
                     break;
 
                 case 3:
@@ -222,7 +223,7 @@ namespace Project_OnTheFly
                     {
                         Console.WriteLine("Informe a SITUAÇÃO do cadastro correta (A - Ativo, I - Inativo): ");
                         Situacao = char.Parse(Console.ReadLine());
-                       
+
                     } while (Situacao != 'A' && Situacao != 'I');
                     break;
 

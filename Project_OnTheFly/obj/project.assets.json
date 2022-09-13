@@ -14,11 +14,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Thalya\\Desktop\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
       "projectName": "Project_OnTheFly",
       "projectPath": "C:\\Users\\Thalya\\Desktop\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
       "packagesPath": "C:\\Users\\Thalya\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Thalya\\Desktop\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+      "projectName": "Project_OnTheFly",
+      "projectPath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\Project_OnTheFly\\Project_OnTheFly.csproj",
+      "packagesPath": "C:\\Users\\Alexandre\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\",
+>>>>>>> origin/main
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -68,5 +76,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
+<<<<<<< HEAD
   }
+=======
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\Alexandre\\Desktop\\Nova pasta (3)\\ProjetoOnTheFly\\Project_OnTheFly\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
+>>>>>>> origin/main
 }

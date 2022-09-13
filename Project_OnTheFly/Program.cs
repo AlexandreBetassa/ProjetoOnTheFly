@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Numerics;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Project_OnTheFly
@@ -28,12 +26,14 @@ namespace Project_OnTheFly
 
             LerArquivoPassageiros(listaPassageiros);
             LerArquivoIatas(listaIatas);
-            LerArquivoAeronave(listaAeronaves);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
+            LerArquivoAeronave(listaAeronaves);
+            LerArquivoVoo(listaVoos, listaIatas, listaAeronaves);
+            LerListaPassagemVoo(listaPassagemVoo, listaVoos);
             LerCpfRestrito(listaCpfRestrito);
             LerCnpjBloqueado(listaCnpjRestrito);
-            LerArquivoVoo(listaVoos, listaIatas, listaAeronaves);
             LerArquivoVenda(listaVendas, listaPassageiros);
+            LerArquivoItemVenda(listaItemVendas);
 
             int op;
             do
@@ -78,6 +78,7 @@ namespace Project_OnTheFly
                         GravarListaVoos(listaVoos);
                         GravarListaPassagemVoo(listaPassagemVoo);
                         GravarListaVenda(listaVendas);
+                        GravarItemVenda(listaItemVendas);
                         Environment.Exit(0);
                         break;
                     default:
@@ -86,7 +87,6 @@ namespace Project_OnTheFly
                         break;
                 }
             } while (true);
-
         }
 
         #region Menus
@@ -177,7 +177,7 @@ namespace Project_OnTheFly
                 {
                     case 1:
                         CompanhiaAerea companhiaAerea = AdicionarCompanhia();
-                        if(VerificarCompanhiaAerea(companhiaAerea, listaCnpjRestrito)) listaCompanhiaAereas.Add(companhiaAerea);
+                        if (VerificarCompanhiaAerea(companhiaAerea, listaCnpjRestrito)) listaCompanhiaAereas.Add(companhiaAerea);
                         break;
                     case 2:
                         Console.WriteLine(BuscarCompanhia(listaCompanhiaAereas).ToString());
@@ -376,7 +376,8 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaItemVendas.Add(AdicionarItemVenda(listaPassagensVoos));
+                        string IdItemVenda = (listaItemVendas.Count + 1).ToString("00000");
+                        listaItemVendas.Add(AdicionarItemVenda(listaPassagensVoos, IdItemVenda));
                         break;
                     case 2:
                         Console.WriteLine(BuscarItemVenda(listaItemVendas).ToString());
@@ -630,7 +631,7 @@ namespace Project_OnTheFly
 
             if (voo != null)
             {
-                voo.AlterarSituacao();
+                voo.EditarVoo();
             }
         }
         public static Voo BuscarVoo(List<Voo> listaVoos, string idVoo)
@@ -735,11 +736,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterItemVenda
-        public static ItemVenda AdicionarItemVenda(List<PassagemVoo> listaPassagensVoos)
+        public static ItemVenda AdicionarItemVenda(List<PassagemVoo> listaPassagensVoos, String idItemVenda)
         {
             ItemVenda itemVenda = new ItemVenda();
 
-            itemVenda.CadastrarItemVenda(listaPassagensVoos);
+            itemVenda.CadastrarItemVenda(listaPassagensVoos, idItemVenda);
 
             return itemVenda;
         }
@@ -776,7 +777,7 @@ namespace Project_OnTheFly
         {
             try
             {
-                StreamWriter passageiro = new StreamWriter("C:\\ArquivosAeroporto\\Passageiro.dat");
+                StreamWriter passageiro = new StreamWriter($"C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Passageiro.dat");
                 foreach (Passageiro item in listaPassageiros)
                 {
                     if (item != null)
@@ -807,17 +808,16 @@ namespace Project_OnTheFly
 
             try
             {
-                StreamReader sr = new StreamReader("C:\\ArquivosAeroporto\\Passageiro.dat");
+                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Passageiros.dat");
                 line = sr.ReadLine();
                 while (line != null)
                 {
                     Passageiro passageiro = new Passageiro();
                     passageiro.CPF = line.Substring(0, 11);
                     passageiro.Nome = line.Substring(11, 50);
-                    passageiro.DataNascimento = Convert.ToDateTime($"{line.Substring(61, 2)}/{line.Substring(63, 2)}/{line.Substring(65, 4)}");
+                    passageiro.DataNascimento = DateTime.Parse($"{line[61]}{line[62]}/{line[63]}{line[64]}/{line[65]}{line[66]}{line[67]}{line[68]}");
                     passageiro.Sexo = line[69];
-                    passageiro.UltimaCompra = Convert.ToDateTime($"{line.Substring(70, 2)}/{line.Substring(72, 2)}/{line.Substring(74, 4)}");
-                    passageiro.DataCadastro = DateTime.Parse($"{line.Substring(78, 2)}/{line.Substring(80, 2)}/{line.Substring(82, 4)}");
+                    passageiro.UltimaCompra = DateTime.Parse($"{line[70]}{line[71]}/{line[72]}{line[73]}/{line[74]}{line[75]}{line[76]}{line[77]}");
                     listaPassageiro.Add(passageiro);
                     line = sr.ReadLine();
                 }
@@ -845,7 +845,7 @@ namespace Project_OnTheFly
             string line;
             try
             {
-                StreamReader sr = new StreamReader("C:\\ArquivosAeroporto\\listaIatas.dat");
+                StreamReader sr = new StreamReader("C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\listaIatas.dat");
                 line = sr.ReadLine();
 
                 while (line != null)
@@ -859,6 +859,13 @@ namespace Project_OnTheFly
             {
                 Console.WriteLine("Falha no carregamento do arquivo listaIatas\n " + e.Message);
             }
+            finally
+            {
+                Console.WriteLine("Arquivo listaIatas carregados com êxito!!!");
+            }
+            Console.ReadKey();
+            Console.Clear();
+            return;
         }
 
         static void ImprimirDestinos(List<String> lista)
@@ -885,7 +892,7 @@ namespace Project_OnTheFly
         {
             try
             {
-                StreamWriter ArqCompanhia = new StreamWriter("C:\\ArquivosAeroporto\\CompanhiaAerea.dat");
+                StreamWriter ArqCompanhia = new StreamWriter($"C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\CompanhiaAerea.dat");
                 foreach (var item in listaCompanhias)
                 {
                     if (item != null)
@@ -947,7 +954,7 @@ namespace Project_OnTheFly
         {
             try
             {
-                StreamWriter ArqAeronaves = new StreamWriter("C:\\ArquivosAeroporto\\Aeronave.dat");
+                StreamWriter ArqAeronaves = new StreamWriter($"C:\\Users\\Alexandre\\Desktop\\Aulas\\Aeroporto\\Project_OnTheFly\\Project_OnTheFly\\Aeronave.dat");
                 foreach (var item in listaAeronave)
                 {
                     if (item != null)
@@ -1081,13 +1088,10 @@ namespace Project_OnTheFly
                 }
                 cnpjBloqueadoTxt.Close();
             }
-            catch (Exception e)
+            finally
             {
-                Console.WriteLine("Erro na leitura do arquivo Restritos.dat" + e);
+                Console.WriteLine("Gravação arquivo Aeronave.dat efetuada com sucesso!!!");
             }
-
-            Random r = new Random();
-            string n = "V" + r.Next(000, 999).ToString("000");
         }
         #endregion leitura
         #endregion Restrito
@@ -1182,7 +1186,7 @@ namespace Project_OnTheFly
             return $"{passagemVoo.IdPassagem.PadRight(6)}{passagemVoo.Voo.IdVoo}{passagemVoo.DataUltimaOperacao:ddMMyyyy}{passagemVoo.Valor:0000,00}{passagemVoo.Situacao}";
         }
 
-        static void LerListaPassagmVoo(List<PassagemVoo> listaPassagemVoo, List<Voo> listaVoo)
+        static void LerListaPassagemVoo(List<PassagemVoo> listaPassagemVoo, List<Voo> listaVoo)
         {
             String line;
 
@@ -1301,7 +1305,7 @@ namespace Project_OnTheFly
             return $"{itemVenda.IdItemVenda:00000}{itemVenda.PassagemVoo:000000}{itemVenda.ValorUnit:00000,00}";
         }
 
-        static void LerArquivoItemVenda(List<Venda> listaVenda)
+        static void LerArquivoItemVenda(List<ItemVenda> listaVenda)
         {
             String line;
             try
@@ -1337,6 +1341,5 @@ namespace Project_OnTheFly
 
     }
 }
-
 
 
