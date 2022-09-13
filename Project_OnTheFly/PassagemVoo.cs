@@ -84,7 +84,7 @@ namespace Project_OnTheFly
             }while(pagar != "s");
         }
        
-        public void EditarPassagemVoo(PassagemVoo passagem)
+        public void EditarPassagemVoo()
         {
             int op;
 
