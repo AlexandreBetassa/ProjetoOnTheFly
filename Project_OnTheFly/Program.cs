@@ -119,6 +119,7 @@ namespace Project_OnTheFly
                 Console.WriteLine("3 - Editar Passageiro");
                 Console.WriteLine("4 - Listar Passageiros");
                 Console.WriteLine("5 - Cadastrar CPF na lista de restritos");
+                Console.WriteLine("6 - Remover CPF na lista de restritos");
                 Console.WriteLine("0 - Sair do Menu de Passageiros");
                 Console.Write("Opção: ");
                 int opc = int.Parse(Console.ReadLine());
@@ -143,6 +144,9 @@ namespace Project_OnTheFly
                         break;
                     case 5:
                         CadastrarCpfRestrito(listaCpfRestrito);
+                        break;
+                    case 6:
+                        RemoverCpfRestrito(listaCpfRestrito);
                         break;
                     case 0:
                         Console.WriteLine("Você saiu do Menu de Passageiros!");
@@ -388,7 +392,7 @@ namespace Project_OnTheFly
         #region Funcoes
         #region ManterPassageiro
 
-        public void CadastrarCpfRestrito(List<String> listaCpfRestrito)
+        static void CadastrarCpfRestrito(List<String> listaCpfRestrito)
         {
             Console.WriteLine("Informe o número de CPF que irá para a lista de restritos:");
             string cpf = Console.ReadLine();
@@ -405,7 +409,7 @@ namespace Project_OnTheFly
             Console.ReadKey();
         }
 
-        public void RemoverCpfRestrito(List<String> listaCpfRestrito)
+        static void RemoverCpfRestrito(List<String> listaCpfRestrito)
         {
             Console.WriteLine("Informe o número de CPF que irá ser removido da lista de restritos:");
             string cpf = Console.ReadLine();
@@ -419,7 +423,7 @@ namespace Project_OnTheFly
             Console.ReadKey();
         }
 
-        public static Passageiro AdicionarPassageiro()
+        static Passageiro AdicionarPassageiro()
         {
             Passageiro passageiro = new Passageiro();
 
