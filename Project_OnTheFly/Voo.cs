@@ -14,32 +14,25 @@ namespace Project_OnTheFly
         public DateTime DataCadastro { get; set; }
         public char Situacao { get; set; } //A Ativo ou C Cancelado
         public Aeronave Aeronave { get; set; }
+        public CompanhiaAerea CompanhiaAerea { get; set; }
 
         public Voo()
         {
-            this.Situacao = 'A';
-        }
-
-        public Voo(string idVoo, string destino, DateTime dataVoo, DateTime dataCadastro, char situacao)
-        {
-            IdVoo = idVoo;
-            Destino = destino;
-            //IdAeronave
-            DataVoo = dataVoo;
-            DataCadastro = dataCadastro;
-            Situacao = situacao;
+            DataVoo = DateTime.Now;
+            DataCadastro = DateTime.Now;
+            Situacao = 'A';
         }
 
         public void CadastrarVoo(List<String> listaIatas, List<Aeronave> listaAeronaves, List<Voo> listaVoos)
         {
-            // INSERIR idvoo 
+            // idvoo 
             if (listaVoos.Count > 9999)
             {
                 Console.WriteLine("Limite de Voos atingidos!");
                 return;
             }
-
             this.IdVoo = "V" + (listaVoos.Count() + 1).ToString("0000");
+
             //Nome do Aeroporto
             do
             {
@@ -54,22 +47,26 @@ namespace Project_OnTheFly
                 }
             } while (ValidarIATA(listaIatas, Destino) == false);
 
-            //INSERIR AERONAVE
-
             //Data e hora do voo
-            Console.Write("Informe a data e hora do voo: ");
-            DataVoo = DateTime.Parse(Console.ReadLine());
+            Console.Write("Informe a data de partida do voo: ");
+            DateTime dataVoo;
+            while (!DateTime.TryParse(Console.ReadLine(), out dataVoo))
+            {
+                Console.Write("Informe a data de partida do voo: ");
+            }
 
-            bool aux;
-            DateTime aux1;
+            Console.Write("Informe a hora de partida do voo: ");
+            DateTime horaVoo;
+            while (!DateTime.TryParse(Console.ReadLine(), out horaVoo))
+            {
+                Console.Write("Informe a hora de partida do voo: ");
+            }
+            DataVoo = dataVoo.ToString("dd/MM/yyyy") + horaVoo.ToString("HH:mm");
 
             //data do cadastro
-            do
-            {
-                Console.Write("Informe a Data de Cadastro: ");
-                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
-            } while (!aux);
-            DataCadastro = aux1;
+            DataCadastro = DateTime.Now.ToString("ddMMyyyy");
+
+            Situacao = 'A';
 
             //Listar Aeronaves
             Console.WriteLine("Lista de Aeronaves Cadastradas:");
@@ -118,7 +115,7 @@ namespace Project_OnTheFly
         }
         #endregion 
 
-        public void AlterarSituacao()
+        public void EditarVoo()
         {
             Voo voo = new();
 
@@ -129,14 +126,10 @@ namespace Project_OnTheFly
             voo.Situacao = situacao;
 
         }
-
-        public void EditarVoo()
-        {
-
-        }
+        
         public override string ToString()
         {
-            return "\nIdVoo: " + IdVoo + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
+            return "\nIdVoo: " + IdVoo + "\nCNPJ da Companhia Aerea: " + CNPJ + "\nIdAeronave: " + Inscricao + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo.ToString("dd/MM/yyyy HH:mm") + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
         }
 
     }

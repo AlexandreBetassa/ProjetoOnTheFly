@@ -17,21 +17,10 @@ namespace Project_OnTheFly
 
         public PassagemVoo()
         {
-          
-            Situacao = 'L'; // L Livre, R Reservada ou P paga
             DataUltimaOperacao = DateTime.Now;
-        }
-        
-
-        public PassagemVoo(string id, Voo voo, DateTime dataUltimaOperacao, float valor, char situacao)
-        {
-            IdPassagem = id;
-            Voo = voo;        
-            Valor = valor;
-            
+            Situacao = 'L';
         }
 
-        //CONFERIR SE A LISTA ESTA CERTA
         public void CadastrarPassagemVoo(List<Voo> listaVoos, List<PassagemVoo> listaPassagemVoo)
         {
             
@@ -67,44 +56,38 @@ namespace Project_OnTheFly
             }
 
             DataUltimaOperacao = DateTime.Now;
-            //bool aux;
-            //DateTime aux1;
-            //do
-            //{
-            //    Console.Write("Informe a data da último operação: ");
-            //    aux = DateTime.TryParse(Console.ReadLine(), out aux1);
-            //} while (!aux);
-            //DataUltimaOperacao = aux1;
 
-
-            Console.Write("Informe o VALOR das passagens desse voo: ");
+            Console.Write("Informe o valor das passagens desse voo: ");
             Valor = float.Parse(Console.ReadLine());
-            if (Valor > 9999.99 || Valor < 0)
-            {
-                Console.WriteLine("Valor das passagem excedeu o limite permitido!");
-            }
+                if (Valor > 9999.99 || Valor < 0)
+                {
+                    Console.WriteLine("Valor das passagem excedeu o limite permitido.");
+                }
+
+            //SITUAÇÂO
             string pagar;
             do
             {
                 Console.WriteLine("Deseja pagar as passagens nesse exato momento? [S/N]");
-                pagar = Console.ReadLine().ToUpper();
+                pagar = Console.ReadLine();
 
-                if (pagar == "S")
+                if(pagar == "s")
                 {
                     Situacao = 'P';
                 }
                 else
                 {
-                    Console.WriteLine("As passagens ficarão reservadas até o momento do pagamento!");
+                    Console.WriteLine("As passagens ficarão reservadas até o momento do pagamento.");
                     Situacao = 'R';
                 }
-            } while (pagar != "S");
+
+            }while(pagar != "s");
         }
        
         public void EditarPassagemVoo(PassagemVoo passagem)
         {
-            
             int op;
+
             do
             {
                 Console.Write("Escolha o item que você deseja editar: ");
@@ -112,6 +95,13 @@ namespace Project_OnTheFly
                 Console.Write("1 - Valor");
                 Console.Write("2 - Situação");              
                 op = int.Parse(Console.ReadLine());
+
+                 if (op != 1 && op != 2 && op != 0)
+                 {
+                    Console.WriteLine("Opção inválida!");
+                 }
+
+            } while (op != 1 && op != 2 && op != 0);
 
                 switch (op)
                 {
@@ -129,7 +119,7 @@ namespace Project_OnTheFly
                         }
                         else
                         {
-                            passagem.Valor = Valor;
+                            Valor = Valor;
                             Console.WriteLine("Novo valor gerado com sucesso!");
                         }
                         break;
@@ -137,7 +127,7 @@ namespace Project_OnTheFly
                     case 2:
                         Console.Write("Informe A NOVA Situação: ");
                         char situacao = char.Parse(Console.ReadLine());
-                        passagem.Situacao = situacao;
+                        Situacao = situacao;
                         Console.WriteLine("Passagem editada com sucesso!");
                         break;
 
@@ -145,7 +135,11 @@ namespace Project_OnTheFly
                         Console.WriteLine("Opção Inválida!");
                         break;
                 }
-            } while (op != 0);
+        }
+
+        public override string ToString()
+        {
+            return $"\nIdPassagem: {IdPassagem} \nData da última operação: {DataUltimaOperacao} \nValor: {Valor} \nSituação: {Situacao}";
         }
 
         public override string ToString()

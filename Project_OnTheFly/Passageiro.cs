@@ -22,13 +22,6 @@ namespace Project_OnTheFly
             DataCadastro = DateTime.Now; //data atual do sistema
             Situacao = 'A';
         }
-        public Passageiro(string cpf, string nome, DateTime dataNascimento, char sexo, DateTime ultimaCompra, DateTime dataCadastro, char situacao)
-        {
-            CPF = cpf;
-            Nome = nome;
-            DataNascimento = dataNascimento;
-            Sexo = sexo;
-        }
         public void CadastrarPassageiro()
         {
             Console.WriteLine(">>>CADASTRO DE PASSAGEIRO<<<");
@@ -184,9 +177,8 @@ namespace Project_OnTheFly
             Console.WriteLine("1 - Editar NOME cadastrado");
             Console.WriteLine("2 - Editar DATA DE NASCIMENTO cadastrado");
             Console.WriteLine("3 - Editar SEXO cadastrado");
-            Console.WriteLine("4 - Editar ÚLTIMA COMPRA cadastrada");
-            Console.WriteLine("5 - Editar DATA DO CADASTRO");
-            Console.WriteLine("6 - Editar SITUAÇÃO do CADASTRO ");
+            Console.WriteLine("4 - Editar DATA DO CADASTRO");
+            Console.WriteLine("5 - Editar SITUAÇÃO do CADASTRO ");
             int op = int.Parse(Console.ReadLine());
             switch (op)
             {
@@ -207,16 +199,11 @@ namespace Project_OnTheFly
                     break;
 
                 case 4:
-                    Console.WriteLine("Informe a DATA correta da ÚLTIMA COMPRA: ");
-                    UltimaCompra = DateTime.Parse(Console.ReadLine());
-                    break;
-
-                case 5:
                     Console.WriteLine("Informe a DATA DO CADASTRO correta: ");
                     DataCadastro = DateTime.Parse(Console.ReadLine());
                     break;
 
-                case 6:
+                case 5:
                     do
                     {
                         Console.WriteLine("Informe a SITUAÇÃO do cadastro correta (A - Ativo, I - Inativo): ");
