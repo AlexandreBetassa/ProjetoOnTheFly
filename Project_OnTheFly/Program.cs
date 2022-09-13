@@ -221,7 +221,7 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaAeronaves.Add(AdicionarAeronave(ListaCompanhiaAereas));
+                        listaAeronaves.Add(AdicionarAeronave(ListaCompanhiaAereas, listaAeronaves));
                         break;
                     case 2:
                         Console.Write("Informe a Inscrição da Aeronave para busca: ");
@@ -547,11 +547,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterAeronave
-        public static Aeronave AdicionarAeronave(List<CompanhiaAerea> listaCompanhias)
+        public static Aeronave AdicionarAeronave(List<CompanhiaAerea> listaCompanhias, List<Aeronave> listaAeronaves)
         {
             Aeronave aeronave = new Aeronave();
 
-            aeronave.CadastroAeronave(listaCompanhias);
+            aeronave.CadastroAeronave(listaCompanhias, listaAeronaves);
 
             return aeronave;
         }
