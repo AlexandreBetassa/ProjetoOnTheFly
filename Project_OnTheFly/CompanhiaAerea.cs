@@ -17,7 +17,6 @@ namespace Project_OnTheFly
 
         public CompanhiaAerea()
         {
-            SituacaoCA = 'A';
 
         }
 
@@ -28,25 +27,21 @@ namespace Project_OnTheFly
             DataAbertura = dataAbertura;
             UltimoVoo = DateTime.Now;
             DataCadastro = DateTime.Now;
+            SituacaoCA = situacaoCA; //A Ativo ou I Inativo
         }
 
         public void CadCompAerea()
         {
             bool aux;
             DateTime aux1;
-            int cnpj;
 
             Console.WriteLine("CADASTRO DE COMPANHIA AEREA");
 
             //CNPJ
             do
             {
-                do
-                {
-                    Console.Write("\nInforme o seu Cadastro Nacional da Pessoa Jurídica - CNPJ (Somente números sem / ou .):  ");
-                    CNPJ = Console.ReadLine();
-                } while (CNPJ.Length > 14);
-
+                Console.Write("\nInforme o seu Cadastro Nacional da Pessoa Jurídica - CNPJ:  ");
+                CNPJ = Console.ReadLine();
                 if (ValidarCnpj(CNPJ) == false)
                 {
                     Console.WriteLine("\nNÚMERO DE CNPJ INVÁLIDO.");
@@ -75,12 +70,11 @@ namespace Project_OnTheFly
             } while (!aux);
             UltimoVoo = aux1;
 
-
             //Data de abertura
             TimeSpan result;
             do
             {
-                Console.Write("\nInforme a data de abertura: ");
+                Console.Write("\nInforme a data de abertura: (mês/dia/ano)");
                 DataAbertura = DateTime.Parse(Console.ReadLine());
 
                 result = DateTime.Now - DataAbertura;
@@ -102,10 +96,11 @@ namespace Project_OnTheFly
             } while (!aux);
             DataCadastro = aux1;
 
+            SituacaoCA = char.Parse(Console.ReadLine());
 
         }
 
-        public void EditarCompanhia()
+        public void EditarCompAerea()
         {
             CompanhiaAerea companhia = new();
             Console.Write("Escolha o dado que você deseja editar: ");
@@ -114,6 +109,7 @@ namespace Project_OnTheFly
             Console.Write("3 - Editar DATA DE ABERTURA");
             Console.Write("4 - Editar ÚLTIMO VOO");
             Console.Write("5 - Editar NOVA DATA CADASTRO (ALTERAÇÃO)");
+            Console.WriteLine("0 - SAIR");
             int op = int.Parse(Console.ReadLine());
 
             switch (op)
@@ -150,7 +146,15 @@ namespace Project_OnTheFly
                         companhia.SituacaoCA = situacao;
                     } while (SituacaoCA != 'A' && SituacaoCA != 'I');
                     break;
+
+                case 0:
+                    break;
             }
+        }
+
+        public void EditarCompanhia()
+        {
+
         }
 
         public override string ToString()
@@ -170,12 +174,12 @@ namespace Project_OnTheFly
             //limpa caracteres especiais e deixa em minusculo
             cnpj = cnpj.ToLower().Trim();
             cnpj = cnpj.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "");
-            cnpj = cnpj.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
-            cnpj = cnpj.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
-            cnpj = cnpj.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
-            cnpj = cnpj.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
-            cnpj = cnpj.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
-            cnpj = cnpj.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
+            //cnpj = cnpj.Replace("+", "").Replace("*", "").Replace(",", "").Replace("?", "");
+            //cnpj = cnpj.Replace("!", "").Replace("@", "").Replace("#", "").Replace("$", "");
+            //cnpj = cnpj.Replace("%", "").Replace("¨", "").Replace("&", "").Replace("(", "");
+            //cnpj = cnpj.Replace("=", "").Replace("[", "").Replace("]", "").Replace(")", "");
+            //cnpj = cnpj.Replace("{", "").Replace("}", "").Replace(":", "").Replace(";", "");
+            //cnpj = cnpj.Replace("<", "").Replace(">", "").Replace("ç", "").Replace("Ç", "");
 
             // Se vazio
             if (cnpj.Length == 0)
@@ -262,6 +266,33 @@ namespace Project_OnTheFly
 
         }
         #endregion Validar cnpj
+        /*
+        #region Data de Abertura
+        public bool CadDataAbertura()
+        {
+            Console.Write("Digite a Data de Abertura da empresa (Mês/Dia/Ano): ");
+            DateTime dataAbertura;
+            while (!DateTime.TryParse(Console.ReadLine(), out dataAbertura))
+            {
+                Console.WriteLine("Formato de data incorreto!");
+                Console.Write("Digite a data de abertura da empresa corretamente (Mês/Dia/Ano): ");
+            }
+            DateTime verData = dataAbertura;
+            if (verData > DateTime.Now.AddMonths(-6))
+            {
+                Console.WriteLine("Não é possível cadastrar empresas com menos de 6 meses!");
+                return false;
+            }
+            DataAbertura = dataAbertura.ToString("ddMMyyyy");
+            if (DataAbertura == "0")
+                return false;
+            return true;
+
+        colocar dentro de cadastrar 
+        if (!CadDataAbertura())
+                return;
+        }
+        */
 
     }
 }
