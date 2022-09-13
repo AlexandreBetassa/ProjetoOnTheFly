@@ -76,7 +76,6 @@ namespace Project_OnTheFly
 
             DataCadastro = DateTime.Now;
 
-            SituacaoCA = char.Parse(Console.ReadLine());
         }
 
         public void EditarCompAerea()
