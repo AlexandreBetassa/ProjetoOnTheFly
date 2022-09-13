@@ -55,7 +55,7 @@ namespace Project_OnTheFly
                 }
             }
 
-            DataUltimaOperacao = DateTime.Now.ToString("ddMMyyyy");
+            DataUltimaOperacao = DateTime.Now;
 
             Console.Write("Informe o valor das passagens desse voo: ");
             Valor = float.Parse(Console.ReadLine());
@@ -65,13 +65,13 @@ namespace Project_OnTheFly
                 }
 
             //SITUAÇÂO
-            string pagar
+            string pagar;
             do
             {
                 Console.WriteLine("Deseja pagar as passagens nesse exato momento? [S/N]");
                 pagar = Console.ReadLine();
 
-                if(pagar = "s")
+                if(pagar == "s")
                 {
                     Situacao = 'P';
                 }
@@ -81,7 +81,7 @@ namespace Project_OnTheFly
                     Situacao = 'R';
                 }
 
-            }while(pagar != "s")
+            }while(pagar != "s");
         }
        
         public void EditarPassagemVoo(PassagemVoo passagem)
