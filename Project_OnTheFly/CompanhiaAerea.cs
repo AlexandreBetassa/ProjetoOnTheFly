@@ -72,9 +72,9 @@ namespace Project_OnTheFly
                 }
             } while (result.Days / 30 < 6);
 
-            UltimoVoo = DateTime.Now.ToString("ddMMyyyy");
+            UltimoVoo = DateTime.Now;
 
-            DataCadastro = DateTime.Now.ToString("ddMMyyyy");
+            DataCadastro = DateTime.Now;
 
             SituacaoCA = char.Parse(Console.ReadLine());
         }
