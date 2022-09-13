@@ -59,10 +59,10 @@ namespace Project_OnTheFly
 
             Console.Write("Informe o valor das passagens desse voo: ");
             Valor = float.Parse(Console.ReadLine());
-            if (Valor > 9999.99 || Valor < 0)
-            {
-                Console.WriteLine("Valor das passagem excedeu o limite permitido.");
-            }
+                if (Valor > 9999.99 || Valor < 0)
+                {
+                    Console.WriteLine("Valor das passagem excedeu o limite permitido.");
+                }
 
             //SITUAÇÂO
             string pagar
@@ -71,22 +71,23 @@ namespace Project_OnTheFly
                 Console.WriteLine("Deseja pagar as passagens nesse exato momento? [S/N]");
                 pagar = Console.ReadLine();
 
-            if(pagar = "s")
-            {
-                Situacao = 'P';
-            }
-            else
-            {
-                Console.WriteLine("As passagens ficarão reservadas até o momento do pagamento.");
-                Situacao = 'R';
-            }
+                if(pagar = "s")
+                {
+                    Situacao = 'P';
+                }
+                else
+                {
+                    Console.WriteLine("As passagens ficarão reservadas até o momento do pagamento.");
+                    Situacao = 'R';
+                }
+
             }while(pagar != "s")
         }
        
-        public void EditarPassagemVoo()
+        public void EditarPassagemVoo(PassagemVoo passagem)
         {
-            PassagemVoo passagem = new();
             int op;
+
             do
             {
                 Console.Write("Escolha o item que você deseja editar: ");
@@ -94,6 +95,13 @@ namespace Project_OnTheFly
                 Console.Write("2 - Situação");
                 Console.Write("0 - Sair");
                 op = int.Parse(Console.ReadLine());
+
+                 if (op != "1" && op != "2" && op != "0")
+                 {
+                    Console.WriteLine("Opção inválida!");
+                 }
+
+            } while (op != "1" && op != "2" && op != "0");
 
                 switch (op)
                 {
@@ -124,7 +132,6 @@ namespace Project_OnTheFly
                         Console.WriteLine("Opção Inválida");
                         break;
                 }
-            } while (op != 0);
         }
 
         public override string ToString()
