@@ -16,7 +16,6 @@ namespace Project_OnTheFly
 
         public PassagemVoo()
         {
-            Console.WriteLine();
         }
         
 
