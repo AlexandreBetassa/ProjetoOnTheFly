@@ -28,12 +28,14 @@ namespace Project_OnTheFly
 
             LerArquivoPassageiros(listaPassageiros);
             LerArquivoIatas(listaIatas);
-            LerArquivoAeronave(listaAeronaves);
             LerArquivoCompanhiaAerea(ListaCompanhiaAereas);
+            LerArquivoAeronave(listaAeronaves);
+            LerArquivoVoo(listaVoos, listaIatas, listaAeronaves);
+            LerListaPassagemVoo(listaPassagemVoo, listaVoos);
             LerCpfRestrito(listaCpfRestrito);
             LerCnpjBloqueado(listaCnpjRestrito);
-            LerArquivoVoo(listaVoos, listaIatas, listaAeronaves);
             LerArquivoVenda(listaVendas, listaPassageiros);
+            LerArquivoItemVenda(listaItemVendas);
 
             int op;
             do
@@ -78,6 +80,7 @@ namespace Project_OnTheFly
                         GravarListaVoos(listaVoos);
                         GravarListaPassagemVoo(listaPassagemVoo);
                         GravarListaVenda(listaVendas);
+                        GravarItemVenda(listaItemVendas);
                         Environment.Exit(0);
                         break;
                     default:
@@ -177,7 +180,7 @@ namespace Project_OnTheFly
                 {
                     case 1:
                         CompanhiaAerea companhiaAerea = AdicionarCompanhia();
-                        if(VerificarCompanhiaAerea(companhiaAerea, listaCnpjRestrito)) listaCompanhiaAereas.Add(companhiaAerea);
+                        if (VerificarCompanhiaAerea(companhiaAerea, listaCnpjRestrito)) listaCompanhiaAereas.Add(companhiaAerea);
                         break;
                     case 2:
                         Console.WriteLine(BuscarCompanhia(listaCompanhiaAereas).ToString());
@@ -1182,7 +1185,7 @@ namespace Project_OnTheFly
             return $"{passagemVoo.IdPassagem.PadRight(6)}{passagemVoo.Voo.IdVoo}{passagemVoo.DataUltimaOperacao:ddMMyyyy}{passagemVoo.Valor:0000,00}{passagemVoo.Situacao}";
         }
 
-        static void LerListaPassagmVoo(List<PassagemVoo> listaPassagemVoo, List<Voo> listaVoo)
+        static void LerListaPassagemVoo(List<PassagemVoo> listaPassagemVoo, List<Voo> listaVoo)
         {
             String line;
 
@@ -1301,7 +1304,7 @@ namespace Project_OnTheFly
             return $"{itemVenda.IdItemVenda:00000}{itemVenda.PassagemVoo:000000}{itemVenda.ValorUnit:00000,00}";
         }
 
-        static void LerArquivoItemVenda(List<Venda> listaVenda)
+        static void LerArquivoItemVenda(List<ItemVenda> listaVenda)
         {
             String line;
             try
