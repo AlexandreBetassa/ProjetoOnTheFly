@@ -478,21 +478,21 @@ namespace Project_OnTheFly
                 }
             }
             listaCnpjBloqueado.Add(cnpj);
-            Console.WriteLine("CPF REMOVIDO DA LISTA DE RESTRITOS COM SUCESSO!!!");
+            Console.WriteLine("CNPJ INSERIDO NA LISTA DE BLOQUEIOS COM SUCESSO!!!");
             Console.ReadKey();
         }
 
-        static void RemoverCpfRestrito(List<String> listaCpfRestrito)
+        static void RemoverCnpjRestrito(List<String> listaCnpjBloqueado)
         {
             Console.WriteLine("Informe o número de CPF que irá ser removido da lista de restritos:");
-            string cpf = Console.ReadLine();
-            foreach (var item in listaCpfRestrito)
-                if (item == cpf)
+            string cnpj = Console.ReadLine();
+            foreach (var item in listaCnpjBloqueado)
+                if (item == cnpj)
                 {
-                    listaCpfRestrito.Remove(cpf);
-                    Console.WriteLine("CPF REMOVIDO DA LISTA DE RESTRITOS COM SUCESSO!!!");
+                    listaCnpjBloqueado.Remove(cnpj);
+                    Console.WriteLine("CNPJ REMOVIDO DA LISTA DE RESTRITOS COM SUCESSO!!!");
                 }
-                else Console.WriteLine("CPF NÃO LOCALIZADO!!!");
+                else Console.WriteLine("CNPJ NÃO LOCALIZADO!!!");
             Console.ReadKey();
         }
 
