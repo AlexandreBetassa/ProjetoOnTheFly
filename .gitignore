@@ -309,55 +309,71 @@ paket-files/
 # FAKE - F# Make
 .fake/
 
-# CodeRush personal settings
-.cr/personal
-
-# Python Tools for Visual Studio (PTVS)
-__pycache__/
-*.pyc
-
-# Cake - Uncomment if you are using it
-# tools/**
-# !tools/packages.config
-
-# Tabs Studio
-*.tss
-
-# Telerik's JustMock configuration file
-*.jmconfig
-
-# BizTalk build output
-*.btp.cs
-*.btm.cs
-*.odx.cs
-*.xsd.cs
-
-# OpenCover UI analysis results
-OpenCover/
-
-# Azure Stream Analytics local run output
-ASALocalRun/
-
-# MSBuild Binary and Structured Log
-*.binlog
-
-# NVidia Nsight GPU debugger configuration file
-*.nvuser
-
-# MFractors (Xamarin productivity tool) working folder
-.mfractor/
-
-# Local History for Visual Studio
-.localhistory/
-
-# BeatPulse healthcheck temp database
-healthchecksdb
-
-# Backup folder for Package Reference Convert tool in Visual Studio 2017
-MigrationBackup/
-
-# Ionide (cross platform F# VS Code tools) working folder
-.ionide/
-
-# Fody - auto-generated XML schema
-FodyWeavers.xsd
+/.vs/Project_OnTheFly/FileContentIndex/write.lock
+/.vs/Project_OnTheFly/FileContentIndex/e31a5ee0-b4d1-4091-8883-35f6e1e1e646.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/e62cf372-7493-43d9-943c-c3c05e7574e2.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/ef72ffee-e7b3-4a46-9274-b6ce68c5cd82.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/a6684843-04fb-4dac-8719-dbc68b66ffdd.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/7c1c6daf-c439-431c-8020-0cea104a0877.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/e9f3c95e-691a-4450-ba38-012528c12fe2.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/ed3788f5-660d-43b4-8c57-dbb80c0a3a26.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/d2a8a00a-406d-4575-a8e6-6a61d2abde02.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/ab7bfffa-4da0-4e13-9c97-a90a02a2aad7.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/e2b144a5-0b97-4b06-8a69-0607c4b65384.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/d96f2b71-1967-48a5-905e-e4b6b7485ee9.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/c1c300f5-bdef-4385-9b49-98ecddddfc85.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/30ec5122-98be-4374-8d48-5991869a67f4.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/dd704ca3-14f0-4f6f-81a2-ace5a209175d.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/d3778ce5-fae5-4050-a1fc-fb4da4703fbc.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/86f30752-22a4-45f4-aa31-1b25109c8fd6.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/45b8785c-f2ea-4b8f-a617-05a9a57db3e6.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/ffd4108a-867e-4a00-9018-5642fc5901ba.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/c4dfe6b3-ac5f-4161-9d3b-b2ca9dcf8cb9.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/8ff3feb7-ffa5-4d59-8fcf-f77fcbab1c6e.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/3e61943d-25c6-41e2-85fa-02a227578531.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/8808e1a8-a55e-437c-8749-d736effa0df3.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/6a8d897a-eb27-45a6-b6dd-3d4c7de15dd8.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/44ebfc8d-27e0-4ff6-adaf-390de288c789.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/083c780c-af20-48dd-862f-7ce7b803ecd3.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/e8671514-25ec-4468-8e13-1c03010d3fd6.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/a9df6a0a-34e8-416d-bd7b-413e94501aa6.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/9941f1d0-4f68-4782-8945-70f7aecf82ab.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/33a34e58-8217-40a8-8e79-d2343c3d0ee0.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/e8e55929-01cd-4f61-a6a1-e825a62a07e4.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/6a648ea8-9b7d-43b1-af1f-0b1706dad4e0.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/584c402c-87f6-49c6-a028-ed37f19e446a.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/10132b42-366a-4652-b13e-78a3b915b571.vsidx
+<<<<<<< HEAD
+/.vs/Project_OnTheFly/FileContentIndex/bcf295b6-2e38-4de1-9579-eea06ab1629f.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/664a4da3-574d-4f3e-bc52-870bb160fb83.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/63716eab-2e53-41ea-b16e-65a46392a5d7.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/4c73f85e-e641-4e4d-bb06-66b9345c466b.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/a7e8c40c-c2e3-4806-a766-85a7225cabd4.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/8f60c5e8-5eb9-4e3a-84eb-2a68203db6eb.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/28537857-b65d-4333-84fb-a2a6cc8ed5b5.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/f04b9b81-091a-416f-a2bd-bf37182b48fd.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/90e542e1-b81e-4e85-9663-989fd4487a1e.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/45df92b4-c672-4354-b711-628df77e2383.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/247581a5-589f-4a09-a35a-c2e5453403b4.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/f93758e1-9bdf-4b76-a044-d7c1f5217e06.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/f84a00e6-0c90-45fb-8261-896e6368206f.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/d6722c8c-ccfb-488d-8743-4d84ee5de159.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/b91eea30-5ac9-43bd-9c88-a706d1413674.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/d7643752-d330-43e8-96e0-7d03ffe37cc0.vsidx
+=======
+/.vs/ProjetoOnTheFly/FileContentIndex/write.lock
+/.vs/ProjetoOnTheFly/FileContentIndex/merges/532a7421-7edd-496c-8f15-823f1f5b27cf.vsidx
+/.vs/ProjetoOnTheFly/FileContentIndex/854fbdbe-3052-4693-9847-ee0ecad7de84.vsidx
+/.vs/ProjetoOnTheFly/FileContentIndex/60f40a66-de0a-41b6-bd8a-bab75814e667.vsidx
+/.vs/ProjetoOnTheFly/FileContentIndex/52d24edf-8782-402f-a5a7-a14da7cf4b49.vsidx
+/.vs/ProjetoOnTheFly/FileContentIndex/0ed453ab-9b6d-4694-b664-41ba1bf443c4.vsidx
+/.vs/ProjetoOnTheFly/FileContentIndex/cd427e80-b4f0-44b0-b144-0c6e76dfc7e7.vsidx
+/.vs/ProjetoOnTheFly/FileContentIndex/98c35de2-80b5-4b2d-bda8-aaf27760f964.vsidx
+/.vs/ProjetoOnTheFly/FileContentIndex/4a526f0c-9a36-4623-9d59-b04ba2b68af1.vsidx
+/.vs/ProjetoOnTheFly/FileContentIndex/27d58a65-8618-4c5d-9eb8-a475e06b3f78.vsidx
+>>>>>>> feature/thalya
+/.vs/Project_OnTheFly/FileContentIndex/785a4317-a36b-4ee7-ae45-f0245ef1d737.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/ec072771-e24e-4e8a-88be-aa1e0a8e1a41.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/de976daf-b1c0-4ccb-9150-07ef3d345bbd.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/99f66098-1bc7-4cb0-b228-8752c6c7b32f.vsidx
+/.vs/Project_OnTheFly/FileContentIndex/2512a045-34cd-4d86-b83c-0075590ee967.vsidx

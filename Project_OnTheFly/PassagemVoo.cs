@@ -14,15 +14,27 @@ namespace Project_OnTheFly
         public float Valor { get; set; } //maximo 9.999,99
         public char Situacao { get; set; }
 
+
         public PassagemVoo()
         {
             this.Situacao = 'L';
             this.DataUltimaOperacao = DateTime.Now;
         }
 
-        public void CadastrarPassagemVoo(List<Voo> listaVoos)
+        //CONFERIR SE A LISTA ESTA CERTA
+        public void CadastrarPassagemVoo(List<Voo> listaVoos, List<PassagemVoo> listaPassagemVoo)
         {
-            //Id
+            
+            // INSERIR idvoo 
+
+            //ID CHAVE
+            if (listaPassagemVoo.Count > 9999)
+            {
+                Console.WriteLine("Limite atingido!");
+                return;
+            }
+
+            this.IdPassagem = "PA" + (listaPassagemVoo.Count() + 1).ToString("0000");
 
             //Lista de Voos
             Console.WriteLine("Lista de Voos:");
