@@ -79,13 +79,12 @@ namespace Project_OnTheFly
             SituacaoCA = char.Parse(Console.ReadLine());
         }
 
-        public void EditarCompAerea(CompanhiaAerea companhia)
+        public void EditarCompAerea()
         {
             int op;
 
             do
             {
-                CompanhiaAerea companhia = new();
                 Console.Write("Escolha o dado que você deseja editar: ");
                 Console.Write("1 - Editar RAZÃO SOCIAL ");
                 Console.Write("2 - Editar DATA DE ABERTURA ");
@@ -104,21 +103,21 @@ namespace Project_OnTheFly
             switch (op)
             {
                 case 1:
-                     Console.Write("Informe a RAZÃO SOCIAL correta: ");
+                    Console.Write("Informe a RAZÃO SOCIAL correta: ");
                     string razaoSocial = Console.ReadLine();
-                    companhia.RazaoSocial = razaoSocial;
+                    RazaoSocial = razaoSocial;
                     break;
 
                 case 2:
                     Console.Write("Informe a DATA DE ABERTURA correta: ");
                     DateTime dataAbertura = DateTime.Parse(Console.ReadLine());
-                    companhia.DataAbertura = dataAbertura;
+                    DataAbertura = dataAbertura;
                     break;
 
                 case 3:
                     Console.Write("Informe a DATA DO ÚLTIMO VOO correta: ");
                     DateTime ultimoVoo = DateTime.Parse(Console.ReadLine());
-                    companhia.UltimoVoo = ultimoVoo;
+                    UltimoVoo = ultimoVoo;
                     break;
 
                 case 4:
@@ -126,9 +125,9 @@ namespace Project_OnTheFly
                     {
                         Console.WriteLine("Informe a SITUAÇÃO do cadastro correta (A - Ativo, I - Inativo): ");
                         char situacao = char.Parse(Console.ReadLine());
-                        companhia.SituacaoCA = situacao;
+                        SituacaoCA = situacao;
 
-                    }while (SituacaoCA != 'A' && SituacaoCA != 'I');
+                    } while (SituacaoCA != 'A' && SituacaoCA != 'I');
                     break;
 
                 case 0:
