@@ -21,16 +21,15 @@ namespace Project_OnTheFly
         {
             DataCadastro = DateTime.Now;
             UltimaVenda = DateTime.Now;
+            Situacao = 'A';
         }
 
         public Aeronave(string inscricao, int capacidade, int assentosOcupados, DateTime ultimaVenda, DateTime dataCadastro)
         {
             Inscricao = inscricao;
             Capacidade = capacidade;
-            AssentosOcupados = assentosOcupados;
-            UltimaVenda = DateTime.Now;
-            DataCadastro = DateTime.Now;
-            Situacao = 'A';
+            AssentosOcupados = assentosOcupados;          
+          
         }
         public String SufixoAeronave()
         {
