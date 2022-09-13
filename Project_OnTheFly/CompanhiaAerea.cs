@@ -94,13 +94,14 @@ namespace Project_OnTheFly
                 Console.Write("Informe a Data de Cadastro: ");
                 aux = DateTime.TryParse(Console.ReadLine(), out aux1);
             } while (!aux);
+
             DataCadastro = aux1;
 
             SituacaoCA = char.Parse(Console.ReadLine());
 
         }
 
-        public void EditarCompanhia()
+        public void EditarCompAerea()
         {
             CompanhiaAerea companhia = new();
             Console.Write("Escolha o dado que você deseja editar: ");
@@ -150,6 +151,11 @@ namespace Project_OnTheFly
                 case 0:
                     break;
             }
+        }
+
+        public void EditarCompanhia()
+        {
+
         }
 
         public override string ToString()

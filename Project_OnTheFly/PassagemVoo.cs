@@ -112,7 +112,6 @@ namespace Project_OnTheFly
                     default:
                         Console.WriteLine("Opção Inválida");
                         break;
-
                 }
             } while (op != 0);
         }
