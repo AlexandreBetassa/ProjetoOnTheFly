@@ -45,7 +45,7 @@ namespace Project_OnTheFly
                         break;
                     case 3:
                         Console.Clear();
-                        MenuAeronave(listaAeronaves,ListaCompanhiaAereas);
+                        MenuAeronave(listaAeronaves, ListaCompanhiaAereas);
                         break;
                     case 4:
                         Console.Clear();
@@ -53,7 +53,7 @@ namespace Project_OnTheFly
                         break;
                     case 5:
                         Console.Clear();
-                        MenuPassagem(listaPassagensVoos,listaVoos);
+                        MenuPassagem(listaPassagensVoos, listaVoos);
                         break;
                     case 6:
                         Console.Clear();
@@ -202,7 +202,7 @@ namespace Project_OnTheFly
                         break;
                     case 4:
                         foreach (Aeronave item in listaAeronaves)
-                            if(item.Situacao == 'A')
+                            if (item.Situacao == 'A')
                                 Console.WriteLine(item.ToString() + "\n");
                         break;
                     case 0:
@@ -681,9 +681,9 @@ namespace Project_OnTheFly
         }
 
         //metodo de leitura do arquivo de passageiros
-        //static void LerArquivoPassageiros(List<Passageiro> listaPassageiro)
-       // {
-         //   String line;
+        static void LerArquivoPassageiros(List<Passageiro> listaPassageiro)
+        {
+            String line;
 
             try
             {
