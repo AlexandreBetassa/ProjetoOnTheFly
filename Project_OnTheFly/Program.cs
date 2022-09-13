@@ -566,19 +566,20 @@ namespace Project_OnTheFly
         }
         public static void EditarPassagem(List<PassagemVoo> listaPassagens)
         {
-            PassagemVoo passagem = BuscarPassagem(listaPassagens);
+            Console.Write("Informe o ID da Passagem para busca: ");
+            string idPassagem = Console.ReadLine();
+            PassagemVoo passagem = BuscarPassagem(listaPassagens, idPassagem);
 
             if (passagem != null)
             {
                 passagem.EditarPassagemVoo();
             }
         }
-        public static PassagemVoo BuscarPassagem(List<PassagemVoo> listaPassagens)
+        public static PassagemVoo BuscarPassagem(List<PassagemVoo> listaPassagens, string idPassagem)
         {
             bool achei = false;
 
-            Console.Write("Informe o ID da Passagem para busca: ");
-            string idPassagem = Console.ReadLine();
+
             PassagemVoo passagem;
 
             foreach (PassagemVoo item in listaPassagens)
@@ -883,7 +884,7 @@ namespace Project_OnTheFly
 
                     aeronave.Inscricao = line.Substring(0, 6);
                     aeronave.Capacidade = int.Parse(line.Substring(6, 3));
-                    aeronave.AcentosOcupados = int.Parse(line.Substring(10, 3));
+                    aeronave.AssentosOcupados = int.Parse(line.Substring(10, 3));
                     aeronave.UltimaVenda = DateTime.Parse($"{line.Substring(12, 2)}/{line.Substring(14, 2)}/{line.Substring(16, 4)}");
                     aeronave.DataCadastro = DateTime.Parse($"{line.Substring(20, 2)}/{line.Substring(22, 2)}/{line.Substring(24, 4)}");
                     aeronave.Situacao = line[28];
@@ -1076,7 +1077,7 @@ namespace Project_OnTheFly
 
         static String getPassagemVoo(PassagemVoo passagemVoo)
         {
-            return $"{passagemVoo.Id.PadRight(6)}{passagemVoo.Voo.IdVoo}{passagemVoo.DataUltimaOperacao:ddMMyyyy}{passagemVoo.Valor:0000,00}{passagemVoo.Situacao}";
+            return $"{passagemVoo.IdPassagem.PadRight(6)}{passagemVoo.Voo.IdVoo}{passagemVoo.DataUltimaOperacao:ddMMyyyy}{passagemVoo.Valor:0000,00}{passagemVoo.Situacao}";
         }
 
         static void LerListaPassagmVoo(List<PassagemVoo> listaPassagemVoo, List<Voo> listaVoo)
@@ -1090,7 +1091,7 @@ namespace Project_OnTheFly
                 while (line != null)
                 {
                     PassagemVoo passagemVoo = new PassagemVoo();
-                    passagemVoo.Id = line.Substring(0, 6);
+                    passagemVoo.IdPassagem = line.Substring(0, 6);
                     //passagemVoo.Voo = BuscarVoo(listaVoo, line.Substring(7, 5));
                     passagemVoo.DataUltimaOperacao = Convert.ToDateTime($"{line.Substring(12, 2)}/{line.Substring(14, 2)}/{line.Substring(16, 4)}");
                     passagemVoo.Valor = float.Parse(line.Substring(21, 6));
@@ -1195,7 +1196,7 @@ namespace Project_OnTheFly
 
         static String getItemVenda(ItemVenda itemVenda)
         {
-            return $"{itemVenda.IdItemVenda:00000}{itemVenda.IdPassagem:000000}{itemVenda.ValorUnitario:00000,00}";
+            return $"{itemVenda.IdItemVenda:00000}{itemVenda.PassagemVoo:000000}{itemVenda.ValorUnit:00000,00}";
         }
 
         static void LerArquivoItemVenda(List<Venda> listaVenda)
@@ -1209,8 +1210,8 @@ namespace Project_OnTheFly
                 {
                     ItemVenda ItemVenda = new ItemVenda();
                     ItemVenda.IdItemVenda = line.Substring(0, 5);
-                    ItemVenda.IdPassagem = line.Substring(5, 5);
-                    ItemVenda.ValorUnitario = float.Parse(line.Substring(5, 5));
+                    ItemVenda.PassagemVoo = line.Substring(5, 5);
+                    ItemVenda.ValorUnit = float.Parse(line.Substring(5, 5));
                 }
                 arqItemVenda.Close();
             }

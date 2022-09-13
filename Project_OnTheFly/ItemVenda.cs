@@ -9,7 +9,7 @@ namespace Project_OnTheFly
     internal class ItemVenda
     {
         public string IdItemVenda { get; set; }
-        public PassagemVoo PassagemVoo { get; set; }
+        public String PassagemVoo { get; set; }
         public float ValorUnit { get; set; }
 
         public void CadastrarItemVenda(List<PassagemVoo> listaPassagensVoos)
@@ -31,14 +31,14 @@ namespace Project_OnTheFly
             foreach (PassagemVoo item in listaPassagensVoos)
             {
                 if (item.IdPassagem == iditemvenda)
-                    this.PassagemVoo = item;
+                    this.PassagemVoo = item.IdPassagem;
             }
         }
 
 
         public override string ToString()
         {
-            return $"Id Venda: {IdItemVenda}\nId Passagem: {PassagemVoo.IdPassagem}\nValor Unitário: R${ValorUnit}".ToString();
+            return $"Id Venda: {IdItemVenda}\nId Passagem: {PassagemVoo}\nValor Unitário: R${ValorUnit}".ToString();
         }
 
     }
