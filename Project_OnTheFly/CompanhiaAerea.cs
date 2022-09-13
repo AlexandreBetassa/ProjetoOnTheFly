@@ -54,14 +54,6 @@ namespace Project_OnTheFly
                 }
             } while (RazaoSocial.Length > 50);
 
-            //Inserir ultimo voo. no momento do cadastro poderá ser usado a data atual
-            do
-            {
-                Console.Write("Informe a Data do Último voo: ");
-                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
-            } while (!aux);
-            UltimoVoo = aux1;
-
             //Data de abertura
             TimeSpan result;
             do
@@ -80,28 +72,33 @@ namespace Project_OnTheFly
                 }
             } while (result.Days / 30 < 6);
 
-            //Data do cadastro
-            do
-            {
-                Console.Write("Informe a Data de Cadastro: ");
-                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
-            } while (!aux);
+            UltimoVoo = DateTime.Now.ToString("ddMMyyyy");
 
-            DataCadastro = aux1;
+            DataCadastro = DateTime.Now.ToString("ddMMyyyy");
 
             SituacaoCA = char.Parse(Console.ReadLine());
         }
 
         public void EditarCompAerea()
         {
-            CompanhiaAerea companhia = new();
-            Console.Write("Escolha o dado que você deseja editar: ");
-            Console.Write("1 - Editar RAZÃO SOCIAL");
-            Console.Write("2 - Editar DATA DE ABERTURA");
-            Console.Write("3 - Editar ÚLTIMO VOO");
-            Console.Write("4 - Editar NOVA DATA CADASTRO (ALTERAÇÃO)");
-            Console.WriteLine("0 - SAIR");
             int op = int.Parse(Console.ReadLine());
+
+            do
+            {
+                CompanhiaAerea companhia = new();
+                Console.Write("Escolha o dado que você deseja editar: ");
+                Console.Write("1 - Editar RAZÃO SOCIAL ");
+                Console.Write("2 - Editar DATA DE ABERTURA ");
+                Console.Write("3 - Editar ÚLTIMO VOO ");
+                Console.Write("4 - Editar NOVA DATA CADASTRO (ALTERAÇÃO) ");
+                Console.Write("0 - SAIR ");
+
+                if (op != "1" && op != "2" && op != "3" && op != "4" && op != "0")
+                {
+                    Console.WriteLine("Opção inválida!");
+                }
+
+            }while(op != "1" && op != "2" && op != "3" && op != "4" && op != "0")
 
             switch (op)
             {
@@ -129,7 +126,8 @@ namespace Project_OnTheFly
                         Console.WriteLine("Informe a SITUAÇÃO do cadastro correta (A - Ativo, I - Inativo): ");
                         char situacao = char.Parse(Console.ReadLine());
                         companhia.SituacaoCA = situacao;
-                    } while (SituacaoCA != 'A' && SituacaoCA != 'I');
+
+                    }while (SituacaoCA != 'A' && SituacaoCA != 'I');
                     break;
 
                 case 0:
@@ -246,34 +244,5 @@ namespace Project_OnTheFly
 
         }
         #endregion Validar cnpj
-
-        /*
-        #region Data de Abertura
-        public bool CadDataAbertura()
-        {
-            Console.Write("Digite a Data de Abertura da empresa [MM/DD/AA]: ");
-            DateTime dataAbertura;
-            while (!DateTime.TryParse(Console.ReadLine(), out dataAbertura))
-            {
-                Console.WriteLine("Formato de data incorreto!");
-                Console.Write("Digite a data de abertura da empresa corretamente [MM/DD/AA]: ");
-            }
-            DateTime verData = dataAbertura;
-            if (verData > DateTime.Now.AddMonths(-6))
-            {
-                Console.WriteLine("nO tempo é insufiente para finalizar o cadastro.");
-                return false;
-            }
-            DataAbertura = dataAbertura.ToString("ddMMyyyy");
-            if (DataAbertura == "0")
-                return false;
-            return true;
-
-        colocar dentro de cadastrar 
-        if (!CadDataAbertura())
-                return;
-        }
-        */
-
     }
 }

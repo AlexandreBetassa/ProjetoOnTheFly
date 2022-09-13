@@ -58,10 +58,6 @@ namespace Project_OnTheFly
                         this.Passageiro = item;
                 }
             }
-
-
-
-
         }
     }
 }
