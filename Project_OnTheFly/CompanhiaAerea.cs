@@ -90,7 +90,6 @@ namespace Project_OnTheFly
             DataCadastro = aux1;
 
             SituacaoCA = char.Parse(Console.ReadLine());
-
         }
 
         public void EditarCompAerea()
@@ -247,21 +246,22 @@ namespace Project_OnTheFly
 
         }
         #endregion Validar cnpj
+
         /*
         #region Data de Abertura
         public bool CadDataAbertura()
         {
-            Console.Write("Digite a Data de Abertura da empresa (Mês/Dia/Ano): ");
+            Console.Write("Digite a Data de Abertura da empresa [MM/DD/AA]: ");
             DateTime dataAbertura;
             while (!DateTime.TryParse(Console.ReadLine(), out dataAbertura))
             {
                 Console.WriteLine("Formato de data incorreto!");
-                Console.Write("Digite a data de abertura da empresa corretamente (Mês/Dia/Ano): ");
+                Console.Write("Digite a data de abertura da empresa corretamente [MM/DD/AA]: ");
             }
             DateTime verData = dataAbertura;
             if (verData > DateTime.Now.AddMonths(-6))
             {
-                Console.WriteLine("Não é possível cadastrar empresas com menos de 6 meses!");
+                Console.WriteLine("nO tempo é insufiente para finalizar o cadastro.");
                 return false;
             }
             DataAbertura = dataAbertura.ToString("ddMMyyyy");

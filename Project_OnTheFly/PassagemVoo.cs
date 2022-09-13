@@ -21,7 +21,6 @@ namespace Project_OnTheFly
             Situacao = 'L';
 
         }
-        
 
         public PassagemVoo(string id, Voo voo, DateTime dataUltimaOperacao, float valor, char situacao)
         {
