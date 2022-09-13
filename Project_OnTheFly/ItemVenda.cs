@@ -13,9 +13,7 @@ namespace Project_OnTheFly
         public float ValorUnit { get; set; }
 
         public ItemVenda()
-        {
-
-        }
+        { }
 
         public void CadastrarItemVenda(List<PassagemVoo> listaPassagensVoos, String idItemVenda)
         {
@@ -39,7 +37,6 @@ namespace Project_OnTheFly
                     this.PassagemVoo = item.IdPassagem;
             }
         }
-
 
         public override string ToString()
         {
