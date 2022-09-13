@@ -94,6 +94,7 @@ namespace Project_OnTheFly
                 Console.Write("Informe a Data de Cadastro: ");
                 aux = DateTime.TryParse(Console.ReadLine(), out aux1);
             } while (!aux);
+
             DataCadastro = aux1;
 
             SituacaoCA = char.Parse(Console.ReadLine());

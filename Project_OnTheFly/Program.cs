@@ -176,7 +176,8 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaCompanhiaAereas.Add(AdicionarCompanhia());
+                        CompanhiaAerea companhiaAerea = AdicionarCompanhia();
+                        if(VerificarCompanhiaAerea(companhiaAerea, listaCnpjRestrito)) listaCompanhiaAereas.Add(companhiaAerea);
                         break;
                     case 2:
                         Console.WriteLine(BuscarCompanhia(listaCompanhiaAereas).ToString());
@@ -473,6 +474,31 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterCompanhia
+
+        static bool VerificarListaCnpjBloqueado(CompanhiaAerea companhia, List<String> listaCnpjBloqueado)
+        {
+            foreach (var item in listaCnpjBloqueado)
+            {
+                if (companhia.CNPJ == item) return false;
+            }
+            return true;
+        }
+        static bool VerificarCompanhiaAerea(CompanhiaAerea companhia, List<String> listaCnpjBloqueado)
+        {
+            if (companhia.DataAbertura < companhia.DataAbertura.AddMonths(6))
+            {
+                Console.WriteLine("EMPRESAS COM MENOS DE 6 MESES DE EXISTÊNCIA NÃO PODEM SER CADASTRADAS");
+                Console.ReadKey();
+                return false;
+            }
+            else if (!VerificarListaCnpjBloqueado(companhia, listaCnpjBloqueado))
+            {
+                Console.WriteLine("EXISTE UM IMPEDIMENTO EM SEU CADASTRO, CONSULTE O ADMINISTRADOR DO AEROPORTO");
+                Console.ReadKey();
+                return false;
+            }
+            else return true;
+        }
         static void CadastrarCnpjRestrito(List<String> listaCnpjBloqueado)
         {
             Console.WriteLine("Informe o número de CNPJ que irá para a lista de bloqueios:");
@@ -489,7 +515,6 @@ namespace Project_OnTheFly
             Console.WriteLine("CNPJ INSERIDO NA LISTA DE BLOQUEIOS COM SUCESSO!!!");
             Console.ReadKey();
         }
-
         static void RemoverCnpjRestrito(List<String> listaCnpjBloqueado)
         {
             Console.WriteLine("Informe o número de CPF que irá ser removido da lista de restritos:");
@@ -503,11 +528,9 @@ namespace Project_OnTheFly
                 else Console.WriteLine("CNPJ NÃO LOCALIZADO!!!");
             Console.ReadKey();
         }
-
         public static CompanhiaAerea AdicionarCompanhia()
         {
             CompanhiaAerea companhia = new CompanhiaAerea();
-
             companhia.CadCompAerea();
 
             return companhia;
