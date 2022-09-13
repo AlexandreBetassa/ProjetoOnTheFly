@@ -392,8 +392,30 @@ namespace Project_OnTheFly
         {
             Console.WriteLine("Informe o número de CPF que irá para a lista de restritos:");
             string cpf = Console.ReadLine();
+            foreach (var item in listaCpfRestrito)
+            {
+                if (item == cpf)
+                {
+                    Console.WriteLine("CPF JÁ INSERIDO NA LISTA DE RESTRITOS!!!");
+                    return;
+                }
+            }
             listaCpfRestrito.Add(cpf);
-            Console.WriteLine("CPF INSERIDO NA LISTA DE RESTRITOS COM SUCESSO!!!");
+            Console.WriteLine("CPF REMOVIDO DA LISTA DE RESTRITOS COM SUCESSO!!!");
+            Console.ReadKey();
+        }
+
+        public void RemoverCpfRestrito(List<String> listaCpfRestrito)
+        {
+            Console.WriteLine("Informe o número de CPF que irá ser removido da lista de restritos:");
+            string cpf = Console.ReadLine();
+            foreach (var item in listaCpfRestrito)
+                if (item == cpf)
+                {
+                    listaCpfRestrito.Remove(cpf);
+                    Console.WriteLine("CPF REMOVIDO DA LISTA DE RESTRITOS COM SUCESSO!!!");
+                }
+                else Console.WriteLine("CPF NÃO LOCALIZADO!!!");
             Console.ReadKey();
         }
 
