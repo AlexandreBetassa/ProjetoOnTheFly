@@ -16,17 +16,8 @@ namespace Project_OnTheFly
 
         public PassagemVoo()
         {
-            Console.WriteLine();
-        }
-        
-
-        public PassagemVoo(string id, Voo voo, DateTime dataUltimaOperacao, float valor, char situacao)
-        {
-            IdPassagem = id;
-            Voo = voo;
-            DataUltimaOperacao = dataUltimaOperacao;
-            Valor = valor;
-            Situacao = situacao; // L libre, R Reservada ou P paga
+            this.Situacao = 'L';
+            this.DataUltimaOperacao = DateTime.Now;
         }
 
         public void CadastrarPassagemVoo(List<Voo> listaVoos)
@@ -53,15 +44,6 @@ namespace Project_OnTheFly
                 }
             }
 
-            bool aux;
-            DateTime aux1;
-            do
-            {
-                Console.Write("Informe a data da último operação: ");
-                aux = DateTime.TryParse(Console.ReadLine(), out aux1);
-            } while (!aux);
-            DataUltimaOperacao = aux1;
-
             Console.Write("Informe o valor das passagens desse voo: ");
             Valor = float.Parse(Console.ReadLine());
             if (Valor > 9999.99 || Valor < 0)
@@ -69,8 +51,6 @@ namespace Project_OnTheFly
                 Console.WriteLine("Valor das passagem excedeu o limite permitido.");
             }
         }
-
-        //FALTA SITUAÇÃO
 
         public void EditarPassagemVoo()
         {

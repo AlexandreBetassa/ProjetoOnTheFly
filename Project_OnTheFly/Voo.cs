@@ -128,16 +128,7 @@ namespace Project_OnTheFly
             char situacao = char.Parse(Console.ReadLine());
             voo.Situacao = situacao;
         }
-
-        public void EditarVoo()
-        {
-
-        }
-<<<<<<<<< Temporary merge branch 1
-        public override string ToString()
-=========
        public override string ToString()
->>>>>>>>> Temporary merge branch 2
         {
             return "\nIdVoo: " + IdVoo + "\nDestino: " + Destino + "\nData do Voo: " + DataVoo + "\nData do Cadastro: " + DataCadastro + "\nSituação: " + Situacao;
         }

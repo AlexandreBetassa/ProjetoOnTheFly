@@ -542,7 +542,7 @@ namespace Project_OnTheFly
 
             if (companhia != null)
             {
-                companhia.EditarCompanhia();
+                companhia.EditarCompAerea();
             }
         }
         public static CompanhiaAerea BuscarCompanhia(List<CompanhiaAerea> listaCompanhiaAerea)
