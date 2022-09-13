@@ -17,17 +17,9 @@ namespace Project_OnTheFly
 
         public CompanhiaAerea()
         {
-
-        }
-
-        public CompanhiaAerea(string cnpj, string razaoSocial, DateTime dataAbertura, DateTime ultimoVoo, DateTime dataCadastro, char situacaoCA)
-        {
-            CNPJ = cnpj;
-            RazaoSocial = razaoSocial;
-            DataAbertura = dataAbertura;
-            UltimoVoo = DateTime.Now;
-            DataCadastro = DateTime.Now;
-            SituacaoCA = situacaoCA; //A Ativo ou I Inativo
+            this.UltimoVoo = DateTime.Now;
+            this.DataCadastro = DateTime.Now;
+            this.SituacaoCA = 'A';
         }
 
         public void CadCompAerea()
