@@ -17,17 +17,9 @@ namespace Project_OnTheFly
 
         public CompanhiaAerea()
         {
-
-        }
-
-        public CompanhiaAerea(string cnpj, string razaoSocial, DateTime dataAbertura, DateTime ultimoVoo, DateTime dataCadastro, char situacaoCA)
-        {
-            CNPJ = cnpj;
-            RazaoSocial = razaoSocial;
-            DataAbertura = dataAbertura;
             UltimoVoo = DateTime.Now;
             DataCadastro = DateTime.Now;
-            SituacaoCA = situacaoCA; //A Ativo ou I Inativo
+            SituacaoCA = 'A'; //A Ativo ou I Inativo
         }
 
         public void CadCompAerea()
@@ -105,41 +97,34 @@ namespace Project_OnTheFly
         {
             CompanhiaAerea companhia = new();
             Console.Write("Escolha o dado que você deseja editar: ");
-            Console.Write("1 - Editar CNPJ");
-            Console.Write("2 - Editar RAZÃO SOCIAL");
-            Console.Write("3 - Editar DATA DE ABERTURA");
-            Console.Write("4 - Editar ÚLTIMO VOO");
-            Console.Write("5 - Editar NOVA DATA CADASTRO (ALTERAÇÃO)");
+            Console.Write("1 - Editar RAZÃO SOCIAL");
+            Console.Write("2 - Editar DATA DE ABERTURA");
+            Console.Write("3 - Editar ÚLTIMO VOO");
+            Console.Write("4 - Editar NOVA DATA CADASTRO (ALTERAÇÃO)");
             Console.WriteLine("0 - SAIR");
             int op = int.Parse(Console.ReadLine());
 
             switch (op)
             {
                 case 1:
-                    Console.Write("Informe o CNPJ correto: ");
-                    string cnpj = Console.ReadLine();
-                    companhia.CNPJ = cnpj;
-                    break;
-
-                case 2:
-                    Console.Write("Informe a RAZÃO SOCIAL correta: ");
+                     Console.Write("Informe a RAZÃO SOCIAL correta: ");
                     string razaoSocial = Console.ReadLine();
                     companhia.RazaoSocial = razaoSocial;
                     break;
 
-                case 3:
+                case 2:
                     Console.Write("Informe a DATA DE ABERTURA correta: ");
                     DateTime dataAbertura = DateTime.Parse(Console.ReadLine());
                     companhia.DataAbertura = dataAbertura;
                     break;
 
-                case 4:
+                case 3:
                     Console.Write("Informe a DATA DO ÚLTIMO VOO correta: ");
                     DateTime ultimoVoo = DateTime.Parse(Console.ReadLine());
                     companhia.UltimoVoo = ultimoVoo;
                     break;
 
-                case 5:
+                case 4:
                     do
                     {
                         Console.WriteLine("Informe a SITUAÇÃO do cadastro correta (A - Ativo, I - Inativo): ");
@@ -151,11 +136,6 @@ namespace Project_OnTheFly
                 case 0:
                     break;
             }
-        }
-
-        public void EditarCompanhia()
-        {
-
         }
 
         public override string ToString()

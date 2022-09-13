@@ -17,7 +17,9 @@ namespace Project_OnTheFly
 
         public PassagemVoo()
         {
-            Console.WriteLine();
+            DataUltimaOperacao = DateTime.Now;
+            Situacao = 'L';
+
         }
         
 
@@ -30,7 +32,6 @@ namespace Project_OnTheFly
             Situacao = situacao; // L libre, R Reservada ou P paga
         }
 
-        //CONFERIR SE A LISTA ESTA CERTA
         public void CadastrarPassagemVoo(List<Voo> listaVoos, List<PassagemVoo> listaPassagemVoo)
         {
             
@@ -80,10 +81,26 @@ namespace Project_OnTheFly
             {
                 Console.WriteLine("Valor das passagem excedeu o limite permitido.");
             }
+
+            //SITUAÇÂO
+            string pagar
+            do
+            {
+                Console.WriteLine("Deseja pagar as passagens nesse exato momento? [S/N]");
+                pagar = Console.ReadLine();
+
+            if(pagar = "s")
+            {
+                Situacao = 'P';
+            }
+            else
+            {
+                Console.WriteLine("As passagens ficarão reservadas até o momento do pagamento.");
+                Situacao = 'R';
+            }
+            }while(pagar != "s")
         }
-
-        //FALTA SITUAÇÃO
-
+       
         public void EditarPassagemVoo()
         {
             PassagemVoo passagem = new();
@@ -126,6 +143,11 @@ namespace Project_OnTheFly
                         break;
                 }
             } while (op != 0);
+        }
+
+        public override string ToString()
+        {
+            return $"\nIdPassagem: {IdPassagem} \nData da última operação: {DataUltimaOperacao} \nValor: {Valor} \nSituação: {Situacao}";
         }
     }
 }
