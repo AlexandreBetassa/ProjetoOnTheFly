@@ -79,7 +79,7 @@ namespace Project_OnTheFly
             SituacaoCA = char.Parse(Console.ReadLine());
         }
 
-        public void EditarCompAerea()
+        public void EditarCompAerea(CompanhiaAerea companhia)
         {
             int op;
 
