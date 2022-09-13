@@ -20,6 +20,7 @@ namespace Project_OnTheFly
         {
             UltimaCompra = DateTime.Now; //data atual do sistema
             DataCadastro = DateTime.Now; //data atual do sistema
+            Situacao = 'A';
         }
         public Passageiro(string cpf, string nome, DateTime dataNascimento, char sexo, DateTime ultimaCompra, DateTime dataCadastro, char situacao)
         {
@@ -27,16 +28,13 @@ namespace Project_OnTheFly
             Nome = nome;
             DataNascimento = dataNascimento;
             Sexo = sexo;
-            UltimaCompra = DateTime.Now; //data atual do sistema
-            DataCadastro = DateTime.Now; //data atual do sistema
-            Situacao = 'A';
         }
         public void CadastrarPassageiro()
         {
             Console.WriteLine(">>>CADASTRO DE PASSAGEIRO<<<");
             do
             {
-                Console.WriteLine("Informe o número de seu Cadastro de Pessoas Físicas (CPF) sem caracteres especiais : ");
+                Console.WriteLine("Informe o número de seu Cadastro de Pessoas Físicas (CPF) sem caracteres especiais: ");
                 CPF = Console.ReadLine();
                 if (ValidarCpf(CPF) == false)
                 {
@@ -48,7 +46,7 @@ namespace Project_OnTheFly
             } while (ValidarCpf(CPF) == false);
             do
             {
-                Console.WriteLine("Informe o seu nome (Máximo 50 digítos) : ");
+                Console.WriteLine("Informe o seu nome (Máximo 50 digítos): ");
                 Nome = Console.ReadLine();
                 if (Nome.Length > 50)
                 {
