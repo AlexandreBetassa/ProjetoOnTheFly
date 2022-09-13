@@ -139,11 +139,6 @@ namespace Project_OnTheFly
 
         public override string ToString()
         {
-            return $"\nIdPassagem: {IdPassagem} \nData da última operação: {DataUltimaOperacao} \nValor: {Valor} \nSituação: {Situacao}";
-        }
-
-        public override string ToString()
-        {
             return $"IdPassagem: {IdPassagem} \nIdVoo:  {Voo.IdVoo} \nData da última operação: {DataUltimaOperacao} \nValor: {Valor} \nSituação da Passagem: {Situacao}";
         }
     }
