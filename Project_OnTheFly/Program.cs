@@ -89,7 +89,6 @@ namespace Project_OnTheFly
                         break;
                 }
             } while (true);
-
         }
 
         #region Menus
@@ -379,7 +378,8 @@ namespace Project_OnTheFly
                 switch (opc)
                 {
                     case 1:
-                        listaItemVendas.Add(AdicionarItemVenda(listaPassagensVoos));
+                        string IdItemVenda = (listaItemVendas.Count + 1).ToString("00000");
+                        listaItemVendas.Add(AdicionarItemVenda(listaPassagensVoos, IdItemVenda));
                         break;
                     case 2:
                         Console.WriteLine(BuscarItemVenda(listaItemVendas).ToString());
@@ -738,11 +738,11 @@ namespace Project_OnTheFly
         }
         #endregion
         #region ManterItemVenda
-        public static ItemVenda AdicionarItemVenda(List<PassagemVoo> listaPassagensVoos)
+        public static ItemVenda AdicionarItemVenda(List<PassagemVoo> listaPassagensVoos, String idItemVenda)
         {
             ItemVenda itemVenda = new ItemVenda();
 
-            itemVenda.CadastrarItemVenda(listaPassagensVoos);
+            itemVenda.CadastrarItemVenda(listaPassagensVoos, idItemVenda);
 
             return itemVenda;
         }

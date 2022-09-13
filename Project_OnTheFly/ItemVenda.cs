@@ -12,11 +12,16 @@ namespace Project_OnTheFly
         public String PassagemVoo { get; set; }
         public float ValorUnit { get; set; }
 
-        public void CadastrarItemVenda(List<PassagemVoo> listaPassagensVoos)
+        public ItemVenda()
+        {
+
+        }
+
+        public void CadastrarItemVenda(List<PassagemVoo> listaPassagensVoos, String idItemVenda)
         {
             Console.WriteLine(">>>CADASTRO DE VENDA DE ITEM<<<");
 
-            //Inserir ID Venda
+            IdItemVenda = idItemVenda;
 
             //Lista de Passagens
             Console.WriteLine("Lista de Passagens:");
